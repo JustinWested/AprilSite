@@ -32,52 +32,65 @@ body {
 /* LAYOUT
 /*******************************************/
 
-.head-vid {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-
-
 
 header {
-     background-color: #F43A81;
-     height: 60vh;
+     background-color: #f43a819c;
+     height: 80vh;
+     position: relative;
      overflow: hidden;
      width: 100%;
 }
 
+.head-vid {
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+}
+
+
+
 
 header h1 {
+
   color: whitesmoke;
   font-size: 4em;
   font-weight: 900;
+  text-shadow: 4px 4px 4px #F43A81;
 }
 
 header span {
   color: whitesmoke;
-  
+  text-shadow: 4px 4px 4px #F43A81;
+  font-weight: 500;
+
 }
 
+
 header > div {
+  position: absolute;
+  right: 1px;
+
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   
   padding-top: 5em;
   padding-bottom: 7em;  
-  padding-right: 4em;
+  padding-right: 1em;
 
   z-index: 5;
 }
+
 
 header > div > * {
   z-index: 5;
 }
+
 
 nav > ul {
      display: flex;
@@ -86,6 +99,8 @@ nav > ul {
      flex-wrap: wrap;
      flex: auto;
      color: whitesmoke;
+     text-shadow: 4px 4px 4px #F43A81;
+
 
      z-index: 2;
 }
@@ -96,7 +111,7 @@ nav > ul > li {
      max-width: fit-content;
      text-align: center;
      list-style: none;
-     font-size : 1rem;
+     font-size: clamp(0.7rem, 2vw, 2rem);      
      flex: 1;
      margin: 1em;
      white-space: nowrap;
@@ -112,6 +127,8 @@ nav > ul > li > a {
      font-weight: 800;
      min-width: 0;
 }
+
+
 
 footer {
   background-color: #0da3b0;
