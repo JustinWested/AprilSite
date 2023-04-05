@@ -50,9 +50,10 @@ window.addEventListener("scroll", function() {
   var element = document.getElementById("fixed-element");
   var distanceFromTop = element.getBoundingClientRect().top;
 
-  if (distanceFromTop <= 100) {
+  if (distanceFromTop <= 80) {
     element.classList.add("fixed");
   } else {
     element.classList.remove("fixed");
   }
+
 });
