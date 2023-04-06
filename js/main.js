@@ -46,18 +46,4 @@ thumbnailImgs.forEach((img) => {
 });
 
 
-window.addEventListener("scroll", function() {
-  var element = document.getElementById("fixed-object");
-  var distanceFromTop = element.getBoundingClientRect().top;
-  var desiredDistanceFromTop = 200;
-  var scrollPosition = window.scrollY;
-  var windowHeight = window.innerHeight;
 
-  if (distanceFromTop <= desiredDistanceFromTop) {
-    element.classList.add("fixed");
-    element.style.top = desiredDistanceFromTop + "px";
-  } else {
-    element.classList.remove("fixed");
-    element.style.top = "";
-  }
-});

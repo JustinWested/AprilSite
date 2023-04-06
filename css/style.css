@@ -289,27 +289,32 @@ footer {
      margin-bottom: 1.5em;
 }
 
-
-.profilepic > img {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-
-  height: 180px;
-  margin: 1em 2em;
-  padding-left: 1em;
-  transform: translateX(-160%);
+.profilepic {
+  position: sticky;
+  top: 0;
+  z-index: -3;
 }
 
-#fixed-element {
+.profilepic > img {
+    position: fixed;
+    top: 0;
+
+    height: 180px;
+    margin: 1em 2em;
+    padding-left: 1em;
+    transform: translateX(-160%);
+}
+
+/* #fixed-element {
   position: absolute;
   top: 670px;
 }
 
 .fixed {
   position: fixed;
+  top:200px
 }
-
+ */
 
 
 .bio {
@@ -321,7 +326,9 @@ footer {
   flex-direction: column;
   width: 50%;
   max-width: 600px;
+  height: 100%;
 }
+
 .bio > ul {
     list-style-type: "🍅";
   }
