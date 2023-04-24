@@ -25,6 +25,7 @@ body {
      font-family: 'Raleway', sans-serif;
      background-color: whitesmoke;
      font-size: 1rem;
+     overflow-x: hidden;
 }
 
 :root {
@@ -54,7 +55,8 @@ header {
 }
 
 .sub-page-header {
-  height: 100px;
+  height: 80px;
+  width: 100%;
   background-color: var(--pink-color);
 }
 
@@ -120,10 +122,10 @@ header nav > ul {
      display: flex;
      justify-content:space-between;
      list-style: none;
-     flex-wrap: wrap;
      flex: auto;
      color: var(--offwhite-color);
      text-shadow: 4px 4px 4px var(--pink-color);
+     padding: 0 20px;
 
 
      z-index: 2;
@@ -133,11 +135,10 @@ header nav > ul > li {
      color: var(--offwhite-color);
      text-align: center;
      list-style: none;
-     font-size: clamp(0.7rem, 2vw, 2rem);   
-     gap: 10px;   
-     margin: 25px;
+     font-size: 1.3rem;   
      white-space: nowrap;
      min-width: 0;
+     padding: 25px 0;
 
      z-index: 5;
 }
@@ -475,11 +476,16 @@ main {
   color: var(--darkgreen-color);
 }
 
-h1 {
+h1,
+h2 {
   font-size: 100px;
   color: var(--teal-color);
   text-shadow: 2px 2px 2px var(--pink-color);
   font-weight: 600;
+}
+
+h2{
+  margin: 50px;
 }
 
 h4,
@@ -578,4 +584,20 @@ blockquote .fa-quote-right {
 
 .video-columns:after {
   grid-column: 4 / 5;
+}
+
+
+
+/******************************************
+/* ON CAMERA PAGE
+/*******************************************/
+
+#reels-section iframe{
+  padding: 20px 0;
+}
+
+#reels-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
