@@ -108,3 +108,16 @@ headshots.forEach(headshot => {
 lightbox.addEventListener("click", () => {
     lightbox.classList.add("hidden");
 });
+
+/******************************************
+/* ONCAM NAVBAR FUNC
+/*******************************************/
+
+document.querySelectorAll('.sticky-nav a').forEach(function(navLink) {
+  navLink.addEventListener('mouseenter', function() {
+    navLink.parentElement.classList.add('hover-active');
+  });
+  navLink.addEventListener('mouseleave', function() {
+    navLink.parentElement.classList.remove('hover-active');
+  });
+});
