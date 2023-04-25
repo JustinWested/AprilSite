@@ -76,7 +76,7 @@ html a:hover {
 
 header h1 {
   color: var(--offwhite-color);
-  font-size: clamp(0.7rem, 4vw, 4rem);   ;
+  font-size: clamp(0.7rem, 4vw, 4rem);   
   font-weight: 900;
   text-shadow: 4px 4px 4px var(--pink-color);
 }
@@ -592,6 +592,66 @@ blockquote .fa-quote-right {
 /* ON CAMERA PAGE
 /*******************************************/
 
+.oncam-main {
+  margin: 0;
+}
+
+.sticky-nav {
+  position: sticky;
+  top: 0;
+}
+
+.sticky-nav img{
+  height: 33px;
+  width: 33px;
+  border: 0;
+}
+
+.sticky-nav ul {
+  background-color: var(--yellow-color);
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.nav-item {
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+}
+.nav-content {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-icon {
+  font-size: 24px;
+}
+
+.nav-text {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.nav-item:hover .nav-icon {
+  opacity: 0;
+}
+
+.nav-item:hover .nav-text {
+  opacity: 1;
+}
+
+
 #reels-section iframe{
   padding: 20px 0;
 }
@@ -600,4 +660,145 @@ blockquote .fa-quote-right {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#reels-section h1,
+#acting-resume h2,
+#writing-resume h2, 
+#headshots h2,
+#candid h2,
+#production h2{
+  font-size: clamp(3.5rem, 8vw, 500px);
+}
+
+
+
+/******************************************
+/* HEADSHOT GALLERY
+/*******************************************/
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 10px;
+  margin: 0 120px;
+}
+
+.headshot-wrapper {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.headshot-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+}
+
+.overlayY {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fec701c3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.headshot-wrapper:hover .overlayY {
+  opacity: 1;
+}
+
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a5e63e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  z-index: 8;
+}
+
+.hidden {
+  display: none;
+}
+
+/******************************************
+/* CANDID GALLERY
+/*******************************************/
+
+.masonry-gallery {
+  column-count: 3;
+  column-gap: 1em;
+  margin: 0 120px;
+}
+
+.masonry-wrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #c64191cc;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.masonry-wrapper:hover .overlay {
+  opacity: 1;
+}
+
+.masonry-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.overlayT {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1cb0a9d5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.masonry-wrapper:hover .overlayT {
+  opacity: 1;
 }

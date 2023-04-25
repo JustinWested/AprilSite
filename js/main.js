@@ -1,3 +1,7 @@
+/******************************************
+/* HOME PAGE CURRENT PROJECTS GALLERY
+/*******************************************/
+
 document.addEventListener("DOMContentLoaded", () => {
   const imageThumbs = document.getElementById("image-thumbs");
   const currentImage = document.getElementById("current-image");
@@ -82,4 +86,25 @@ document.addEventListener("DOMContentLoaded", () => {
   currentImage.addEventListener("mouseout", () => {
       cyclingInterval = cycleImages();
   });
+});
+
+/******************************************
+/* LIGHTBOX FUNCTIONALITY
+/*******************************************/
+
+
+const headshots = document.querySelectorAll(".headshot");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+headshots.forEach(headshot => {
+    headshot.addEventListener("click", () => {
+        lightboxImg.src = headshot.src;
+        lightboxImg.alt = headshot.alt;
+        lightbox.classList.remove("hidden");
+    });
+});
+
+lightbox.addEventListener("click", () => {
+    lightbox.classList.add("hidden");
 });
