@@ -76,7 +76,7 @@ html a:hover {
 
 header h1 {
   color: var(--offwhite-color);
-  font-size: clamp(0.7rem, 4vw, 4rem);   
+  font-size: clamp(2rem, 5vw, 5rem);   
   font-weight: 900;
   text-shadow: 4px 4px 4px var(--pink-color);
 }
@@ -117,6 +117,9 @@ header > div > * {
   z-index: 5;
 }
 
+header nav {
+  margin: 0 40px;
+}
 
 header nav > ul {
      display: flex;
@@ -135,7 +138,7 @@ header nav > ul > li {
      color: var(--offwhite-color);
      text-align: center;
      list-style: none;
-     font-size: 1.3rem;   
+     font-size: clamp(1rem, 2vw, 2rem);  
      white-space: nowrap;
      min-width: 0;
      padding: 25px 0;
@@ -558,12 +561,14 @@ blockquote .fa-quote-right {
   display: grid;
   grid-column: 2/3;
   justify-items: center ;
+  margin-bottom: 50px;
 }
 
 .video-column-two {
   display: grid;
   grid-column: 3/4;
   justify-items: center;
+  margin-bottom: 50px;
 }
 
 .video-column-one iframe,
@@ -599,6 +604,7 @@ blockquote .fa-quote-right {
 .sticky-nav {
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 
 .sticky-nav img{
