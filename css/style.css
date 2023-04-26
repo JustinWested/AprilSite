@@ -23,9 +23,19 @@
 
 body {
      font-family: 'Raleway', sans-serif;
-     background-color: whitesmoke;
+     background-color: var(--yellow-color);
      font-size: 1rem;
      overflow-x: hidden;
+}
+
+.middle-container{
+     max-width: 1100px;
+     margin: 0 auto;
+     position: relative;
+}
+
+main {
+  background-color: var(--offwhite-color);
 }
 
 :root {
@@ -55,9 +65,11 @@ header {
 }
 
 .sub-page-header {
-  height: 80px;
+  height: 74px;
   width: 100%;
   background-color: var(--pink-color);
+  overflow: visible;
+  z-index: 4;
 }
 
 .head-vid {
@@ -68,10 +80,73 @@ header {
   object-fit: cover;
 }
 
-html a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 3px;
+
+
+header li:hover {
+  background-color: #a82e77;
+  transition: all 0.3s ease;
+  border-radius: 20px 20px 20px 20px;
 }
+
+.dropdown {
+  position: relative;
+  display: flex;
+}
+
+.dropdown:hover {
+  background-color: #a82e77;
+  transition: all 0.3s ease;
+  border-radius: 20px 20px 0 0;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--pink-color);
+  list-style-type: none;
+  padding: 0;
+  z-index: 1;
+  white-space: nowrap;
+  border-radius: 0 0 20px 20px;
+  width: max-content;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+  border-radius: 0 0 20px 20px;
+}
+
+.dropdown-menu li a {
+  display: block;
+  color: var(--offwhite-color);
+  text-decoration: none;
+  font-weight: 800;
+  text-shadow: 4px 4px 4px var(--pink-color);
+}
+
+.dropdown-menu li:hover {
+  background-color: #a82e77;
+  border-radius: 0 0 0 0;
+}
+
+.dropdown-menu li:last-child:hover {
+  border-bottom: none;
+  border-radius: 0 0 20px 20px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+
+
 
 
 header h1 {
@@ -125,12 +200,9 @@ header nav > ul {
      display: flex;
      justify-content:space-between;
      list-style: none;
-     flex: auto;
      color: var(--offwhite-color);
      text-shadow: 4px 4px 4px var(--pink-color);
      padding: 0 20px;
-
-
      z-index: 2;
 }
 
@@ -138,10 +210,10 @@ header nav > ul > li {
      color: var(--offwhite-color);
      text-align: center;
      list-style: none;
-     font-size: clamp(1rem, 2vw, 2rem);  
+     font-size: 24px;  
      white-space: nowrap;
      min-width: 0;
-     padding: 25px 0;
+     padding: 25px 10px;
 
      z-index: 5;
 }
@@ -298,8 +370,6 @@ footer {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
   height: 100%;
   text-align: left;
 }
@@ -375,7 +445,8 @@ footer {
 }
 
 
-#current-image {
+#current-image,
+#current-butt-image {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
@@ -422,7 +493,8 @@ footer {
   opacity: 1;
 }
 
-#image-thumbs {
+#image-thumbs,
+#butt-thumbs {
   display: flex;
   justify-content: center;
   padding: 20px 0;
@@ -460,11 +532,13 @@ footer {
   }
 }
 
-#current-image.fade-out {
+#current-image.fade-out,
+#current-butt-image.fade-out {
   animation: fadeOut 0.3s forwards;
 }
 
-#current-image.fade-in {
+#current-image.fade-in,
+#current-butt-image.fade-in {
   animation: fadeIn 0.3s forwards;
 }
 
@@ -474,7 +548,7 @@ footer {
 /*******************************************/
 
 main {
-  margin: 55px 0 0 0;
+  padding: 50px 0;
   text-align: center;
   color: var(--darkgreen-color);
 }
@@ -553,8 +627,6 @@ blockquote .fa-quote-right {
 .video-columns {
   display: grid;
   grid-template-columns: 10% 40% 40% 10%;
-  gap: 20px;
-  padding-right: 20px;
 }
 
 .video-column-one {
@@ -580,7 +652,15 @@ blockquote .fa-quote-right {
 .video-columns:before,
 .video-columns:after {
   content: "";
-  background-image: linear-gradient(to top, var(--teal-color) 25%, var(--offwhite-color));
+  background-image: 
+    linear-gradient(var(--offwhite-color)30%, 
+          var(--pink-color)30%, 
+          var(--pink-color)50%, 
+          var(--yellow-color)50%, 
+          var(--yellow-color)70%,
+          var(--teal-color)70%,
+          var(--teal-color)90%,
+          var(--offwhite-color)90%);
 }
 
 .video-columns:before {
@@ -598,13 +678,13 @@ blockquote .fa-quote-right {
 /*******************************************/
 
 .oncam-main {
-  margin: 0;
+  padding: 0;
 }
 
 .sticky-nav {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 3;
 }
 
 .sticky-nav img{
@@ -658,7 +738,46 @@ blockquote .fa-quote-right {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
+
+.iframe-wrapper {
+  position: relative;
+}
+
+.iframe-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100vw;
+  right: -100vw;
+  bottom: 0;
+  z-index: -1;
+}
+
+#acting-resume {
+  background-image: 
+    linear-gradient(var(--offwhite-color)30%, 
+          var(--pink-color)30%, 
+          var(--pink-color)50%, 
+          var(--yellow-color)50%, 
+          var(--yellow-color)70%,
+          var(--teal-color)70%,
+          var(--teal-color)90%,
+          var(--offwhite-color)90%);
+}
+
+#writing-resume {
+  background-image: 
+  linear-gradient(var(--offwhite-color)30%, 
+        var(--pink-color)30%, 
+        var(--pink-color)50%, 
+        var(--yellow-color)50%, 
+        var(--yellow-color)70%,
+        var(--teal-color)70%,
+        var(--teal-color)100%)
+}
+
 
 #reels-section h1,
 #acting-resume h2,
@@ -667,6 +786,10 @@ blockquote .fa-quote-right {
 #candid h2,
 #production h2{
   font-size: clamp(3.5rem, 8vw, 500px);
+}
+
+#writing-resume embed {
+  padding-bottom: 60px;
 }
 
 
@@ -729,13 +852,13 @@ blockquote .fa-quote-right {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 13;
 }
 
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
-  z-index: 8;
+  z-index: 18;
 }
 
 .hidden {
@@ -800,3 +923,175 @@ blockquote .fa-quote-right {
 .masonry-wrapper:hover .overlayT {
   opacity: 1;
 }
+
+/******************************************
+/* FILMS PAGE
+/*******************************************/
+
+
+.film-container {
+  display: flex;
+  flex-direction: row-reverse;
+
+  margin: 60px 10%;
+  border: double 8px var(--yellow-color);
+  border-radius: 20px;
+  box-shadow: 1px 1px 2px black, 10px 10px 8px var(--pink-color);
+}
+
+.film-container img {
+  margin: 30px;
+  height: 453px;
+  width: 295px;
+  border: 11px groove var(--yellow-color);
+  box-shadow: 1px 1px 2px black, 10px 10px 5px var(--pink-color);
+  border-radius: 20px;
+}
+
+.film-text {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 60px;
+  align-self: center;
+}
+
+.film-text h3 {
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 60px;
+  color: var(--yellow-color);
+}
+
+.film-text span {
+  padding-bottom: 20px;
+  color: var(--darkgreen-color);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+.film-text a {
+  text-align: center;
+  text-decoration: none;
+  color: white;  
+  font-weight: 800;
+  font-size: 15px; 
+  width: 30%;
+  padding: 10px 0;
+  background-color: var(--yellow-color);
+  border-radius: 20px;
+  border: 3px solid var(--pink-color);
+  transition: all 0.5s ease;
+}
+
+.film-text a:hover {
+  box-shadow: 5px 5px 5px var(--pink-color);
+  width: 60%;
+}
+
+.film-container:nth-child(3){
+  flex-direction: row;
+  border: double 8px var(--teal-color);
+  box-shadow: 1px 1px 2px black, 10px 10px 8px var(--yellow-color);
+}
+
+.film-container:nth-child(3) h3 {
+  color: var(--teal-color);
+}
+
+.film-container:nth-child(3) .film-text a {
+  background-color: var(--teal-color);
+  border: 3px solid var(--yellow-color);
+}
+
+.film-container:nth-child(3) img {
+  border: 11px groove var(--teal-color);
+  box-shadow: 1px 1px 2px black, 10px 10px 5px var(--yellow-color);
+}
+
+.film-container:nth-child(3) .film-text a:hover {
+  box-shadow: 5px 5px 5px var(--yellow-color);
+}
+
+.film-container:nth-child(4){
+  border: double 8px var(--pink-color);
+  box-shadow: 1px 1px 2px black, 10px 10px 8px var(--teal-color);
+}
+
+.film-container:nth-child(4) h3 {
+  color: var(--pink-color);
+}
+
+.film-container:nth-child(4) .film-text a {
+  background-color: var(--pink-color);
+  border: 3px solid var(--teal-color);
+}
+
+.film-container:nth-child(4) img {
+  border: 11px groove var(--pink-color);
+  box-shadow: 1px 1px 2px black, 10px 10px 5px var(--teal-color);
+}
+
+.film-container:nth-child(4) .film-text a:hover {
+  box-shadow: 5px 5px 5px var(--pink-color);
+}
+
+.film-container:nth-child(5){
+  flex-direction: row;
+}
+
+.film-container:nth-child(5) img{
+  height: 392px;
+}
+
+/******************************************
+/* BUTT STUFF PAGE
+/*******************************************/
+
+.butt-main {
+  padding-top: 0;
+}
+
+.butt-hero-container {
+  width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.butt-hero-container .butthead {
+  width: 1100px;
+  height: auto;
+  position: relative;
+}
+
+.butt-hero-container .butttitle {
+  position: absolute;
+  top: 160px;
+  left: 20px;
+}
+
+.butt-hero-container span {
+  color: black;
+  font-weight: 600;
+  font-size: 50px;
+  position: absolute;
+  top: 300px;
+  left: 80px;
+}
+
+
+/******************************************
+/* PULLING THE PLUG ON MOM PAGE
+/*******************************************/
+
+
+/******************************************
+/* THIS IS A GARDEN PAGE
+/*******************************************/
+
+
+/******************************************
+/* NORMAN PAGE
+/*******************************************/

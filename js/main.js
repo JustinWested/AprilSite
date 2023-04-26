@@ -1,93 +1,121 @@
 /******************************************
-/* HOME PAGE CURRENT PROJECTS GALLERY
+/* IMAGE GALLERY HERO WITH THUMBS
 /*******************************************/
 
-document.addEventListener("DOMContentLoaded", () => {
-  const imageThumbs = document.getElementById("image-thumbs");
-  const currentImage = document.getElementById("current-image");
-  const description = document.getElementById("description");
+function createImageGallery(thumbsContainerId, currentImageId, descriptionId, imageFiles, includeDescriptions, autoCycle) {  
+  console.log('Creating image gallery for:', thumbsContainerId);
+  
+  const imageThumbs = document.getElementById(thumbsContainerId);
+  const currentImage = document.getElementById(currentImageId);
+  const description = document.getElementById(descriptionId);
 
-  const descriptions = [
-      '<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story">Butt Stuff on Seed&Spark!</a></span>',
-      '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1">Now On Spotify!</a></span>',
-      '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
-      '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE">"this is a garden"</a></span>',
-      '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</a></span>',
-  ];
+  const descriptions = ['<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story">Butt Stuff on Seed&Spark!</a></span>',
+  '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1">Now On Spotify!</a></span>',
+  '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
+  '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE">"this is a garden"</a></span>',
+  '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</a></span>'];
 
-  for (let i = 1; i <= 5; i++) {
-      const thumb = document.createElement("img");
-      thumb.src = `images/indeximages/image${i}.webp`;
-      thumb.alt = `Image ${i}`;
-      thumb.dataset.description = descriptions[i - 1];
+  for (let i = 0; i < imageFiles.length; i++) {
+    console.log('Adding thumb:', i);
 
-      thumb.classList.add("thumb");
-      imageThumbs.appendChild(thumb);
+    const thumb = document.createElement("img");
+    thumb.src = imageFiles[i];
+    thumb.alt = `Image ${i + 1}`;
+    thumb.dataset.description = descriptions[i];
 
-      thumb.addEventListener("click", function () {
-          currentImage.src = this.src;
-          currentImage.alt = this.alt;
-          description.innerHTML = this.dataset.description;
-          description.classList.remove("hidden");
-          description.style.height = `${currentImage.clientHeight}px`;
-      });
+    thumb.classList.add("thumb");
+    imageThumbs.appendChild(thumb);
+
+    thumb.addEventListener("click", function () {
+      currentImage.src = this.src;
+      currentImage.alt = this.alt;
+
+      if (includeDescriptions) {
+        description.innerHTML = this.dataset.description;
+        description.classList.remove("hidden");
+        description.style.height = `${currentImage.clientHeight}px`;
+      }
+    });
   }
-
-  currentImage.addEventListener("load", () => {
-      description.style.height = `${currentImage.clientHeight}px`;
-  });
-
-  description.innerHTML = descriptions[0];
-
-  currentImage.addEventListener("mouseover", () => {
-      description.classList.remove("hidden");
-  });
-
-  currentImage.addEventListener("mouseout", () => {
-      description.classList.add("hidden");
-  });
-
     function cycleImages() {
       let currentIndex = 1;
   
       return setInterval(() => {
-          currentImage.classList.add("fade-out");
+        currentImage.classList.add("fade-out");
   
-          setTimeout(() => {
-              currentIndex++;
-              if (currentIndex > 5) {
-                  currentIndex = 1;
-              }
-              const thumb = document.querySelector(`.thumb:nth-child(${currentIndex})`);
-              currentImage.src = thumb.src;
-              currentImage.alt = thumb.alt;
-              description.innerHTML = thumb.dataset.description;
-              description.style.height = `${currentImage.clientHeight}px`;
+        setTimeout(() => {
+          currentIndex++;
+          if (currentIndex > imageFiles.length) {
+            currentIndex = 1;
+          }
+          const thumb = document.querySelector(`#${thumbsContainerId} .thumb:nth-child(${currentIndex})`);
+          currentImage.src = thumb.src;
+          currentImage.alt = thumb.alt;
   
-              currentImage.addEventListener("load", () => {
-                  currentImage.classList.remove("fade-out");
-                  currentImage.classList.add("fade-in");
+          currentImage.addEventListener("load", () => {
+            currentImage.classList.remove("fade-out");
+            currentImage.classList.add("fade-in");
   
-                  setTimeout(() => {
-                      currentImage.classList.remove("fade-in");
-                  }, 300); // Match the duration of the fadeIn CSS
-              }, { once: true });
-          }, 300); // Match the duration of the fadeOut CSS
+            setTimeout(() => {
+              currentImage.classList.remove("fade-in");
+            }, 300); // Match the duration of the fadeIn CSS
+          }, { once: true });
+        }, 300); // Match the duration of the fadeOut CSS
       }, 5000); // Change the delay between image changes
-  }
+    }
   
+    if (autoCycle) {
+      let cyclingInterval = cycleImages(currentImageId, imageFiles);
+  
+      currentImage.addEventListener("mouseover", () => {
+        clearInterval(cyclingInterval);
+      });
+  
+      currentImage.addEventListener("mouseout", () => {
+        cyclingInterval = cycleImages(currentImageId, imageFiles);
+      });
+    }
+  }
+     
+    
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "image-thumbs",
+            "current-image",
+            "description",
+            [
+              "images/indeximages/image1.webp",
+              "images/indeximages/image2.webp",
+              "images/indeximages/image3.webp",
+              "images/indeximages/image4.webp",
+              "images/indeximages/image5.webp"
+            ],
+            true, // includeDescriptions
+            true // autoCycle
+          );
+        });
 
-  let cyclingInterval = cycleImages();
-
-  currentImage.addEventListener("mouseover", () => {
-      clearInterval(cyclingInterval);
-  });
-
-  currentImage.addEventListener("mouseout", () => {
-      cyclingInterval = cycleImages();
-  });
-});
-
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "butt-thumbs",
+            "current-butt-image",
+            "description",
+            [
+              "images/films/buttprod/aftercare.webp",
+              "images/films/buttprod/angryreadingnoises.webp",
+              "images/films/buttprod/introducingcassie.webp",
+              "images/films/buttprod/jasonandelena.webp",
+              "images/films/buttprod/jasonbouttogetit.webp",
+              "images/films/buttprod/postsexbutmakeitsad.webp",
+              "images/films/buttprod/postsexface.webp",
+              "images/films/buttprod/withthatbuttagain.webp"
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+            
+        
 /******************************************
 /* LIGHTBOX FUNCTIONALITY
 /*******************************************/
@@ -109,15 +137,3 @@ lightbox.addEventListener("click", () => {
     lightbox.classList.add("hidden");
 });
 
-/******************************************
-/* ONCAM NAVBAR FUNC
-/*******************************************/
-
-document.querySelectorAll('.sticky-nav a').forEach(function(navLink) {
-  navLink.addEventListener('mouseenter', function() {
-    navLink.parentElement.classList.add('hover-active');
-  });
-  navLink.addEventListener('mouseleave', function() {
-    navLink.parentElement.classList.remove('hover-active');
-  });
-});
