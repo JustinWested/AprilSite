@@ -37,6 +37,11 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
       }
     });
   }
+
+/******************************************
+/* GALLERY IMAGE CYCLING
+/*******************************************/
+
     function cycleImages() {
       let currentIndex = 1;
   
@@ -76,7 +81,10 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
       });
     }
   }
-     
+
+/******************************************
+/* GALLERY CREATION
+/*******************************************/
     
         document.addEventListener("DOMContentLoaded", () => {
           createImageGallery(
@@ -114,26 +122,80 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
             true // autoCycle
           );
         });
-            
-        
+
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "butt-bts-thumbs",
+            "current-butt-bts-image",
+            "description",
+            [
+              "images/films/buttprod/buttbts.webp",
+              "images/films/buttprod/buttbts1.webp",
+              "images/films/buttprod/buttbts2.webp",
+              "images/films/buttprod/buttbts3.webp",
+              "images/films/buttprod/buttbts4.webp",
+              "images/films/buttprod/buttbts5.webp",
+              "images/films/buttprod/buttbts6.webp",
+              "images/films/buttprod/buttbts7.webp",
+              "images/films/buttprod/buttbts8.webp",
+              "images/films/buttprod/buttbts9.webp"
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+
 /******************************************
-/* LIGHTBOX FUNCTIONALITY
+/* SCROLLING THUMBNAILS
 /*******************************************/
 
+        document.addEventListener("DOMContentLoaded", () => {
+          const bindScrollEvents = (scrollLeftId, scrollRightId, thumbContainerId) => {
+            const scrollLeft = document.getElementById(scrollLeftId);
+            const scrollRight = document.getElementById(scrollRightId);
+            const thumbContainer = document.getElementById(thumbContainerId);
+        
+            scrollLeft.addEventListener("click", () => {
+              thumbContainer.scrollBy({ top: 0, left: -300, behavior: "smooth" });
+            });
+        
+            scrollRight.addEventListener("click", () => {
+              thumbContainer.scrollBy({ top: 0, left: 300, behavior: "smooth" });
+            });
+          };
+        
+          bindScrollEvents("scroll-left", "scroll-right", "butt-thumbs");
+          bindScrollEvents("scroll-left", "scroll-right", "image-thumbs");
+          bindScrollEvents("scroll-bts-left", "scroll-bts-right", "butt-bts-thumbs");
+        });
+             
+/******************************************
+/* LIGHTBOX
+/*******************************************/
 
-const headshots = document.querySelectorAll(".headshot");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+document.addEventListener("DOMContentLoaded", () => {
+  const currentButtBTSImage = document.getElementById("current-butt-bts-image");
+  const currentButtImage = document.getElementById("current-butt-image");
+  const headshots = document.querySelectorAll(".headshot");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
 
-headshots.forEach(headshot => {
-    headshot.addEventListener("click", () => {
-        lightboxImg.src = headshot.src;
-        lightboxImg.alt = headshot.alt;
-        lightbox.classList.remove("hidden");
+  function addLightboxListener(imageElement) {
+    imageElement.addEventListener("click", () => {
+      lightboxImg.src = imageElement.src;
+      lightboxImg.alt = imageElement.alt;
+      lightbox.classList.remove("hidden");
     });
-});
-
-lightbox.addEventListener("click", () => {
+  }  
+  
+  lightbox.addEventListener("click", () => {
     lightbox.classList.add("hidden");
-});
+  });
 
+  headshots.forEach(headshot => {
+    addLightboxListener(headshot);
+  });
+
+  addLightboxListener(currentButtImage);
+  addLightboxListener(currentButtBTSImage);
+});

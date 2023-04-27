@@ -27,6 +27,9 @@ body {
      font-size: 1rem;
      overflow-x: hidden;
 }
+.butt-body{
+  background-color: var(--teal-color);
+}
 
 .middle-container{
      max-width: 1100px;
@@ -446,10 +449,18 @@ footer {
 
 
 #current-image,
+#current-butt-bts-image,
 #current-butt-image {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
+
+#current-butt-image,
+#current-butt-bts-image{
+  height: 400px;
+  object-fit:cover;
+}
+
 
 #description {
   position: absolute;
@@ -494,17 +505,43 @@ footer {
 }
 
 #image-thumbs,
+#butt-bts-thumbs, 
 #butt-thumbs {
   display: flex;
-  justify-content: center;
-  padding: 20px 0;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 10px;
+  background-color: var(--yellow-color);
+}
+
+#butt-thumbs-wrapper,
+#image-thumbs-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
   background-color: var(--yellow-color);
   border-radius: 0 0 20px 20px;
 }
 
+#butt-thumbs,
+#butt-bts-thumbs,
+#butt-thumbs-wrapper {
+  background-color: var(--pink-color);
+}
+
+
+.scroll-arrow {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
 .thumb {
-  width: 80px;
-  height: 80px;
+  width: 140px;
+  height: 100px;
   object-fit: cover;
   margin-right: 10px;
   cursor: pointer;
@@ -533,11 +570,13 @@ footer {
 }
 
 #current-image.fade-out,
+#current-butt-bts-image.faceout,
 #current-butt-image.fade-out {
   animation: fadeOut 0.3s forwards;
 }
 
 #current-image.fade-in,
+#current-butt-bts-image.fade-in,
 #current-butt-image.fade-in {
   animation: fadeIn 0.3s forwards;
 }
@@ -852,7 +891,7 @@ blockquote .fa-quote-right {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 13;
+  z-index: 23;
 }
 
 .lightbox img {
@@ -1079,6 +1118,11 @@ blockquote .fa-quote-right {
   position: absolute;
   top: 300px;
   left: 80px;
+}
+
+.butt-body h1,
+.butt-body h2 {
+  color: var(--pink-color);
 }
 
 
