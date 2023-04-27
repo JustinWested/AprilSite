@@ -2,12 +2,11 @@
 /* IMAGE GALLERY HERO WITH THUMBS
 /*******************************************/
 
-function createImageGallery(thumbsContainerId, currentImageId, descriptionId, imageFiles, includeDescriptions, autoCycle) {  
-  console.log('Creating image gallery for:', thumbsContainerId);
-  
+function createImageGallery(thumbsContainerId, currentImageId, descriptionId, imageFiles, includeDescriptions, autoCycle) {
   const imageThumbs = document.getElementById(thumbsContainerId);
   const currentImage = document.getElementById(currentImageId);
   const description = document.getElementById(descriptionId);
+
 
   const descriptions = ['<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story">Butt Stuff on Seed&Spark!</a></span>',
   '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1">Now On Spotify!</a></span>',
@@ -16,8 +15,6 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
   '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</a></span>'];
 
   for (let i = 0; i < imageFiles.length; i++) {
-    console.log('Adding thumb:', i);
-
     const thumb = document.createElement("img");
     thumb.src = imageFiles[i];
     thumb.alt = `Image ${i + 1}`;
@@ -31,56 +28,67 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
       currentImage.alt = this.alt;
 
       if (includeDescriptions) {
+        currentImage.dataset.description = this.dataset.description;
+      }
+    });
+  }
+
+  if (includeDescriptions) {
+    currentImage.dataset.description = descriptions[0]; 
+
+    currentImage.addEventListener("mouseenter", function () {
+      if (this.dataset.description) {
         description.innerHTML = this.dataset.description;
         description.classList.remove("hidden");
         description.style.height = `${currentImage.clientHeight}px`;
       }
     });
+  
+    currentImage.addEventListener("mouseleave", function () {
+      description.classList.add("hidden");
+    });
   }
 
-/******************************************
-/* GALLERY IMAGE CYCLING
-/*******************************************/
-
-    function cycleImages() {
-      let currentIndex = 1;
+  function cycleImages() {
+    let currentIndex = 1;
   
-      return setInterval(() => {
-        currentImage.classList.add("fade-out");
+    return setInterval(() => {
+      currentImage.classList.add("fade-out");
   
-        setTimeout(() => {
-          currentIndex++;
-          if (currentIndex > imageFiles.length) {
-            currentIndex = 1;
-          }
-          const thumb = document.querySelector(`#${thumbsContainerId} .thumb:nth-child(${currentIndex})`);
-          currentImage.src = thumb.src;
-          currentImage.alt = thumb.alt;
+      setTimeout(() => {
+        currentIndex++;
+        if (currentIndex > imageFiles.length) {
+          currentIndex = 1;
+        }
+        const thumb = document.querySelector(`#${thumbsContainerId} .thumb:nth-child(${currentIndex})`);
+        currentImage.src = thumb.src;
+        currentImage.alt = thumb.alt;
+        currentImage.dataset.description = thumb.dataset.description; // Update the currentImage description
   
-          currentImage.addEventListener("load", () => {
-            currentImage.classList.remove("fade-out");
-            currentImage.classList.add("fade-in");
+        currentImage.addEventListener("load", () => {
+          currentImage.classList.remove("fade-out");
+          currentImage.classList.add("fade-in");
   
-            setTimeout(() => {
-              currentImage.classList.remove("fade-in");
-            }, 300); // Match the duration of the fadeIn CSS
-          }, { once: true });
-        }, 300); // Match the duration of the fadeOut CSS
-      }, 5000); // Change the delay between image changes
-    }
-  
-    if (autoCycle) {
-      let cyclingInterval = cycleImages(currentImageId, imageFiles);
-  
-      currentImage.addEventListener("mouseover", () => {
-        clearInterval(cyclingInterval);
-      });
-  
-      currentImage.addEventListener("mouseout", () => {
-        cyclingInterval = cycleImages(currentImageId, imageFiles);
-      });
-    }
+          setTimeout(() => {
+            currentImage.classList.remove("fade-in");
+          }, 400); // Match the duration of the fadeIn CSS
+        }, { once: true });
+      }, 400); // Match the duration of the fadeOut CSS
+    }, 7000); // Change the delay between image changes
   }
+
+  if (autoCycle) {
+    let cyclingInterval = cycleImages(currentImageId, imageFiles);
+
+    currentImage.addEventListener("mouseover", () => {
+      clearInterval(cyclingInterval);
+    });
+
+    currentImage.addEventListener("mouseout", () => {
+      cyclingInterval = cycleImages(currentImageId, imageFiles);
+    });
+  }
+}
 
 /******************************************
 /* GALLERY CREATION
@@ -137,45 +145,117 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
               "images/films/buttprod/buttbts5.webp",
               "images/films/buttprod/buttbts6.webp",
               "images/films/buttprod/buttbts7.webp",
-              "images/films/buttprod/buttbts8.webp",
-              "images/films/buttprod/buttbts9.webp"
+              "images/films/buttprod/buttbts8.webp"
             ],
             false, // includeDescriptions
             true // autoCycle
           );
         });
 
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "norm-thumbs",
+            "current-norm-image",
+            "description",
+            [
+              "images/films/normprod/norman.webp",
+              "images/films/normprod/norman2.webp",
+              "images/films/normprod/norman3.webp",
+              "images/films/normprod/norman4.webp",
+              "images/films/normprod/norman5.webp",
+              "images/films/normprod/norman6.webp",
+              "images/films/normprod/norman7.webp",
+              "images/films/normprod/norman8.webp",
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "garden-thumbs",
+            "current-garden-image",
+            "description",
+            [
+              "images/films/gardenprod/gardenprod.webp",
+              "images/films/gardenprod/gardenprod1.webp",
+              "images/films/gardenprod/gardenprod2.webp",
+              "images/films/gardenprod/gardenprod3.webp",
+              "images/films/gardenprod/gardenprod4.webp",
+              "images/films/gardenprod/gardenprod5.webp",
+              "images/films/gardenprod/gardenprod6.webp",
+              "images/films/gardenprod/gardenprod7.webp",
+              "images/films/gardenprod/gardenprod8.webp",
+              "images/films/gardenprod/gardenprod9.webp"
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "garden-bts-thumbs",
+            "current-garden-bts-image",
+            "description",
+            [
+              "images/films/gardenprod/gardenbts (1).webp",
+              "images/films/gardenprod/gardenbts (2).webp",
+              "images/films/gardenprod/gardenbts (3).webp",
+              "images/films/gardenprod/gardenbts (4).webp",
+              "images/films/gardenprod/gardenbts (5).webp",
+              "images/films/gardenprod/gardenbts (6).webp",
+              "images/films/gardenprod/gardenbts (7).webp",
+              "images/films/gardenprod/gardenbts (8).webp",
+              "images/films/gardenprod/gardenbts (9).webp"
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+        
 /******************************************
 /* SCROLLING THUMBNAILS
 /*******************************************/
 
-        document.addEventListener("DOMContentLoaded", () => {
-          const bindScrollEvents = (scrollLeftId, scrollRightId, thumbContainerId) => {
-            const scrollLeft = document.getElementById(scrollLeftId);
-            const scrollRight = document.getElementById(scrollRightId);
-            const thumbContainer = document.getElementById(thumbContainerId);
-        
-            scrollLeft.addEventListener("click", () => {
-              thumbContainer.scrollBy({ top: 0, left: -300, behavior: "smooth" });
-            });
-        
-            scrollRight.addEventListener("click", () => {
-              thumbContainer.scrollBy({ top: 0, left: 300, behavior: "smooth" });
-            });
-          };
-        
-          bindScrollEvents("scroll-left", "scroll-right", "butt-thumbs");
-          bindScrollEvents("scroll-left", "scroll-right", "image-thumbs");
-          bindScrollEvents("scroll-bts-left", "scroll-bts-right", "butt-bts-thumbs");
-        });
+function createScrollFunctionality(scrollLeftId, scrollRightId, thumbContainerId) {
+  const scrollLeft = document.getElementById(scrollLeftId);
+  const scrollRight = document.getElementById(scrollRightId);
+  const thumbContainer = document.getElementById(thumbContainerId);
+
+  scrollLeft.addEventListener("click", () => {
+    thumbContainer.scrollBy({ top: 0, left: -300, behavior: "smooth" });
+  });
+
+  scrollRight.addEventListener("click", () => {
+    thumbContainer.scrollBy({ top: 0, left: 300, behavior: "smooth" });
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-norm-left", "scroll-norm-right", "norm-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-butt-left", "scroll-butt-right", "butt-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-index-left", "scroll-index-right", "image-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-butt-bts-left", "scroll-butt-bts-right", "butt-bts-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-garden-left", "scroll-garden-right", "garden-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-garden-bts-left", "scroll-garden-bts-right", "garden-bts-thumbs");
+});
              
 /******************************************
 /* LIGHTBOX
 /*******************************************/
 
 document.addEventListener("DOMContentLoaded", () => {
-  const currentButtBTSImage = document.getElementById("current-butt-bts-image");
-  const currentButtImage = document.getElementById("current-butt-image");
   const headshots = document.querySelectorAll(".headshot");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
@@ -186,8 +266,8 @@ document.addEventListener("DOMContentLoaded", () => {
       lightboxImg.alt = imageElement.alt;
       lightbox.classList.remove("hidden");
     });
-  }  
-  
+  }
+
   lightbox.addEventListener("click", () => {
     lightbox.classList.add("hidden");
   });
@@ -196,6 +276,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addLightboxListener(headshot);
   });
 
-  addLightboxListener(currentButtImage);
-  addLightboxListener(currentButtBTSImage);
+  // Use querySelectorAll and forEach instead of getElementById
+  document.querySelectorAll(".lightbox-image").forEach(lightboxImage => {
+    addLightboxListener(lightboxImage);
+  });
 });

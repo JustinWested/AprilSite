@@ -27,6 +27,12 @@ body {
      font-size: 1rem;
      overflow-x: hidden;
 }
+
+body a {
+  text-decoration: none;
+  color: black;
+}
+
 .butt-body{
   background-color: var(--teal-color);
 }
@@ -94,6 +100,7 @@ header li:hover {
 .dropdown {
   position: relative;
   display: flex;
+  z-index: 22;
 }
 
 .dropdown:hover {
@@ -443,19 +450,23 @@ footer {
   
 #image-gallery {
   width: 600px;
-  margin: 40px auto;
+  margin: 2px auto;
   position: relative;
 }
 
 
 #current-image,
 #current-butt-bts-image,
-#current-butt-image {
+#current-butt-image,
+#current-norm-image,
+#current-garden-image,
+#current-garden-bts-image {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
 
 #current-butt-image,
+#current-norm-image,
 #current-butt-bts-image{
   height: 400px;
   object-fit:cover;
@@ -476,6 +487,7 @@ footer {
   opacity: 0;
   transition: opacity 0.3s;
   border-radius: 0 20px 0 0;
+  pointer-events: none;
 }
 
 #description span {
@@ -505,8 +517,11 @@ footer {
 }
 
 #image-thumbs,
+#norm-thumbs,
 #butt-bts-thumbs, 
-#butt-thumbs {
+#butt-thumbs,
+#garden-thumbs,
+#garden-bts-thumbs {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -515,21 +530,18 @@ footer {
   background-color: var(--yellow-color);
 }
 
+
 #butt-thumbs-wrapper,
-#image-thumbs-wrapper {
+#norm-thumbs-wrapper,
+#image-thumbs-wrapper,
+#garden-bts-thumbs-wrapper,
+#garden-thumbs-wrapper {
   display: flex;
   align-items: center;
   position: relative;
   background-color: var(--yellow-color);
   border-radius: 0 0 20px 20px;
 }
-
-#butt-thumbs,
-#butt-bts-thumbs,
-#butt-thumbs-wrapper {
-  background-color: var(--pink-color);
-}
-
 
 .scroll-arrow {
   background: none;
@@ -570,14 +582,20 @@ footer {
 }
 
 #current-image.fade-out,
-#current-butt-bts-image.faceout,
-#current-butt-image.fade-out {
+#current-butt-bts-image.fade-out,
+#current-butt-image.fade-out,
+#current-norm-image.fade-out,
+#current-garden-image.fade-out,
+#current-garden-bts-image.fade-out   {
   animation: fadeOut 0.3s forwards;
 }
 
 #current-image.fade-in,
+#current-norm-image.fade-in,
 #current-butt-bts-image.fade-in,
-#current-butt-image.fade-in {
+#current-butt-image.fade-in,
+#current-garden-bts-image.fade-in,
+#current-garden-image.fade-in {
   animation: fadeIn 0.3s forwards;
 }
 
@@ -1090,16 +1108,19 @@ blockquote .fa-quote-right {
 /*******************************************/
 
 .butt-main {
-  padding-top: 0;
+  padding: 0 0;
 }
 
-.butt-hero-container {
+.butt-hero-container, 
+.norman-hero-container {
   width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
 
-.butt-hero-container .butthead {
+.butt-hero-container .butthead,
+.norman-hero-container .normhead,
+.garden-hero-container .gardenhead  {
   width: 1100px;
   height: auto;
   position: relative;
@@ -1111,6 +1132,18 @@ blockquote .fa-quote-right {
   left: 20px;
 }
 
+.norman-hero-container .normantitle {
+  position: absolute;
+  top: 90px;
+  left: 600px;
+}
+
+.garden-hero-container .gardentitle {
+  position: absolute;
+  top: 90px;
+  left: 600px;
+}
+
 .butt-hero-container span {
   color: black;
   font-weight: 600;
@@ -1120,11 +1153,185 @@ blockquote .fa-quote-right {
   left: 80px;
 }
 
+.norman-hero-container span {
+  color: var(--offwhite-color);
+  font-weight: 600;
+  font-size: 30px;
+  position: absolute;
+  top: 200px;
+  left: 670px;
+}
+
+.forty-eight-logo {
+  position: absolute;
+  top: 300px;
+  left: 870px;
+}
+
 .butt-body h1,
 .butt-body h2 {
   color: var(--pink-color);
 }
 
+.film-about {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.film-about img {
+  border: 10px groove #00848d97
+}
+
+.film-about h1 {
+  font-size: 4rem;
+  padding-bottom: 30px;
+}
+
+.about-text{
+  width: 500px;
+  padding-left: 60px;
+}
+
+.about-text a{
+  padding-top: 15px;
+  display: block;
+}
+
+.about-text h3 {
+  color: var(--teal-color);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 55px;
+}
+
+.about-text span:last-child{
+  font-size: 10px;
+}
+
+.stills {
+  background-color: var(--pink-color);
+  padding: 10px 10px 40px 10px;
+}
+
+.norm-stills {
+  background-color: var(--teal-color);
+}
+
+.stills h4 {
+  font-size: 2.5rem;
+  color: white;  
+}
+
+#butt-bts-thumbs-wrapper{
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 0 0 20px 20px;
+}
+
+#butt-bts-thumbs-wrapper,
+#butt-bts-thumbs {
+  background-color: var(--pink-color);
+}
+
+.bts {
+  padding: 20px;
+}
+
+.bts h4{
+  font-size: 2.5rem;
+  color: var(--pink-color);
+}
+
+.faq {
+  padding: 20px 0 40px 0;
+  background-color: var(--pink-color);
+  color: var(--offwhite-color);
+  display: block;
+  position: relative;
+}
+
+.faq h4 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.faq span {
+  text-align: left;
+  display: block;
+  margin: 0 15%;
+  font-size: 1.2rem;
+}
+
+.faq span:nth-child(2n-2) {
+  font-weight: 800;
+  margin-top: 20px;
+}
+
+.faq img {
+  position: absolute;
+  top: 220px;
+  left: 930px;
+}
+
+.credits {
+  padding: 30px;
+}
+
+.norman-main .credit-wrapper {
+  height: 230px;
+}
+
+.norman-main a {
+  color: var(--offwhite-color);
+}
+
+.credits h4 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--pink-color);
+}
+
+.credits h6{
+  padding-top: 20px;
+  font-weight: 600;
+}
+
+.credit-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 1000px;
+  height: 250px;
+}
+
+.credit-wrapper span
+.credit-wrapper h6 {
+  width: 260px;
+  word-wrap: b;
+}
+
+.other-films {
+  background-color: var(--pink-color);
+  margin: 0;
+  padding: 15px 0;
+  font-size: 2.0rem;
+  color: var(--offwhite-color);
+}
+
+.norm-body .other-films {
+  background-color: var(--teal-color);
+}
+
+.other-films img {
+  height: 457px;
+  width: auto;
+  margin: 15px;
+  border: 13px groove var(--yellow-color);
+}
 
 /******************************************
 /* PULLING THE PLUG ON MOM PAGE
@@ -1139,3 +1346,15 @@ blockquote .fa-quote-right {
 /******************************************
 /* NORMAN PAGE
 /*******************************************/
+
+.norm-body {
+  background-color: var(--yellow-color);
+}
+
+.norm-body .other-films img{
+  border: 13px groove var(--teal-color);
+}
+
+.norm-body .credits h4{
+  color: var(--teal-color);  
+}
