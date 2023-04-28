@@ -202,9 +202,7 @@ header > div > * {
   z-index: 5;
 }
 
-header nav {
-  margin: 0 40px;
-}
+
 
 header nav > ul {
      display: flex;
@@ -220,7 +218,7 @@ header nav > ul > li {
      color: var(--offwhite-color);
      text-align: center;
      list-style: none;
-     font-size: 24px;  
+     font-size: clamp(10px, 2vw, 40px);  
      white-space: nowrap;
      min-width: 0;
      padding: 25px 10px;
@@ -312,36 +310,11 @@ footer {
   grid-column: 2/3;
   align-items: center;
   justify-content: center;
-
+  width: 80%;
 }
 
 .footer-center i {
   font-size: 40px;
-}
-
-.mailing-list {
-  display: flex;
-  margin-top: 1em;
-}
-
-.mailing-list input {
-  flex: 1;
-  padding: 0.5em;
-  border: none;
-  border-radius: 4px;
-  margin-right: 0.5em;
-  padding-right: 70px;
-}
-
-
-.mailing-list button {
-  background-color: var(--pink-color);
-  color: var(--offwhite-color);
-  font-weight: 800;
-  border: none;
-  padding: 0.5em 1em;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .footer-right {
@@ -460,14 +433,18 @@ footer {
 #current-butt-image,
 #current-norm-image,
 #current-garden-image,
-#current-garden-bts-image {
+#current-garden-bts-image,
+#current-plug-image {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
 
 #current-butt-image,
 #current-norm-image,
-#current-butt-bts-image{
+#current-butt-bts-image,
+#current-garden-image,
+#current-garden-bts-image,
+#current-plug-image {
   height: 400px;
   object-fit:cover;
 }
@@ -521,7 +498,8 @@ footer {
 #butt-bts-thumbs, 
 #butt-thumbs,
 #garden-thumbs,
-#garden-bts-thumbs {
+#garden-bts-thumbs,
+#plug-thumbs  {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -535,7 +513,8 @@ footer {
 #norm-thumbs-wrapper,
 #image-thumbs-wrapper,
 #garden-bts-thumbs-wrapper,
-#garden-thumbs-wrapper {
+#garden-thumbs-wrapper,
+#plug-thumbs-wrapper  {
   display: flex;
   align-items: center;
   position: relative;
@@ -586,7 +565,8 @@ footer {
 #current-butt-image.fade-out,
 #current-norm-image.fade-out,
 #current-garden-image.fade-out,
-#current-garden-bts-image.fade-out   {
+#current-garden-bts-image.fade-out,
+#current-plug-image.fade-out    {
   animation: fadeOut 0.3s forwards;
 }
 
@@ -595,7 +575,8 @@ footer {
 #current-butt-bts-image.fade-in,
 #current-butt-image.fade-in,
 #current-garden-bts-image.fade-in,
-#current-garden-image.fade-in {
+#current-garden-image.fade-in,
+#current-plug-image.fade-in  {
   animation: fadeIn 0.3s forwards;
 }
 
@@ -607,7 +588,6 @@ footer {
 main {
   padding: 50px 0;
   text-align: center;
-  color: var(--darkgreen-color);
 }
 
 h1,
@@ -1112,7 +1092,8 @@ blockquote .fa-quote-right {
 }
 
 .butt-hero-container, 
-.norman-hero-container {
+.norman-hero-container,
+.plug-hero-container {
   width: 1100px;
   margin: 0 auto;
   text-align: center;
@@ -1120,7 +1101,8 @@ blockquote .fa-quote-right {
 
 .butt-hero-container .butthead,
 .norman-hero-container .normhead,
-.garden-hero-container .gardenhead  {
+.garden-hero-container .gardenhead,
+.plug-hero-container .plughead  {
   width: 1100px;
   height: auto;
   position: relative;
@@ -1141,7 +1123,25 @@ blockquote .fa-quote-right {
 .garden-hero-container .gardentitle {
   position: absolute;
   top: 90px;
-  left: 600px;
+  left: 800px;
+}
+
+.plug-hero-container .plugtitle {
+  position: absolute;
+  top: 50px;
+  left: 550px;
+}
+
+.plug-hero-container span {
+  font-weight: 600;
+  font-size: 30px;
+  position: absolute;
+  top: 210px;
+  left: 700px;
+}
+
+.plug-hero-container a{
+  color: var(--offwhite-color);
 }
 
 .butt-hero-container span {
@@ -1160,6 +1160,19 @@ blockquote .fa-quote-right {
   position: absolute;
   top: 200px;
   left: 670px;
+}
+
+.garden-hero-container span {
+  color: var(--offwhite-color);
+  font-weight: 600;
+  font-size: 30px;
+  position: absolute;
+  top: 330px;
+  left: 808px;
+}
+
+.garden-hero-container a {
+  color: var(--offwhite-color);
 }
 
 .forty-eight-logo {
@@ -1337,11 +1350,74 @@ blockquote .fa-quote-right {
 /* PULLING THE PLUG ON MOM PAGE
 /*******************************************/
 
+.plug-stills {
+  background-color: var(--teal-color);
+}
+
+.plug-body .credits h4{
+  color: var(--teal-color);
+}
+
+.plug-body .credits {
+  font-size: 1.2rem;
+}
+
+.plug-body .other-films {
+  background-color: var(--teal-color);
+}
+
+
 
 /******************************************
 /* THIS IS A GARDEN PAGE
 /*******************************************/
 
+.garden-body {
+  background-color: var(--pink-color);
+}
+
+.garden-body .other-films img{
+  border: 13px groove var(--pink-color);
+}
+
+.garden-about img {
+  border: 13px groove var(--yellow-color);
+}
+
+.garden-about h1,
+.garden-about h3 {
+  color: var(--yellow-color);
+}
+
+.garden-stills {
+  background-color: var(--yellow-color);
+}
+
+#garden-thumbs-wrapper,
+#garden-thumbs {
+  background-color: var(--pink-color);
+}
+
+.garden-bts-stills {
+  background-color: var(--offwhite-color);
+  color: var(--yellow-color);
+}
+
+.garden-bts-stills h4 {
+  color: var(--yellow-color);
+}
+
+.now-kiss {
+  width: 1100px;
+}
+
+.garden-body .credits h4{
+  color: var(--yellow-color);
+}
+
+.garden-body .other-films {
+  background-color: var(--yellow-color);
+}
 
 /******************************************
 /* NORMAN PAGE
@@ -1357,4 +1433,201 @@ blockquote .fa-quote-right {
 
 .norm-body .credits h4{
   color: var(--teal-color);  
+}
+
+/******************************************
+/* PODCAST PAGE
+/*******************************************/
+
+.podcasts-main h1{
+  font-size: 3.5rem;
+  margin: 0 20px 60px 20px;
+}
+
+.podcasts {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 1100px;
+  height: 430px;
+  gap: 40px;
+}
+
+.podcasts img {
+  height: 180px;
+}
+
+
+/******************************************
+/* WRITING PAGE
+/*******************************************/
+
+.writing-main {
+  text-align: left;
+  padding-left: 80px;
+}
+
+.writing-main h2 {
+  margin: 0px;
+  padding-top: 50px;
+  font-size: 4rem;
+}
+
+.writing-main span {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--darkgreen-color);
+  padding-top: 10px;
+}
+
+.writing-main a {
+  display: block;
+  text-decoration: underline;
+  font-size: 1.5rem;
+  text-decoration-thickness: 1px;
+  padding-top: 10px;
+}
+
+.writing-main h4 {
+  font-size: 2rem;
+  color: var(--pink-color);
+}
+
+.footer-center > a {
+  width: 40px ;
+  margin: 0 auto;
+}
+
+
+/******************************************
+/* MAILCHIMP MAILING LIST AND CONTACT FORM
+/*******************************************/
+
+
+#mc_embed_signup {
+  height: 100px;
+}
+
+#mc_embed_signup h2{
+  color: var(--offwhite-color);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#mc-embedded-subscribe-form {
+  margin: 0 !important;
+}
+
+#mc-embedded-subscribe {
+  background-color: var(--pink-color) !important;
+}
+
+.contact-main {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.contact-main span {
+  display: block;
+}
+
+.contact-subtitle{
+  margin: 60px 0 40px 0;
+  font-weight: 800;
+  color: var(--pink-color);
+}
+
+.embed-contact {
+  margin: 0 auto;
+  width: 800px !important;
+}
+
+.helper_text {
+  background-color: var(--offwhite-color) !important;
+}
+
+#mc-embedded-contact {
+  height: 50px !important;
+  font-weight: 800 !important;
+  background-color: var(--yellow-color) !important;
+}
+
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {
+  margin: 0 !important;
+}
+
+#mc-embedded-subscribe-form{
+  width: 60% !important;
+  margin: 0 auto !important;
+}
+
+
+.big-contact {
+  display: inline-block;
+  margin: 10px;
+}
+
+.big-contact label {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--darkgreen-color);
+}
+
+.big-contact input {
+  background-color: var(--teal-color);
+}
+
+#mc_embed_signup .mc-field-group .details {
+  height: 200px !important;
+}
+
+.agents {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 1.3rem;
+}
+
+.agents section span{
+  padding: 2px;
+  color: var(--darkgreen-color);
+}
+
+.agents section span:first-of-type{
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.agents section span:nth-child(3){
+  font-weight: 600;
+}
+
+.fun-april-poses {
+  margin-top: 20px;
+  background-color: var(--yellow-color);
+  position: relative;
+  width: 1100px;
+}
+
+.fun-april-poses img{
+  padding: 20px 10px 20px 10px; 
+  margin-bottom: -60px; 
+}
+
+.bottom-quote {
+  background-color: var(--pink-color);
+  color: var(--offwhite-color);
+  font-size: 2.5rem;
+  padding: 10px 40px;
+  position: absolute;
+  top: 300px;
+  left: -610px;
+  width: 2300px;
+
 }

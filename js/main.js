@@ -214,6 +214,30 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
             true // autoCycle
           );
         });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "plug-thumbs",
+            "current-plug-image",
+            "description",
+            [
+              "images/films/plugprod/pullingtheplugprod (1).webp",
+              "images/films/plugprod/pullingtheplugprod (2).webp",
+              "images/films/plugprod/pullingtheplugprod (3).webp",
+              "images/films/plugprod/pullingtheplugprod (4).webp",
+              "images/films/plugprod/pullingtheplugprod (5).webp",
+              "images/films/plugprod/pullingtheplugprod (6).webp",
+              "images/films/plugprod/pullingtheplugprod (7).webp",
+              "images/films/plugprod/pullingtheplugprod (8).webp",
+              "images/films/plugprod/pullingtheplugprod (9).webp",
+              "images/films/plugprod/pullingtheplugprod (10).webp"
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+        
         
 /******************************************
 /* SCROLLING THUMBNAILS
@@ -249,6 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   createScrollFunctionality("scroll-garden-bts-left", "scroll-garden-bts-right", "garden-bts-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-plug-left", "scroll-plug-right", "plug-thumbs");
 });
              
 /******************************************
