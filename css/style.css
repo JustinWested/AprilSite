@@ -94,7 +94,7 @@ header {
   z-index: -1;
   position: absolute;
   height: 550px;
-  width: 100vw;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -249,7 +249,7 @@ footer {
   font-size: 0.8em;
   text-align: center;
   height: 270px;
-
+  width: 100%;
 }
 
 .footer-content {
@@ -485,6 +485,7 @@ footer {
   font-size: 1.2rem;
   font-weight: 600;
   text-shadow: 1px 1px 2px black, 0 0 1em var(--pink-color), 0 0 0.2em var(--pink-color);  
+  pointer-events: all;
 }
 
 #description a:hover {
