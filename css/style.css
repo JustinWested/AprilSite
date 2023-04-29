@@ -1681,6 +1681,8 @@ blockquote .fa-quote-right {
   position: absolute;
   top: 305px;
   width: 1100px
+}
 
-
+@media (max-width: 767px) {
+.menu {background-color: royalblue;}
 }
