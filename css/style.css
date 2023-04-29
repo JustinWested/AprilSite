@@ -1601,8 +1601,3 @@ blockquote .fa-quote-right {
   width: 1100px
 }
 
-@media (max-width: 767px) {
-  header nav {
-    background-color: lightskyblue;
-  }
-}
