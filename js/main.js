@@ -311,11 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /***************************************** */
 
-document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
-
-  hamburger.addEventListener('click', () => {
-    nav.classList.toggle('show-menu');
-  });
+document.querySelector('.hamburger').addEventListener('click', function () {
+  document.querySelector('nav').classList.toggle('show-menu');
 });
