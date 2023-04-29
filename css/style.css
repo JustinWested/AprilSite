@@ -38,7 +38,7 @@ body a {
 }
 
 .middle-container{
-     max-width: 1100px;
+     width: 1100px;
      margin: 0 auto;
      position: relative;
 }
@@ -1676,11 +1676,11 @@ blockquote .fa-quote-right {
 .bottom-quote {
   background-color: var(--pink-color);
   color: var(--offwhite-color);
-  font-size: 2.5rem;
+  font-size: 2rem;
   padding: 10px 40px;
   position: absolute;
-  top: 300px;
-  left: -610px;
-  width: 2300px;
+  top: 305px;
+  width: 1100px
+
 
 }
