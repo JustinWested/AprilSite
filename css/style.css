@@ -71,6 +71,7 @@ header {
      position: relative;
      overflow: hidden;
      width: 100%;
+     pointer-events: inherit;
 }
 
 .sub-page-header {
@@ -598,45 +599,6 @@ footer {
   display: none;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-#current-image.fade-out,
-#current-butt-bts-image.fade-out,
-#current-butt-image.fade-out,
-#current-norm-image.fade-out,
-#current-garden-image.fade-out,
-#current-garden-bts-image.fade-out,
-#current-plug-image.fade-out    {
-  animation: fadeOut 0.3s forwards;
-}
-
-#current-image.fade-in,
-#current-norm-image.fade-in,
-#current-butt-bts-image.fade-in,
-#current-butt-image.fade-in,
-#current-garden-bts-image.fade-in,
-#current-garden-image.fade-in,
-#current-plug-image.fade-in  {
-  animation: fadeIn 0.3s forwards;
-}
-
-
 /******************************************
 /* VOICE OVER PAGE
 /*******************************************/
@@ -875,7 +837,7 @@ blockquote .fa-quote-right {
 #headshots h2,
 #candid h2,
 #production h2{
-  font-size: clamp(3.5rem, 8vw, 500px);
+  font-size: 4rem;
 }
 
 #writing-resume embed {

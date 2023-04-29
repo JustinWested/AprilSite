@@ -8,11 +8,11 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
   const description = document.getElementById(descriptionId);
 
 
-  const descriptions = ['<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story">Butt Stuff on Seed&Spark!</a></span>',
-  '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1">Now On Spotify!</a></span>',
-  '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
-  '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE">"this is a garden"</a></span>',
-  '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</a></span>'];
+  const descriptions = ['<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story" target="_blank">Butt Stuff on Seed&Spark!</a></span>',
+  '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1" target="_blank">Now On Spotify!</a></span>',
+  '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U" target="_blank">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
+  '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE" target="_blank">"this is a garden"</a></span>',
+  '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</span>'];
 
   for (let i = 0; i < imageFiles.length; i++) {
     const thumb = document.createElement("img");
@@ -310,3 +310,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/*************************************** */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("headerVideo");
+  const fallbackImage = document.getElementById("fallbackImage");
+
+  // Function to show the fallback image
+  function showFallbackImage() {
+    video.style.display = "none";
+    fallbackImage.style.display = "block";
+  }
+
+  // Check if the video is playing
+  video.addEventListener("timeupdate", () => {
+    if (video.currentTime > 0) {
+      fallbackImage.style.display = "none";
+    }
+  });
+
+  // Handle video errors
+  video.addEventListener("error", () => {
+    showFallbackImage();
+  });
+
+  // Optional: Handle video stall
+  video.addEventListener("stalled", () => {
+    showFallbackImage();
+  });
+});
