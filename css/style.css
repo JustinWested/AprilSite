@@ -154,11 +154,6 @@ header li:hover {
   display: block;
 }
 
-
-
-
-
-
 header h1 {
   color: var(--offwhite-color);
   font-size: clamp(2rem, 5vw, 5rem);   
@@ -172,7 +167,6 @@ header span {
   font-weight: 500;
 
 }
-
 
 header > div {
   position: absolute;
@@ -202,8 +196,6 @@ header > div > * {
   z-index: 5;
 }
 
-
-
 header nav > ul {
      display: flex;
      justify-content:space-between;
@@ -218,7 +210,7 @@ header nav > ul > li {
      color: var(--offwhite-color);
      text-align: center;
      list-style: none;
-     font-size: clamp(10px, 2vw, 40px);  
+     font-size: 24px;  
      white-space: nowrap;
      min-width: 0;
      padding: 25px 10px;
@@ -342,6 +334,9 @@ footer {
   color: var(--pink-color);
 }
 
+.random-tidbits li{
+  list-style-type: "🐾";
+}
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -416,6 +411,14 @@ footer {
   padding: 0;
 
 }
+
+/******************************************
+/* HAM BURG
+/*******************************************/
+
+
+
+
 
 /******************************************
 /* IMAGE GALLERY CODE
@@ -725,8 +728,8 @@ blockquote .fa-quote-right {
 }
 
 .sticky-nav img{
-  height: 33px;
-  width: 33px;
+  height: 80px;
+  width: 80px;
   border: 0;
 }
 
@@ -736,7 +739,7 @@ blockquote .fa-quote-right {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 70px;
+  height: 120px;
   font-size: 30px;
   cursor: pointer;
   padding: 0 10px;
@@ -756,13 +759,17 @@ blockquote .fa-quote-right {
 }
 
 .sticky-nav ul li a i {
-  font-size: 30px;
-  padding-bottom: 5px;
+  font-size: 80px;
 }
 
 .sticky-nav ul li a i,
 .sticky-nav ul li a span {
-  display: block;
+  display: flex;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -782,15 +789,6 @@ blockquote .fa-quote-right {
   position: relative;
 }
 
-.iframe-wrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100vw;
-  right: -100vw;
-  bottom: 0;
-  z-index: -1;
-}
 
 #acting-resume {
   background-image: 
