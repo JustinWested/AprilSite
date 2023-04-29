@@ -309,33 +309,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-/*************************************** */
-
-document.addEventListener("DOMContentLoaded", () => {
-  const video = document.getElementById("headerVideo");
-  const fallbackImage = document.getElementById("fallbackImage");
-
-  // Function to show the fallback image
-  function showFallbackImage() {
-    video.style.display = "none";
-    fallbackImage.style.display = "block";
-  }
-
-  // Check if the video is playing
-  video.addEventListener("timeupdate", () => {
-    if (video.currentTime > 0) {
-      fallbackImage.style.display = "none";
-    }
-  });
-
-  // Handle video errors
-  video.addEventListener("error", () => {
-    showFallbackImage();
-  });
-
-  // Optional: Handle video stall
-  video.addEventListener("stalled", () => {
-    showFallbackImage();
-  });
-});
