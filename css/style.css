@@ -59,6 +59,9 @@ main {
   --offwhite-color: #F3F3F4;
 }
 
+a {
+  display: inline-block;
+}
 
 /******************************************
 /* LAYOUT
@@ -1454,7 +1457,7 @@ blockquote .fa-quote-right {
 }
 
 .writing-main a {
-  display: block;
+  display: inline-block;
   text-decoration: underline;
   font-size: 1.2rem;
   text-decoration-thickness: 1px;
