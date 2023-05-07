@@ -21,11 +21,14 @@
 /* BASE STYLES
 /*******************************************/
 
+
+
 body {
      font-family: 'Raleway', sans-serif;
      background-color: var(--yellow-color);
      font-size: 1rem;
      overflow-x: hidden;
+
 }
 
 body a {
@@ -73,7 +76,6 @@ header {
      height: 550px;
      position: relative;
      overflow: hidden;
-     min-width: 1100px;
      width: 100%;
      pointer-events: inherit;
 }
@@ -92,7 +94,13 @@ header {
   background-color: var(--pink-color);
   overflow: visible;
   z-index: 4;
+  margin: 0 auto;
 }
+
+.sub-page-header nav {
+  width: 100%;
+}
+
 
 .head-vid {
   z-index: -1;
@@ -100,6 +108,7 @@ header {
   height: 550px;
   width: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 
@@ -125,6 +134,8 @@ header li {
   transition: all 0.3s ease;
   border-radius: 20px 20px 0 0;
 }
+
+
 
 .dropdown-menu {
   display: none;
@@ -173,7 +184,7 @@ header li {
 
 header h1 {
   color: var(--offwhite-color);
-  font-size: clamp(2rem, 5vw, 5rem);   
+  font-size: 4rem;   
   font-weight: 900;
   text-shadow: 4px 4px 4px var(--pink-color);
 }
@@ -182,21 +193,16 @@ header span {
   color: var(--offwhite-color);
   text-shadow: 4px 4px 4px var(--pink-color);
   font-weight: 500;
-
 }
 
 header > div {
   position: absolute;
-  right: 1px;
+  right: 5%;
 
   display: flex;
   align-items: flex-end;
   flex-direction: column;
-  
   padding-top: 5em;
-  padding-bottom: 7em;  
-  padding-right: 1em;
-
   z-index: 5;
 }
 
@@ -234,6 +240,13 @@ header nav > ul > li {
 
      z-index: 5;
 }
+
+@media (max-width: 900px) {
+  header nav > ul > li {
+    font-size: 18px;  
+}
+}
+
 
 nav > ul > li > a {
 
@@ -614,8 +627,8 @@ blockquote p {
 
 blockquote span {
   margin: 0 20% 0 25%;
-  font-size: clamp(.8em, 2vw, 2em);
-  font-weight: 600;
+  font-size: clamp(.8em, 2vw, 1.4em);
+  font-weight: 900;
 }
 
 blockquote i {
@@ -699,11 +712,12 @@ blockquote .fa-quote-right {
   position: sticky;
   top: 0;
   z-index: 3;
+  text-align: center;
 }
 
 .sticky-nav img{
-  height: 60px;
-  width: 60px;
+  height: 30px;
+  width: 30px;
   border: 0;
   margin-bottom: 8px;
 }
@@ -712,9 +726,10 @@ blockquote .fa-quote-right {
   background-color: var(--yellow-color);
   list-style-type: none;
   display: flex;
+  text-align: center;
   justify-content: space-around;
   align-items: center;
-  height: 120px;
+  height: 70px;
   font-size: 30px;
   cursor: pointer;
   padding: 0 10px;
@@ -724,23 +739,33 @@ blockquote .fa-quote-right {
 .sticky-nav ul li {
   display: flex;
   flex-direction: column;
+  width: fit-content;
 }
 
 .sticky-nav ul li a {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: var(--offwhite-color);
   font-size: 16px;
   font-weight: 600;
+  align-items: center; 
 }
 
 .sticky-nav ul li a i {
-  font-size: 60px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
   padding-bottom: 8px;
 }
 
-.sticky-nav ul li a i,
-.sticky-nav ul li a span {
-  display: flex;
+.top-arrow {
+  position: sticky;
+  top: 90%;
+  left: 1040px;
+  font-size: 45px;
+  z-index: 5;
+  text-shadow: 2px 2px 2px var(--teal-color);
 }
 
 .nav-item {
@@ -1121,10 +1146,10 @@ blockquote .fa-quote-right {
 .butt-hero-container span {
   color: black;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 30px;
   position: absolute;
   top: 300px;
-  left: 80px;
+  left: 180px;
 }
 
 .norman-hero-container span {
@@ -1267,9 +1292,6 @@ blockquote .fa-quote-right {
   padding: 30px;
 }
 
-.norman-main .credit-wrapper {
-  height: 230px;
-}
 
 .norman-main a {
   color: var(--offwhite-color);
@@ -1288,18 +1310,33 @@ blockquote .fa-quote-right {
 
 .credit-wrapper {
   display: flex;
+  margin: 0 auto;
   justify-content: space-around;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 1000px;
+  width: 1040px;
   height: 250px;
 }
 
 .credit-wrapper span
 .credit-wrapper h6 {
-  width: 260px;
+  min-width: 260px;
+  width: 346px;
   word-wrap: b;
 }
+
+.norman-main .credit-wrapper span,
+.norman-main .credit-wrapper h6 {
+  width: 346px;
+}
+
+.garden-main .credit-wrapper span,
+.garden-main .credit-wrapper h6 {
+  width: 260px;
+}
+
+
+
 
 .other-films {
   background-color: var(--pink-color);
@@ -1419,14 +1456,37 @@ blockquote .fa-quote-right {
 }
 
 .podcasts {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 1100px;
-  height: 430px;
-  gap: 40px;
+  margin: 0 auto;
+  text-align: left;
+  width: 60%;
+  display: block;
+  color: var(--darkgreen-color);
+}
+
+.podcasts h3 {
+  margin: 30px 0 10px 0;
+  font-size: 2rem;
+  color: var(--pink-color);
+  font-weight: 900;
+  text-shadow: 2px 2px 2px var(--yellow-color);
+}
+
+.podcasts span {
+  display: block;
+  color: var(--teal-color);
+  font-weight: 600;
+  text-decoration: var(--pink-color) wavy underline;
+  padding-bottom: 10px;
+  font-size: 1.2rem;
+}
+.podcasts b {
+  font-style: italic;
+  font-size: .8rem;
+}
+
+.podcasts a {
+  display: inline-block;
+  width: fit-content;
 }
 
 .podcasts img {
@@ -1601,6 +1661,24 @@ blockquote .fa-quote-right {
   padding: 10px 40px;
   position: absolute;
   top: 305px;
-  width: 1100px
+  width: 1100px;
 }
 
+/******************************************
+/* Mobile sizes
+/*******************************************/
+
+@media (max-width: 770px){
+  .bio {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  .middle-container {
+    width: 100% !important;
+  }
+}

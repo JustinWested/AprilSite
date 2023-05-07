@@ -10,10 +10,10 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
 
   const descriptions = [
   '<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story" target="_blank">Butt Stuff on Seed&Spark!</a></span>',
-  '<span>I star as Newbie/Viola in the D&D webseries "The Party," whose 1st season features Ally Beardsley, Becca Scott, Vince Caso from The Guild. All episodes are now available on YouTube!<br><br><a href="https://www.youtube.com/watch?v=mLMrE2Im9vw" target="_blank">Watch Episode 1 here!</a></span>',
-  '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U" target="_blank">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
-  '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE" target="_blank">"this is a garden"</a></span>',
+  '<span>I star as Newbie/Viola in the D&D webseries "The Party," whose 1st season features Ally Beardsley, Becca Scott, Vince Caso from The Guild. All episodes are now available on YouTube!<br><br><a href="https://www.youtube.com/watch?v=mLMrE2Im9vw" target="_blank">Watch Episode 1 here!</a></span>',  
   '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</span>',
+  '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE" target="_blank">"this is a garden"</a></span>',
+  '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U" target="_blank">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
   '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1" target="_blank">Now On Spotify!</a></span>'
 ];
 
@@ -105,9 +105,9 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
             [
               "images/indeximages/image1.webp",
               "images/indeximages/image6.webp",
-              "images/indeximages/image3.webp",
-              "images/indeximages/image4.webp",
               "images/indeximages/image5.webp",
+              "images/indeximages/image4.webp",
+              "images/indeximages/image3.webp",
               "images/indeximages/image2.webp"
             ],
             true, // includeDescriptions
@@ -252,14 +252,31 @@ function createScrollFunctionality(scrollLeftId, scrollRightId, thumbContainerId
   const scrollRight = document.getElementById(scrollRightId);
   const thumbContainer = document.getElementById(thumbContainerId);
 
+  function moveFirstToLast() {
+    const firstChild = thumbContainer.firstChild;
+    thumbContainer.removeChild(firstChild);
+    thumbContainer.appendChild(firstChild);
+  }
+
+  function moveLastToFirst() {
+    const lastChild = thumbContainer.lastChild;
+    thumbContainer.removeChild(lastChild);
+    thumbContainer.insertBefore(lastChild, thumbContainer.firstChild);
+  }
+
   scrollLeft.addEventListener("click", () => {
+    moveLastToFirst();
+    thumbContainer.scrollBy({ top: 0, left: -300, behavior: "smooth" });
     thumbContainer.scrollBy({ top: 0, left: -300, behavior: "smooth" });
   });
 
   scrollRight.addEventListener("click", () => {
+    moveFirstToLast();
+    thumbContainer.scrollBy({ top: 0, left: 300, behavior: "smooth" });
     thumbContainer.scrollBy({ top: 0, left: 300, behavior: "smooth" });
   });
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   createScrollFunctionality("scroll-norm-left", "scroll-norm-right", "norm-thumbs");
 });
@@ -307,7 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
     addLightboxListener(headshot);
   });
 
-  // Use querySelectorAll and forEach instead of getElementById
   document.querySelectorAll(".lightbox-image").forEach(lightboxImage => {
     addLightboxListener(lightboxImage);
   });
