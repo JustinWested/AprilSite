@@ -2205,4 +2205,8 @@ blockquote .fa-quote-right {
   top: 140px;
 }
 
+#mc_embed_signup {
+  width: 300px !important;
+}
+
 }
