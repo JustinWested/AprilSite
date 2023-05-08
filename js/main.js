@@ -32,6 +32,7 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
 
       if (includeDescriptions) {
         currentImage.dataset.description = this.dataset.description;
+        description.innerHTML = this.dataset.description;
       }
     });
   }
@@ -51,6 +52,11 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
       description.classList.add("hidden");
     });
   }
+  
+  function isMobileDevice() {
+    return window.innerWidth <= 767;
+  }
+  
 
   function cycleImages() {
     let currentIndex = 1;
@@ -66,7 +72,11 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
         const thumb = document.querySelector(`#${thumbsContainerId} .thumb:nth-child(${currentIndex})`);
         currentImage.src = thumb.src;
         currentImage.alt = thumb.alt;
-        currentImage.dataset.description = thumb.dataset.description; // Update the currentImage description
+        currentImage.dataset.description = thumb.dataset.description; 
+  
+        if (isMobileDevice()) {
+          description.innerHTML = thumb.dataset.description;
+        }
   
         currentImage.addEventListener("load", () => {
           currentImage.classList.remove("fade-out");
@@ -74,11 +84,12 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
   
           setTimeout(() => {
             currentImage.classList.remove("fade-in");
-          }, 400); // Match the duration of the fadeIn CSS
+          }, 400); 
         }, { once: true });
-      }, 400); // Match the duration of the fadeOut CSS
-    }, 7000); // Change the delay between image changes
+      }, 400);
+    }, 7000); 
   }
+  
 
   if (autoCycle) {
     let cyclingInterval = cycleImages(currentImageId, imageFiles);
@@ -358,5 +369,24 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdownMenu.style.display = 'none';
       });
     }
+  });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburgerMenu = document.querySelector(".hamburger-menu");
+  const menu = document.querySelector(".menu");
+
+  hamburgerMenu.addEventListener("click", function () {
+    menu.classList.toggle("show");
+  });
+
+  const dropdowns = document.querySelectorAll(".dropdown > a");
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener("click", function () {
+      const submenu = this.nextElementSibling;
+      submenu.classList.toggle("show");
+    });
   });
 });
