@@ -1684,7 +1684,7 @@ blockquote .fa-quote-right {
 
 @media (max-width: 770px){
 
-  @media (max-height: 670px){
+  @media (max-height: 830px){
     header nav li{
       font-size: 1rem !important;
     }
