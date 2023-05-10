@@ -154,6 +154,7 @@ header li {
 
 .dropdown-menu li {
   padding: 8px 16px;
+  background-color: var(--pink-color);
 }
 
 .dropdown-menu li:last-child {
@@ -617,7 +618,7 @@ blockquote {
 }
 
 blockquote p {
-  margin: 40px 20%;
+  margin: 30px 20%;
   padding: 25px;
   box-shadow: 5px 5px 5px var(--darkgreen-color);
   border: 5px solid var(--teal-color);
@@ -627,16 +628,23 @@ blockquote p {
 }
 
 blockquote span {
-  margin: 0 20% 0 25%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
   font-size: clamp(.8em, 2vw, 1.4em);
   font-weight: 900;
+  text-shadow: 2px 2px 2px var(--pink-color);
+}
+
+blockquote span:last-child {
+  font-weight: 400;
 }
 
 blockquote i {
   position:absolute;
   top: -35px;
   left: 18%;
-  font-size: 80px;
+  font-size: 70px;
   text-shadow: 2px 2px 2px var(--darkgreen-color);
 }
 
@@ -763,7 +771,7 @@ blockquote .fa-quote-right {
 .top-arrow {
   position: sticky;
   top: 90%;
-  left: 1040px;
+  left: 90%;
   font-size: 45px;
   z-index: 5;
   text-shadow: 2px 2px 2px var(--teal-color);
@@ -1328,7 +1336,11 @@ blockquote .fa-quote-right {
 
 .norman-main .credit-wrapper span,
 .norman-main .credit-wrapper h6 {
-  width: 346px;
+  width: 346.6px;
+}
+
+.norman-main .credit-wrapper span{
+  padding-bottom: 20px;
 }
 
 .garden-main .credit-wrapper span,
@@ -1476,7 +1488,7 @@ blockquote .fa-quote-right {
   display: block;
   color: var(--teal-color);
   font-weight: 600;
-  text-decoration: var(--pink-color) wavy underline;
+  text-decoration: var(--yellow-color) underline 2px ;
   padding-bottom: 10px;
   font-size: 1.2rem;
 }
@@ -1901,6 +1913,11 @@ header div {
     font-size: 4rem;
   }
 
+  blockquote .fa-quote-right {
+    top: 65%;
+    left: 75%;
+  }
+
   blockquote span {
     text-align: center;
     font-size: 1.2rem;
@@ -2100,6 +2117,10 @@ header div {
   height: auto;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.norman-main .credit-wrapper span{
+  padding-bottom: 0;
 }
 
 .plug-hero-container .plugtitle {
