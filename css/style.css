@@ -768,6 +768,10 @@ blockquote .fa-quote-right {
   padding-bottom: 8px;
 }
 
+.dropdown {
+  cursor: grab;
+}
+
 .top-arrow {
   position: sticky;
   top: 90%;
