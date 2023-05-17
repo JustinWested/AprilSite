@@ -1382,18 +1382,21 @@ blockquote .fa-quote-right {
   background-color: var(--teal-color);
 }
 
-.plug-body .credits h4{
+.plug-main .credits h4{
   color: var(--teal-color);
 }
 
-.plug-body .credits {
+.plug-main .credits {
   font-size: 1.2rem;
 }
 
-.plug-body .other-films {
+.plug-main .other-films {
   background-color: var(--teal-color);
 }
 
+.plug-main .credits span {
+  width: 50%;
+}
 
 
 /******************************************
