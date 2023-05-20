@@ -1584,7 +1584,14 @@ blockquote .fa-quote-right {
   align-content: center;
   height: 100%;
   position: relative;
-  padding-bottom: 0;
+  padding: 0;
+  background-color: var(--yellow-color);
+
+}
+
+.contact-main .middle-container {
+  background-color: var(--offwhite-color);
+  padding-top: 50px;
 }
 
 .contact-main span {
