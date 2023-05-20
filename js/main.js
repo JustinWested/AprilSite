@@ -9,7 +9,7 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
 
 
   const descriptions = [
-  '<span>My newest short film, “Butt Stuff,” raised 124% of its original goal during its Seed&Spark crowdfunding campaign! You can still follow along by clicking here:<br><br><a href="https://seedandspark.com/fund/butt-stuff#story" target="_blank">Butt Stuff on Seed&Spark!</a></span>',
+  '<span>Butt Stuff makes its world premiere in the 26th annual Dances With Films at the historic TCL Chinese Theater in Los Angeles!<br><br><a href="https://youtu.be/e5r4tf0Hiqs" target="_blank">Watch the trailer here!</a></span>',
   '<span>I star as Newbie/Viola in the D&D webseries "The Party," whose 1st season features Ally Beardsley, Becca Scott, Vince Caso from The Guild. All episodes are now available on YouTube!<br><br><a href="https://www.youtube.com/watch?v=mLMrE2Im9vw" target="_blank">Watch Episode 1 here!</a></span>',  
   '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</span>',
   '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE" target="_blank">"this is a garden"</a></span>',
