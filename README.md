@@ -15,7 +15,6 @@
   <h3 align="center">April Yanko Portfolio Site</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
     <br />
     <a href="https://github.com/JustinWested/AprilSite/"><strong>Explore the docs »</strong></a>
     <br />
