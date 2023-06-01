@@ -92,6 +92,7 @@ Project Link: [https://github.com/JustinWested/AprilSite](https://github.com/Jus
 
 * [Font Awesome](https://fontawesome.com)
 * [April Yanko](https://www.instagram.com/post.march/?hl=en)
+* [Cloudflare Pages](https://pages.cloudflare.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
