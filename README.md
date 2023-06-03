@@ -74,7 +74,7 @@ A portfolio website built for a client to showcase their work across film, writi
   <video src="https://github.com/JustinWested/AprilSite/assets/32820532/698679ae-3ab3-4efe-afaf-ea622f7a67e7">
 </div>
   <br>
-  Dynamic header video with navigation that works alongside it. The client, being an actor and filmmaker, had a lot of fun footage that really showcased their personality. We wanted their personality to be featured by a spotligh--the first thing you see when you visit their set. I cut this video together for them and styled it so it worked with the color scheme they wanted. Additional features included building in a "poster" image so, on browsers that don't allow autoplay, it just shows a more normal image header.
+  Dynamic header video with navigation that works alongside it. The client, being an actor and filmmaker, had a lot of fun footage that really showcased their personality. We wanted their personality to be featured by a spotlight--the first thing you see when you visit their set. I cut this video together for them and styled it so it worked with the color scheme they wanted. Additional features included building in a "poster" image so, on browsers that don't allow autoplay, it just shows a more normal image header.
 
 <!-- CONTACT -->
 ## Contact
