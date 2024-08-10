@@ -12,6 +12,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 		<script src="https://kit.fontawesome.com/21695ac8bb.js" crossorigin="anonymous"></script>
 	</head>
@@ -108,7 +109,6 @@
                     <h3>Film Details</h3>
                     <ul>
                         <li>Dramedy | Mumblecore | LGBTQ+</li>
-                        <li><i class="fa-solid fa-clock fa-xs"></i> Duration: 7:34 minutes</li>
                         <li><i class="fa-solid fa-language fa-xs"></i> Language: English</li>
                         <li><i class="fa-solid fa-people-group fa-xs"></i> Rating: PG</li>
                         <li><i class="fa-solid fa-piggy-bank fa-xs"></i> Production Companies: Artie the Augury, Bit-Sized Productions</li>
@@ -192,15 +192,24 @@
                 </section>
             </section>
 
-            <section class="other-films">
+
+			<section class="other-films" >
                 <h4>Other Films</h4>
-                <a href="buttstuff.html"><img src="/images/films/ButtStuffPoster.webp"></a>
-                <a href="norman.html"><img src="/images/films/NormanPoster.webp"></a>                
-                <a href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+				<div class="main-gallery main-carousel js-flickity" data-flickity-options='{ "cellAlign": "left", "contain": true, "wrapAround": true, "pageDots": false}'>
+                	<a class="carousel-cell" href="murder.html"><img src="/images/films/MurderPoster.webp"></a>
+                	<a class="carousel-cell" href="norman.html"><img src="/images/films/NormanPoster.webp"></a>               
+                	<a class="carousel-cell" href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+					<a class="carousel-cell" href="buttstuff.html"><img src="/images/films/ButtStuffPoster.webp"></a>
+					<a class="carousel-cell" href="murder.html"><img src="/images/films/MurderPoster.webp"></a>
+                	<a class="carousel-cell" href="norman.html"><img src="/images/films/NormanPoster.webp"></a>     
+                	<a class="carousel-cell" href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+					<a class="carousel-cell" href="buttstuff.html"><img src="/images/films/ButtStuffPoster.webp"></a>
+				</div>
             </section>
 
 
 		<script type="text/javascript" src="js/main.js"></script>
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		</main>
 
     </div>    
@@ -209,7 +218,7 @@
                 <section class="footer-left">
                     <ul class="social-icons">
                         <li><a href="https://www.imdb.me/aprilyanko" target="_blank"><i class="fab fa-imdb"></i></a></li>
-                        <li><a href="https://twitter.com/post_march" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://twitter.com/post_march" target="_blank"><i class="fab fa-x-twitter"></i></a></li>
                         <li><a href="https://www.instagram.com/post.march/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                         <li><a href="https://www.youtube.com/@postmarch/videos" target="_blank"><i class="fab fa-youtube"></i></a></li>
                         <li><a href="https://resumes.actorsaccess.com/aprilyanko" target="_blank"><img src="images/actoraccess.webp"></a></li>	

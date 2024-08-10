@@ -461,6 +461,7 @@ footer {
 #current-image,
 #current-butt-bts-image,
 #current-butt-image,
+#current-murder-image,
 #current-norm-image,
 #current-garden-image,
 #current-garden-bts-image,
@@ -471,6 +472,7 @@ footer {
 
 #current-butt-image,
 #current-norm-image,
+#current-murder-image,
 #current-butt-bts-image,
 #current-garden-image,
 #current-garden-bts-image,
@@ -525,6 +527,7 @@ footer {
 }
 
 #image-thumbs,
+#murder-thumbs,
 #norm-thumbs,
 #butt-bts-thumbs, 
 #butt-thumbs,
@@ -541,6 +544,7 @@ footer {
 
 
 #butt-thumbs-wrapper,
+#murder-thumbs-wrapper,
 #norm-thumbs-wrapper,
 #image-thumbs-wrapper,
 #garden-bts-thumbs-wrapper,
@@ -990,8 +994,7 @@ blockquote .fa-quote-right {
 
 .film-container img {
   margin: 30px;
-  height: 453px;
-  width: 295px;
+  height: 260px;
   border: 11px groove var(--yellow-color);
   box-shadow: 1px 1px 2px black, 10px 10px 5px var(--pink-color);
   border-radius: 20px;
@@ -1040,27 +1043,37 @@ blockquote .fa-quote-right {
   width: 60%;
 }
 
-.film-container:nth-child(3){
+.film-container:nth-child(3) {
   flex-direction: row;
   border: double 8px var(--teal-color);
   box-shadow: 1px 1px 2px black, 10px 10px 8px var(--yellow-color);
 }
 
-.film-container:nth-child(3) h3 {
+.film-container:nth-child(6) {
+  border: double 8px var(--teal-color);
+  box-shadow: 1px 1px 2px black, 10px 10px 8px var(--yellow-color);
+}
+
+
+.film-container:nth-child(3) h3,
+.film-container:nth-child(6) h3  {
   color: var(--teal-color);
 }
 
-.film-container:nth-child(3) .film-text a {
+.film-container:nth-child(3) .film-text a,
+.film-container:nth-child(6) .film-text a {
   background-color: var(--teal-color);
   border: 3px solid var(--yellow-color);
 }
 
-.film-container:nth-child(3) img {
+.film-container:nth-child(3) img,
+.film-container:nth-child(6) img  {
   border: 11px groove var(--teal-color);
   box-shadow: 1px 1px 2px black, 10px 10px 5px var(--yellow-color);
 }
 
-.film-container:nth-child(3) .film-text a:hover {
+.film-container:nth-child(3) .film-text a:hover,
+.film-container:nth-child(6) .film-text a:hover  {
   box-shadow: 5px 5px 5px var(--yellow-color);
 }
 
@@ -1091,9 +1104,6 @@ blockquote .fa-quote-right {
   flex-direction: row;
 }
 
-.film-container:nth-child(5) img{
-  height: 392px;
-}
 
 /******************************************
 /* BUTT STUFF PAGE
@@ -1144,6 +1154,17 @@ blockquote .fa-quote-right {
   left: 550px;
 }
 
+.murdertitle {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.murder-main section a {
+  color: white;
+  padding: 5px;
+}
+
 .plug-hero-container span {
   font-weight: 600;
   font-size: 30px;
@@ -1189,8 +1210,8 @@ blockquote .fa-quote-right {
 
 .forty-eight-logo {
   position: absolute;
-  top: 300px;
-  left: 870px;
+  top: 375px;
+  left: 1000px;
 }
 
 .butt-body h1,
@@ -1206,7 +1227,9 @@ blockquote .fa-quote-right {
 }
 
 .film-about img {
-  border: 10px groove #00848d97
+  border: 10px groove #00848d97;
+  height: fit-content;
+  
 }
 
 .film-about h1 {
@@ -1305,20 +1328,61 @@ blockquote .fa-quote-right {
   padding: 30px;
 }
 
+.accolades {
+  padding: 20px;
+  height: auto;
+  background-color: var(--teal-color);
+  margin: 0 auto;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.accolades-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+}
+
+.accolades-element {
+  
+}
+
+
 
 .norman-main a {
   color: var(--offwhite-color);
 }
 
-.credits h4 {
+.credits h4,
+.accolades h4 {
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--pink-color);
 }
 
-.credits h6{
-  padding-top: 20px;
+.accolades h4 {
+  color: var(--offwhite-color);
+  padding: 6px;
+  margin-top: 0px;
+}
+
+.accolades a {
+  padding: 3px;
+}
+
+.accolades img {
+  padding: 10px;
+}
+
+.credits h6,
+.accolades h6{
+  padding-top: 15px;
   font-weight: 600;
+}
+
+.accolades span {
+  margin: 0 auto;
+  display: block;
+  padding: 5px;
 }
 
 .credit-wrapper {
@@ -1335,7 +1399,12 @@ blockquote .fa-quote-right {
 .credit-wrapper h6 {
   min-width: 260px;
   width: 346px;
-  word-wrap: b;
+}
+
+.murder-main .credit-wrapper{
+  height: 410px;
+  width: 990px;
+  margin: 0;
 }
 
 .norman-main .credit-wrapper span,
@@ -1363,14 +1432,14 @@ blockquote .fa-quote-right {
   color: var(--offwhite-color);
 }
 
+
 .norm-body .other-films {
   background-color: var(--teal-color);
 }
 
 .other-films img {
-  height: 457px;
-  width: auto;
-  margin: 15px;
+  height: 320px;
+  margin: 8px;
   border: 13px groove var(--yellow-color);
 }
 
@@ -2093,6 +2162,15 @@ blockquote .fa-quote-right {
             width: 100% !important;
           }
 
+          .murdertitle {
+            height: 80px;
+          }
+
+          .murder-main section a {
+            padding-top: 30px;
+
+          }
+
           .butt-hero-container .butttitle {
             height: 50px;
             top: 50px;
@@ -2102,7 +2180,7 @@ blockquote .fa-quote-right {
             top: 110px;
             left: 30px;
             font-size: 15px;
-          }
+          
 
           .butt-hero-container span a {
             color: var(--offwhite-color);
@@ -2267,4 +2345,11 @@ blockquote .fa-quote-right {
             width: 300px !important;
           }
 
+
+          .other-films img {
+            height: 200px;
+            border: 8px groove var(--yellow-color);
+          
           }
+
+          }}

@@ -12,6 +12,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 		<script src="https://kit.fontawesome.com/21695ac8bb.js" crossorigin="anonymous"></script>
 	</head>
@@ -107,7 +108,6 @@
                     <h3>Film Details</h3>
                     <ul>
                         <li>Comedy | Horror | Rom-Com</li>
-                        <li><i class="fa-solid fa-clock fa-xs"></i> Duration: 8:34 minutes</li>
                         <li><i class="fa-solid fa-language fa-xs"></i> Language: Silent</li>
                         <li><i class="fa-solid fa-people-group fa-xs"></i> Rating: PG13</li>
                         <li><i class="fa-solid fa-piggy-bank fa-xs"></i> Production Companies: Artie the Augury, VisionRey, Little Pinwheel Productions</li>
@@ -129,6 +129,42 @@
                 </div>
                 </section>
             </section>
+
+            <section class="accolades">
+				<h4>Accolades</h4>
+                <div class="accolades-container">
+                    <section class="articles accolades-element">
+                        <h6>Articles</h6>
+                        <a href="https://www.indieactivity.com/butt-stuff-horror-comedy-short-at-2023-dances-with-films-festival/">Indie Activity</a><br>
+                        <a href="https://www.wearemovingstories.com/we-are-moving-stories-films/2023/6/6/butt-stuff">We Are Moving Stories</a><br>
+                        <a href="https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/">Morbidly Beautiful</a>
+                    </section>
+
+                    <section class="nominations accolades-element">
+                        <h6>GenreBlast</h6>
+                        <span>Nominated for Best Comedy Short</span>
+                        <span>Nominated for Best Short Film Poster</span>
+                    </section>
+
+                    <section class="nominations accolades-element">
+                        <h6>BroadHumor</h6>
+                        <span>Winner Best Short</span>
+                    </section>
+
+                    <section class="nominations accolades-element">
+                        <h6>Austin Revolution</h6>
+                        <span>Nominated for Best Produced Short</span>
+                        <span>Winner Best Comedy (Short)</span>
+                        <span>Winner Best Cinematography (Short)</span>
+                    </section>
+
+                    <section class="nominations accolades-element">
+                        <h6>Official Acceptance</h6>
+                        <span>Danced with Films</span>
+                        <span>Tonkawa Film Festival</span>
+                    </section>
+                </div>
+			</section>
 
             <section class="bts">
                 <h4>Behind the Scenes</h4>
@@ -189,15 +225,23 @@
                 </section>
             </section>
 
-            <section class="other-films">
+            <section class="other-films" >
                 <h4>Other Films</h4>
-                <a href="thisisagarden.html"><img src="/images/films/GardenPoster.webp"></a>
-                <a href="norman.html"><img src="/images/films/NormanPoster.webp"></a>                
-                <a href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+				<div class="main-gallery main-carousel js-flickity" data-flickity-options='{ "cellAlign": "left", "contain": true, "wrapAround": true, "pageDots": false}'>
+                	<a class="carousel-cell" href="murder.html"><img src="/images/films/MurderPoster.webp"></a>
+                	<a class="carousel-cell" href="thisisagarden.html"><img src="/images/films/GardenPoster.webp"></a>                
+                	<a class="carousel-cell" href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+					<a class="carousel-cell" href="norman.html"><img src="/images/films/NormanPoster.webp"></a>
+					<a class="carousel-cell" href="murder.html"><img src="/images/films/MurderPoster.webp"></a>
+                	<a class="carousel-cell" href="thisisagarden.html"><img src="/images/films/GardenPoster.webp"></a>                
+                	<a class="carousel-cell" href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+					<a class="carousel-cell" href="norman.html"><img src="/images/films/NormanPoster.webp"></a>
+				</div>
             </section>
 
 
 		<script type="text/javascript" src="js/main.js"></script>
+		<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		</main>
 
     </div>    
@@ -206,7 +250,7 @@
                 <section class="footer-left">
                     <ul class="social-icons">
                         <li><a href="https://www.imdb.me/aprilyanko" target="_blank"><i class="fab fa-imdb"></i></a></li>
-                        <li><a href="https://twitter.com/post_march" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://twitter.com/post_march" target="_blank"><i class="fab fa-x-twitter"></i></a></li>
                         <li><a href="https://www.instagram.com/post.march/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                         <li><a href="https://www.youtube.com/@postmarch/videos" target="_blank"><i class="fab fa-youtube"></i></a></li>
                         <li><a href="https://resumes.actorsaccess.com/aprilyanko" target="_blank"><img src="images/actoraccess.webp"></a></li>	

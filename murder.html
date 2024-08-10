@@ -6,12 +6,13 @@
     	<meta name="keywords" content="one, two, three">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Films created by April Yanko</title>
+		<title>Murder is on the Table written by April Yanko</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 		<script src="https://kit.fontawesome.com/21695ac8bb.js" crossorigin="anonymous"></script>
 	</head>
@@ -89,62 +90,154 @@
 			</nav>
 	</header>
 
-	<div class="middle-container">
 
-		<main class="film-main">
-			<h1>Films by ME!</h1>
+    <div class="middle-container">
 
-			<section class="film-container">
-				<aside class="film-text">
-					<h3>Butt Stuff</h3>
-					<span>A man's sentient sex toy becomes jealous when its owner forms a relationship with a human woman.</span>
-					<a href="buttstuff.html">Learn More</a>
-				</aside>
-				<a href="buttstuff.html"><img src="/images/films/ButtStuffPoster.webp" alt="poster for a film called Butt Stuff created by April Yanko"></a>
+		<main class="butt-main murder-main">
+			<section class="butt-hero-container">
+                <img class="murderhead butthead" src="/images/films/murderhead.webp">
+                <img class="murdertitle" src="/images/films/murdertitle.webp">
+                <span><i class="fa-solid fa-eye fa-2xs" style="color: #ffffff;"></i><a href="https://www.instagram.com/p/Cwf1-H6uqtx/" target="_blank"> Watch the Trailer</a></span>
+				<img class="forty-eight-logo" src="/images/films/48HourLogo.webp">
+            </section>
+
+            <section class="film-about">
+                <img src="/images/films/MurderPoster.webp" alt="poster for a film called Murder is on the Table created by April Yanko">
+                <aside class="about-text">
+                    <h1>About the Film</h1>
+                    <span>When a family finds their aunt facedown in her plate of food, one wide-eyed, self-proclaimed sleuth decides the intricate mystery to solve rests in his delicate hands.</span><br><br><br>
+                    <span>This film was made for the 48 Hour Film Project in LA</span>
+                 
+                    <h3>Film Details</h3>
+                    <ul>
+                        <li>Mystery | Comedy</li>
+                        <li><i class="fa-solid fa-language fa-xs"></i> Language: English</li>
+                        <li><i class="fa-solid fa-people-group fa-xs"></i> Rating: PG13</li>
+                        <li><i class="fa-solid fa-piggy-bank fa-xs"></i> Production Companies: VisionRey</li>
+                    </ul>
+                </aside>
+            </section>
+
+			<section class="accolades">
+				<h4>Accolades</h4>
+				<h6>Nominations</h6>
+				<img src="/images/films/48HourLogo.webp">
+				<span>Best of Los Angeles</span>
+				<span>Best Film</span>
+				<span>Best Writing</span>
+				<span>Best Direction</span>
+				<span>Best Lead Actor</span>
+				<span>Best Acting Ensemble</span>
+				<span>Best Musical Score</span>
+				<span>Female Filmmaker of the Year </span>
 			</section>
 
-			<section class="film-container">
-				<aside class="film-text">
-					<h3>this is a garden</h3>
-					<span>After two friends realize they’re relaxing over a dead person in a grave yard, they start to muse on what it’s like to be alive after a loved one is gone.</span>
-					<a href="thisisagarden.html">Learn More</a>
-				</aside>
-				<a href="thisisagarden.html"><img src="/images/films/GardenPoster.webp" alt="poster for a film called this is a garden created and starring April Yanko"></a>
-			</section>
 
-			<section class="film-container">
-				<aside class="film-text">
-					<h3>Murder is on the Table</h3>
-					<span>When a family finds their aunt facedown in her plate of food, one wide-eyed, self-proclaimed sleuth decides the intricate mystery to solve rests in his delicate hands.</span>
-					<a href="murder.html">Learn More</a>
-				</aside>
-				<a href="murder.html"><img src="/images/films/MurderPoster.webp" alt="poster for a film called Murder is on the Table written by April Yanko"></a>
-			</section>
+            <section class="stills murder-stills">
+                <h4>Stills</h4>
+                <section id="image-gallery">
+                    <div id="image-wrapper">
+                        <img id="current-murder-image" class="lightbox-image" src="images/films/murderprod/murder is on the table prod3.webp" alt="Image 1">
+                    </div>
+                <div id="murder-thumbs-wrapper">
+                    <i id="scroll-murder-left" class="fa-solid fa-circle-left scroll-arrow" style="color: #f3f3f4"></i>
+                    <div id="murder-thumbs"></div>
+                    <i id="scroll-murder-right" class="fa-solid fa-circle-right scroll-arrow" style="color: #f3f3f4"></i>
+                </div>
+                <div id="lightbox" class="lightbox hidden">
+                    <img id="lightbox-img" src="" alt="">
+                </div>                
+                </section>
+            </section>
 
-			<section class="film-container">
-				<aside class="film-text">
-					<h3>Pulling the Plug on Mom</h3>
-					<span>A woman gathers her sisters to tell them she’s going to pull the plug on their mom…who is not in the hospital.</span>
-					<a href="pullingplugmom.html">Learn More</a>
-				</aside>
-				<a href="pullingplugmom.html"><img src="/images/films/MomPoster.webp" alt="poster for a film called Pulling the Plug on Mom created and starring April Yanko"></a>
-			</section>
+            <section class="credits">
+                <h4>Credits</h4>
+                <section class="credit-wrapper">
+					<span><h6>Director</h6>
+					Michael Filippe</span>
+					 
+					<span><h6>Producers</h6>
+					Conrad Wrobel, Rory Ross,<br>
+					Tasha Wrobel, & Marissa Messiano</span>
+					 
+					<span><h6>Editor</h6>
+					Paul Moore</span>
+					 
+					<span><h6>Audio</h6>
+					Jesse Lopez</span>
+					 
+					<span><h6>Hair and Makeup</h6>
+					Billie Collins</span>
+					 
+					<span><h6>Costumes/Props</h6>
+					Ambrose Burzak</span>
+					
+					<span><h6>Script Supervisor</h6>
+					Tim Whitford</span>
 
-			<section class="film-container">
-				<aside class="film-text">
-					<h3>Norman</h3>
-					<span>A man agrees to help a dying plant live out his last wish.</span>
-					<a href="norman.html">Learn More</a>
-				</aside>
-				<a href="norman.html"><img src="/images/films/NormanPoster.webp" alt="poster for a film called Norman written by April Yanko"></a>
-			</section>
+					<span><h6>Writer / Co-Director</h6>
+					April Yanko</span>
+					
+					<span><h6>Starring</h6>
+					Ariel Staehle, Aubrey Chantelle,<br>
+					Conrad Wrobel, Max Cutler,<br>
+					Rory Ross, & Zamara Jimenez</span>
+					
+					<span><h6>ADR Supervisor</h6>
+					Max Cutler</span>
+					
+					<span><h6>Assistant Director</h6>
+					Tasha Wrobel</span>
+					
+					<span><h6>Production Assistants</h6>
+					Tim Whitford, Sevan Shamilian, <br>Christina Shamilian, & Eluzai Salmeron</span>
+					
+					<span><h6>Colorist</h6>
+					Evan Gradillas</span>
 
-			  
+					<span><h6>Executive Producer</h6>
+					Allison Marie Reyes</span>
+
+					<span><h6>Cinematographer</h6>
+					Mannon Butt</span>
+
+					<span><h6>Assistant Camera</h6>
+					Kahlo Gradillas</span>
+
+					<span><h6>Composer</h6>
+					Austin Ali</span>
+
+					<span><h6>Musicians</h6>
+					Aric Kline & Samuel Adams</span>
+
+					<span><h6>Post Audio Mixer</h6>
+					Sebastian Radlbauer</span>
+
+					<span><h6>Graphic Design</h6>
+					Justin Wested</span>
+                </section>
+            </section>
+
+            <section class="other-films" >
+                <h4>Other Films</h4>
+				<div class="main-gallery main-carousel js-flickity" data-flickity-options='{ "cellAlign": "left", "contain": true, "wrapAround": true, "pageDots": false}'>
+                	<a class="carousel-cell" href="buttstuff.html"><img src="/images/films/ButtStuffPoster.webp"></a>
+                	<a class="carousel-cell" href="thisisagarden.html"><img src="/images/films/GardenPoster.webp"></a>                
+                	<a class="carousel-cell" href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+					<a class="carousel-cell" href="norman.html"><img src="/images/films/NormanPoster.webp"></a>
+					<a class="carousel-cell" href="buttstuff.html"><img src="/images/films/ButtStuffPoster.webp"></a>
+                	<a class="carousel-cell" href="thisisagarden.html"><img src="/images/films/GardenPoster.webp"></a>                
+                	<a class="carousel-cell" href="pullingplugmom.html"><img src="/images/films/MomPoster.webp"></a>
+					<a class="carousel-cell" href="norman.html"><img src="/images/films/NormanPoster.webp"></a>
+				</div>
+            </section>
+
 
 		<script type="text/javascript" src="js/main.js"></script>
+		<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		</main>
 
-	</div>
+    </div>    
 		<footer>
 			<section class="footer-content">
 				<section class="footer-left">

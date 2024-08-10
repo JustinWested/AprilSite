@@ -9,12 +9,17 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
 
 
   const descriptions = [
-  '<span>Butt Stuff makes its world premiere in the 26th annual Dances With Films at the historic TCL Chinese Theater in Los Angeles!<br><br><a href="https://youtu.be/e5r4tf0Hiqs" target="_blank">Watch the trailer here!</a></span>',
+  '<span>Butt Stuff made its world premiere in the 26th annual Dances With Films at the historic TCL Chinese Theater in Los Angeles!<br><br><a href="https://youtu.be/e5r4tf0Hiqs" target="_blank">Watch the trailer here!</a></span>',
+  '<span>I regularly write and perform sketch for the House Team Kickball at the Pack Theater.<br><br> <a href="kickballandwhoops.eventbrite.com" target="_blank">Click here</a> for a playlist of all my sketches, including lots of musical parodies.<span>',
+  '<span>I sat down with co-creator of The Party Geneva K Willis to answer viewer questions and talk all things D&D.<br><br> <a href="https://www.youtube.com/watch?v=BT5QqcMrDJk" target="_blank">Check it out here.</a></span>',
+  '<span>Murder is on the Table got a bunch of award noms at the LA 48 Hour Film Festival, including Best Writing and Best Film! <br><br><a href="https://www.instagram.com/p/Cwf1-H6uqtx/" target="_blank">Watch the trailer here.</a></span>',
+  '<span>Butt Stuff chosen as Top 10 short at GenreBlast by Morbidly Beautiful!<br><br>"A standout short...combining the sentimental with the “super effing weird” to create something unforgettable."<br> --Peter Hayward-Bailey<br><br><a href="https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/" target="_blank">Read Here</a></span>',
   '<span>I star as Newbie/Viola in the D&D webseries "The Party," whose 1st season features Ally Beardsley, Becca Scott, Vince Caso from The Guild. All episodes are now available on YouTube!<br><br><a href="https://www.youtube.com/watch?v=mLMrE2Im9vw" target="_blank">Watch Episode 1 here!</a></span>',  
   '<span>“Pulling the Plug on Mom” continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts!<br><br><a href="#">Go to Page</span>',
   '<span>My first film, “this is a garden,” is now on YouTube with 31,000 views and counting! You can watch it here:<br><br><a href="https://www.youtube.com/watch?v=b4eXILF8CIE" target="_blank">"this is a garden"</a></span>',
   '<span>I voice Blair in the new D&D series “Caves & Creatures.” <br><br><a href="https://www.youtube.com/watch?v=D_3In7YQP2U" target="_blank">Watch Season 1 Episode 1 Equal Opportunity Cannibal</a></span>',
   '<span>Catch me as the voice of Selkie the playful mermaid in the narrative podcast “Venice Magic Shop!”<br><br><a href="https://open.spotify.com/episode/5F4tMaIzsVWtgYy8D4L9pz?si=8bb2e037589544a1&nd=1" target="_blank">Now On Spotify!</a></span>'
+  
 ];
 
   for (let i = 0; i < imageFiles.length; i++) {
@@ -115,6 +120,10 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
             "description",
             [
               "images/indeximages/image1.webp",
+              "images/indeximages/image8.webp",
+              "images/indeximages/image9.webp",
+              "images/indeximages/image10.webp",
+              "images/indeximages/image7.webp",
               "images/indeximages/image6.webp",
               "images/indeximages/image5.webp",
               "images/indeximages/image4.webp",
@@ -252,6 +261,27 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
             true // autoCycle
           );
         });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "murder-thumbs",
+            "current-murder-image",
+            "description",
+            [
+              "images/films/murderprod/murder is on the table prod1.webp",
+              "images/films/murderprod/murder is on the table prod2.webp",
+              "images/films/murderprod/murder is on the table prod3.webp",
+              "images/films/murderprod/murder is on the table prod4.webp",
+              "images/films/murderprod/murder is on the table prod5.webp",
+              "images/films/murderprod/murder is on the table prod6.webp",
+              "images/films/murderprod/murder is on the table prod7.webp",
+              "images/films/murderprod/murder is on the table prod8.webp"
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
         
         
 /******************************************
@@ -308,6 +338,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   createScrollFunctionality("scroll-plug-left", "scroll-plug-right", "plug-thumbs");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  createScrollFunctionality("scroll-murder-left", "scroll-murder-right", "murder-thumbs");
 });
              
 /******************************************
