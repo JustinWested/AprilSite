@@ -2215,6 +2215,10 @@ blockquote .fa-quote-right {
             text-align: center;
           }
 
+          .murder-main .credit-wrapper {
+            width: 100%;
+          }
+
           .norman-main .credit-wrapper span{
             padding-bottom: 0;
           }
