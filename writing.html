@@ -109,21 +109,28 @@
 			var FEED_URL = 'https://ferretwithaknife.substack.com/feed';
 			var container = document.getElementById('substack-feed');
 
-			fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(FEED_URL) + '&count=3')
+			fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(FEED_URL))
 				.then(function (res) { return res.json(); })
 				.then(function (data) {
-					if (!data.items || !data.items.length) throw new Error('empty');
+					var xml = data.contents;
+					var doc = new DOMParser().parseFromString(xml, 'text/xml');
+					var items = Array.from(doc.querySelectorAll('item')).slice(0, 3);
+					if (!items.length) throw new Error('empty');
 					var html = '';
-					data.items.forEach(function (item) {
-						var date = new Date(item.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-						var excerpt = item.description
-							? item.description.replace(/<[^>]+>/g, '').slice(0, 160).trim() + '…'
+					items.forEach(function (item) {
+						var title = item.querySelector('title').textContent;
+						var link = item.querySelector('link').textContent;
+						var pubDate = new Date(item.querySelector('pubDate').textContent)
+							.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						var descNode = item.querySelector('description');
+						var excerpt = descNode
+							? descNode.textContent.replace(/<[^>]+>/g, '').slice(0, 160).trim() + '…'
 							: '';
 						html += '<div class="substack-post">'
-							+ '<a class="substack-title" href="' + item.link + '" target="_blank">' + item.title + '</a>'
-							+ '<span class="substack-date">' + date + '</span>'
+							+ '<a class="substack-title" href="' + link + '" target="_blank">' + title + '</a>'
+							+ '<span class="substack-date">' + pubDate + '</span>'
 							+ '<p class="substack-excerpt">' + excerpt + '</p>'
-							+ '<a class="substack-read" href="' + item.link + '" target="_blank">Read on Substack</a>'
+							+ '<a class="substack-read" href="' + link + '" target="_blank">Read on Substack</a>'
 							+ '</div>';
 					});
 					container.innerHTML = html;
