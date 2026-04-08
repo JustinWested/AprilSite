@@ -90,6 +90,24 @@
       });
     });
 
+    /* Prev / Next arrow clicks */
+    var prevBtn = carousel.querySelector('.nc-arrow-prev');
+    var nextBtn = carousel.querySelector('.nc-arrow-next');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        goToSlide(current - 1);
+        startTimer();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        goToSlide(current + 1);
+        startTimer();
+      });
+    }
+
     /* Pause on hover, resume on mouse out */
     carousel.addEventListener('mouseenter', stopTimer);
     carousel.addEventListener('mouseleave', startTimer);
