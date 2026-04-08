@@ -104,58 +104,6 @@
   color: #fff;
 }
 
-/* ---- Prev / Next arrows ---- */
-
-.nc-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 4;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.45);
-  border: none;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s ease, background-color 0.2s ease;
-  /* keep arrows above thumb strip vertical center calculation */
-  margin-top: -32px; /* half of 64px thumb strip */
-}
-
-.news-carousel:hover .nc-arrow {
-  opacity: 1;
-}
-
-.nc-arrow:hover {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.nc-arrow-prev {
-  left: 12px;
-}
-
-.nc-arrow-next {
-  right: 12px;
-}
-
-@media (max-width: 900px) {
-  .nc-arrow {
-    margin-top: -25px; /* half of 50px thumb strip */
-    width: 44px;
-    height: 44px;
-    font-size: 1.6rem;
-    /* always visible on touch — no hover state */
-    opacity: 0.75;
-  }
-}
-
 /* ---- Thumbnail strip ---- */
 
 .nc-thumbs {
