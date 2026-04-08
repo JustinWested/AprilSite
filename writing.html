@@ -99,8 +99,40 @@
 		<a href="kickballandwhoops.eventbrite.com" target="_blank">Come see me in <i class="fa-solid fa-futbol fa-bounce" style="color: #ff0000;"></i> KICKBALL, a Pack house sketch team that performs in Los Angeles every fourth Sunday</a>
 		<a href="https://www.youtube.com/playlist?list=PLMf0z8lyC0tO1-8fwdeGi8SvX-Lae8Y-R" target="_blank">OR visit the <i class="fa-brands fa-youtube" style="color: #ff0000"></i> playlist of all the sketches I wrote, including lots of musical parodies</a>
 
-		<h2>Sketch-a-day</h2>
-		<span>I also challenged myself to write a sketch-a-day over an entire year. <a href="https://www.tumblr.com/shespostmarch/" target="_blank">You can check them out on my Tumblr</span></a>
+		<h2>Substack</h2>
+		<p><a href="https://ferretwithaknife.substack.com/" target="_blank">Ferret with a Knife</a> — random fun stuff and trivia.</p>
+		<div id="substack-feed">
+			<p class="substack-loading">Loading recent posts…</p>
+		</div>
+		<script>
+		(function () {
+			var FEED_URL = 'https://ferretwithaknife.substack.com/feed';
+			var container = document.getElementById('substack-feed');
+
+			fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(FEED_URL) + '&count=3')
+				.then(function (res) { return res.json(); })
+				.then(function (data) {
+					if (!data.items || !data.items.length) throw new Error('empty');
+					var html = '';
+					data.items.forEach(function (item) {
+						var date = new Date(item.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+						var excerpt = item.description
+							? item.description.replace(/<[^>]+>/g, '').slice(0, 160).trim() + '…'
+							: '';
+						html += '<div class="substack-post">'
+							+ '<a class="substack-title" href="' + item.link + '" target="_blank">' + item.title + '</a>'
+							+ '<span class="substack-date">' + date + '</span>'
+							+ '<p class="substack-excerpt">' + excerpt + '</p>'
+							+ '<a class="substack-read" href="' + item.link + '" target="_blank">Read on Substack</a>'
+							+ '</div>';
+					});
+					container.innerHTML = html;
+				})
+				.catch(function () {
+					container.innerHTML = '<p class="substack-error">Couldn\'t load posts right now — <a href="https://ferretwithaknife.substack.com/" target="_blank">visit Substack directly</a>.</p>';
+				});
+		}());
+		</script>
 
 		<h2>Articles</h2>
 
@@ -127,12 +159,12 @@
 				<section class="footer-left">
 					<ul class="social-icons">
 						<li><a href="https://www.imdb.me/aprilyanko" target="_blank"><i class="fab fa-imdb"></i></a></li>
-						<li><a href="https://twitter.com/post_march" target="_blank"><i class="fab fa-x-twitter"></i></a></li>
+						<li><a href="https://www.threads.net/@post.march" target="_blank"><i class="fab fa-threads"></i></a></li>
 						<li><a href="https://www.instagram.com/post.march/" target="_blank"><i class="fab fa-instagram"></i></a></li>
 						<li><a href="https://www.youtube.com/@postmarch/videos" target="_blank"><i class="fab fa-youtube"></i></a></li>
 						<li><a href="https://resumes.actorsaccess.com/aprilyanko" target="_blank"><img src="images/actoraccess.webp"></a></li>	
 					  </ul>
-					<img src="/images/AprilYankosmall.webp" alt="Small Photo of April Yanko looking super cute and quirky">
+					<img src="/images/hero.webp" alt="April Yanko">
 				  </section>
 
 			  <section class="footer-center">
