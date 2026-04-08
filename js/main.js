@@ -284,8 +284,27 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
             true // autoCycle
           );
         });
-        
-        
+        document.addEventListener("DOMContentLoaded", () => {
+          createImageGallery(
+            "bite-thumbs",
+            "current-bite-image",
+            "description",
+            [
+              "images/films/biteme/Bite Me Still 1-01.png",
+              "images/films/biteme/Bite Me Still 3-01.png",
+              "images/films/biteme/Bite Me Still 5-01.png",
+              "images/films/biteme/Bite Me Still 6-01.png",
+              "images/films/biteme/Bite Me Still 7-01.png",
+              "images/films/biteme/Bite Me Still 9-01.png",
+              "images/films/biteme/Bite Me Still 10-01.png",
+              "images/films/biteme/Bite Me Still 12-01.png",
+            ],
+            false, // includeDescriptions
+            true // autoCycle
+          );
+        });
+
+
 /******************************************
 /* SCROLLING THUMBNAILS
 /*******************************************/
@@ -324,6 +343,7 @@ function createScrollFunctionality(scrollLeftId, scrollRightId, thumbContainerId
 
 document.addEventListener("DOMContentLoaded", () => {
   createScrollFunctionality("scroll-norm-left", "scroll-norm-right", "norm-thumbs");
+  createScrollFunctionality("scroll-bite-left", "scroll-bite-right", "bite-thumbs");
 });
 document.addEventListener("DOMContentLoaded", () => {
   createScrollFunctionality("scroll-butt-left", "scroll-butt-right", "butt-thumbs");
