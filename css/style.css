@@ -428,6 +428,7 @@ footer {
   }
 
 .bio-text > * {
+  grid-column: 2/3;
   padding-top: 1em;
   padding-bottom: 1em;
   color: var(--darkgreen-color);
