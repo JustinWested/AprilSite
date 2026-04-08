@@ -377,12 +377,7 @@ footer {
 /*******************************************/
 
 .bio {
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
+  display: block;
   text-align: left;
 }
 
@@ -403,8 +398,7 @@ footer {
 }
 
 .cat {
-    display: grid;
-    justify-self: center;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1.5em;
@@ -422,7 +416,9 @@ footer {
 }
 
 .bio-text{
-  grid-column: 2/3;
+  width: 50%;
+  max-width: 600px;
+  margin: 0 auto;
   font-weight: 500;
 }
 
