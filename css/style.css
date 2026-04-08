@@ -1562,14 +1562,20 @@ blockquote .fa-quote-right {
   color: var(--offwhite-color);
 }
 
+.bite-main .film-about img {
+  max-height: 350px;
+  width: auto;
+}
+
 .bite-main .credit-wrapper {
-  height: auto;
-  min-height: 250px;
+  height: 450px;
+  width: 990px;
+  margin: 0 auto;
 }
 
 .bite-main .credit-wrapper span,
 .bite-main .credit-wrapper h6 {
-  width: 346px;
+  width: 326px;
 }
 
 .bite-main .credit-wrapper span {
