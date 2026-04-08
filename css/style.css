@@ -462,7 +462,8 @@ footer {
 #current-norm-image,
 #current-garden-image,
 #current-garden-bts-image,
-#current-plug-image {
+#current-plug-image,
+#current-bite-image {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
@@ -473,7 +474,8 @@ footer {
 #current-butt-bts-image,
 #current-garden-image,
 #current-garden-bts-image,
-#current-plug-image {
+#current-plug-image,
+#current-bite-image {
   height: 400px;
   object-fit:cover;
 }
@@ -526,11 +528,12 @@ footer {
 #image-thumbs,
 #murder-thumbs,
 #norm-thumbs,
-#butt-bts-thumbs, 
+#butt-bts-thumbs,
 #butt-thumbs,
 #garden-thumbs,
 #garden-bts-thumbs,
-#plug-thumbs  {
+#plug-thumbs,
+#bite-thumbs  {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -546,7 +549,8 @@ footer {
 #image-thumbs-wrapper,
 #garden-bts-thumbs-wrapper,
 #garden-thumbs-wrapper,
-#plug-thumbs-wrapper  {
+#plug-thumbs-wrapper,
+#bite-thumbs-wrapper  {
   display: flex;
   align-items: center;
   position: relative;
@@ -1117,6 +1121,10 @@ blockquote .fa-quote-right {
   flex-direction: row;
 }
 
+.film-container:nth-child(7){
+  flex-direction: row;
+}
+
 
 /******************************************
 /* BUTT STUFF PAGE
@@ -1543,7 +1551,33 @@ blockquote .fa-quote-right {
 }
 
 .norm-body .credits h4{
-  color: var(--teal-color);  
+  color: var(--teal-color);
+}
+
+/******************************************
+/* BITE ME PAGE
+/*******************************************/
+
+.bite-main a {
+  color: var(--offwhite-color);
+}
+
+.bite-main .credit-wrapper {
+  height: auto;
+  min-height: 250px;
+}
+
+.bite-main .credit-wrapper span,
+.bite-main .credit-wrapper h6 {
+  width: 346px;
+}
+
+.bite-main .credit-wrapper span {
+  padding-bottom: 4px;
+}
+
+.bite-stills {
+  background-color: var(--teal-color);
 }
 
 /******************************************
