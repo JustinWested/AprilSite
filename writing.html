@@ -110,10 +110,13 @@
 			var container = document.getElementById('substack-feed');
 
 			fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(FEED_URL))
-				.then(function (res) { return res.json(); })
+				.then(function (res) {
+					if (!res.ok) throw new Error('Network response was not ok.');
+					return res.json();
+				})
 				.then(function (data) {
 					var xml = data.contents;
-					var doc = new DOMParser().parseFromString(xml, 'text/xml');
+					var doc = new DOMParser().parseFromString(xml, 'application/xml');
 					var items = Array.from(doc.querySelectorAll('item')).slice(0, 3);
 					if (!items.length) throw new Error('empty');
 					var html = '';
