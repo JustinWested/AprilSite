@@ -1,0 +1,185 @@
+/* ── Hero ────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 62vh;
+  min-height: 320px;
+  overflow: hidden;
+  background: #000;
+}
+
+.heroVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(198, 65, 145, 0.65);
+}
+
+.heroText {
+  position: absolute;
+  top: 5.5rem;
+  right: 3rem;
+  text-align: right;
+}
+
+.heroName {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.65);
+}
+
+.heroTagline {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-top: 0.4rem;
+  text-shadow: 1px 3px 8px rgba(0, 0, 0, 0.55);
+}
+
+/* ── Narrow content wrapper (660px max, centered) ── */
+.narrow {
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Divider ─────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c64191, transparent);
+  margin: 2rem 0;
+  border: none;
+}
+
+/* ── Bio ─────────────────────────────────────────── */
+.bioHeadline {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  color: #c64191;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.bioBody {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(0.875rem, 1.5vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* ── Fun facts heading ───────────────────────────── */
+.funFactsHeading {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #c64191;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ── Sticky notes grid ───────────────────────────── */
+.notesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.note {
+  position: relative;
+  border-radius: 4px;
+  padding: 2rem 1.2rem 1.2rem;
+  box-shadow: 3px 4px 14px rgba(0, 0, 0, 0.18);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  overflow: visible;
+  /* z-index managed inline via style prop for overlap */
+}
+
+/* Adhesive strip at top via ::before */
+.note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  border-radius: 4px 4px 0 0;
+  /* color overridden inline per note */
+}
+
+/* Alternating slight rotations */
+.note:nth-child(odd)  { transform: rotate(-2deg); }
+.note:nth-child(even) { transform: rotate(2.5deg); }
+
+/* Note color variants */
+.noteYellow {
+  background: #FEC601;
+  color: #5a4500;
+}
+.noteYellow::before { background: #d4a400; }
+
+.noteWhite {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.noteWhite::before { background: #e8e8e8; }
+
+.noteTeal {
+  background: #1CB0A9;
+  color: #fff;
+}
+.noteTeal::before { background: #168f89; }
+
+.notePink {
+  background: #c64191;
+  color: #fff;
+}
+.notePink::before { background: #a33278; }
+
+/* ── Cat image ───────────────────────────────────── */
+.catWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.catImage {
+  max-width: 130px;
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ── Mobile ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .heroText {
+    top: 5rem;
+    right: 1.25rem;
+  }
+
+  .notesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .note:nth-child(odd)  { transform: rotate(-1.5deg); }
+  .note:nth-child(even) { transform: rotate(1.5deg); }
+}

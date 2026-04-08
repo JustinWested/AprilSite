@@ -1,0 +1,65 @@
+.outer {
+  background: #FEC601;
+  width: 100%;
+  min-height: 100px;
+}
+
+.column {
+  --s: 18px;
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  background: #fff;
+
+  /*
+    CSS mask — scalloped LEFT and RIGHT edges only, flat top and bottom.
+
+    Three mask layers (composited with default "add"):
+
+    1. Middle fill: solid opaque strip from x=2s to x=100%-2s.
+       Covers the body of the column, leaving the edge strips to layers 2 & 3.
+
+    2. Left scallops: radial-gradient with circle centered at the LEFT edge of
+       each 2s×2s tile. Inside the circle = transparent (the "bite"),
+       outside = opaque. Tiles repeat-y along the left edge.
+       Because the middle fill doesn't cover this zone, the transparent holes
+       are not overridden → genuine cutouts. ✓
+
+    3. Right scallops: mirror of #2, circle centered at RIGHT edge of each tile,
+       tiled along the right edge.
+
+    The yellow outer background shows through the cutouts.
+  */
+  -webkit-mask:
+    linear-gradient(#000 0 0)
+      calc(var(--s) * 2) 0 / calc(100% - var(--s) * 4) 100% no-repeat,
+    radial-gradient(circle at 0 50%, #0000 calc(var(--s) - 0.5px), #000 var(--s))
+      0 0 / calc(var(--s) * 2) calc(var(--s) * 2) repeat-y,
+    radial-gradient(circle at 100% 50%, #0000 calc(var(--s) - 0.5px), #000 var(--s))
+      100% 0 / calc(var(--s) * 2) calc(var(--s) * 2) repeat-y;
+
+  mask:
+    linear-gradient(#000 0 0)
+      calc(var(--s) * 2) 0 / calc(100% - var(--s) * 4) 100% no-repeat,
+    radial-gradient(circle at 0 50%, #0000 calc(var(--s) - 0.5px), #000 var(--s))
+      0 0 / calc(var(--s) * 2) calc(var(--s) * 2) repeat-y,
+    radial-gradient(circle at 100% 50%, #0000 calc(var(--s) - 0.5px), #000 var(--s))
+      100% 0 / calc(var(--s) * 2) calc(var(--s) * 2) repeat-y;
+}
+
+.content {
+  padding: 3rem 2.5rem 4rem;
+}
+
+/* ── Mobile: full width, no scallops ────────────── */
+@media (max-width: 768px) {
+  .column {
+    width: 100%;
+    mask: none;
+    -webkit-mask: none;
+  }
+
+  .content {
+    padding: 2rem 1.25rem 3rem;
+  }
+}
