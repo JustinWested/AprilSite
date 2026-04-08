@@ -377,7 +377,9 @@ footer {
 /*******************************************/
 
 .bio {
-  display: block;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  justify-content: center;
   text-align: left;
 }
 
@@ -416,9 +418,7 @@ footer {
 }
 
 .bio-text{
-  width: 50%;
-  max-width: 600px;
-  margin: 0 auto;
+  grid-column: 2/3;
   font-weight: 500;
 }
 
