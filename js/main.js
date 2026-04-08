@@ -104,6 +104,7 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
     });
 
     currentImage.addEventListener("mouseout", () => {
+      clearInterval(cyclingInterval);
       cyclingInterval = cycleImages(currentImageId, imageFiles);
     });
   }
