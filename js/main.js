@@ -12,7 +12,7 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
 
   const descriptions = [
   '<span>Butt Stuff made its world premiere in the 26th annual Dances With Films at the historic TCL Chinese Theater in Los Angeles!<br><br><a href="https://youtu.be/e5r4tf0Hiqs" target="_blank">Watch the trailer here!</a></span>',
-  '<span>I regularly write and perform sketch for the House Team Kickball at the Pack Theater.<br><br> <a href="kickballandwhoops.eventbrite.com" target="_blank">Click here</a> for a playlist of all my sketches, including lots of musical parodies.<span>',
+  '<span>I regularly write and perform sketch for the House Team Kickball at the Pack Theater.<br><br> <a href="https://www.youtube.com/playlist?list=PLMf0z8lyC0tO1-8fwdeGi8SvX-Lae8Y-R" target="_blank">Click here</a> for a playlist of all my sketches, including lots of musical parodies.<span>',
   '<span>I sat down with co-creator of The Party Geneva K Willis to answer viewer questions and talk all things D&D.<br><br> <a href="https://www.youtube.com/watch?v=BT5QqcMrDJk" target="_blank">Check it out here.</a></span>',
   '<span>Murder is on the Table got a bunch of award noms at the LA 48 Hour Film Festival, including Best Writing and Best Film! <br><br><a href="https://www.instagram.com/p/Cwf1-H6uqtx/" target="_blank">Watch the trailer here.</a></span>',
   '<span>Butt Stuff chosen as Top 10 short at GenreBlast by Morbidly Beautiful!<br><br>"A standout short...combining the sentimental with the “super effing weird” to create something unforgettable."<br> --Peter Hayward-Bailey<br><br><a href="https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/" target="_blank">Read Here</a></span>',
