@@ -1,0 +1,187 @@
+/* =============================================
+   NEWS CAROUSEL — carousel.css
+   Reusable on any page. Requires js/carousel.js.
+   Add .news-carousel to your section element
+   and populate .nc-slide children — the script
+   handles the rest automatically.
+   ============================================= */
+
+.news-carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  background-color: #000;
+  user-select: none;
+}
+
+/* ---- Slides ---- */
+
+.nc-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.nc-slide.nc-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nc-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Dark gradient: transparent at top → ~80% black at bottom
+   so text is readable over any photo */
+.nc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.45) 55%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+}
+
+/* ---- Slide content (sits above gradient, above thumb strip) ---- */
+
+.nc-content {
+  position: absolute;
+  bottom: 74px; /* clears the 64px thumb strip + 10px gap */
+  left: 0;
+  right: 0;
+  padding: 0 40px 20px;
+  text-align: left;
+  z-index: 2;
+}
+
+.nc-headline {
+  font-family: 'Raleway', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 8px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.2;
+}
+
+.nc-body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #ececec;
+  margin: 0 0 14px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.nc-cta {
+  display: inline-block;
+  padding: 8px 22px;
+  background-color: var(--pink-color, #c64191);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nc-cta:hover {
+  background-color: #a82e77;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  color: #fff;
+}
+
+/* ---- Thumbnail strip ---- */
+
+.nc-thumbs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 16px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.nc-thumb {
+  flex-shrink: 0;
+  width: 80px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  opacity: 0.5;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.nc-thumb:hover {
+  opacity: 0.8;
+}
+
+.nc-thumb.nc-thumb-active {
+  opacity: 1;
+  border-color: var(--pink-color, #c64191);
+}
+
+.nc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* ---- Mobile adjustments ---- */
+
+@media (max-width: 900px) {
+  .news-carousel {
+    height: 420px;
+  }
+
+  .nc-content {
+    padding: 0 16px 16px;
+  }
+
+  .nc-headline {
+    font-size: 1.3rem;
+  }
+
+  .nc-body {
+    font-size: 0.85rem;
+  }
+
+  .nc-thumb {
+    width: 52px;
+    height: 36px;
+  }
+
+  .nc-thumbs {
+    height: 50px;
+    gap: 4px;
+  }
+
+  .nc-content {
+    bottom: 60px;
+  }
+}

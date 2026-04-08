@@ -605,7 +605,7 @@ h3{
 }
 
 h3 {
-  margin-top: 80px;
+  margin-top: 40px;
   font-size: 1.6rem;
 }
 
@@ -839,10 +839,6 @@ blockquote .fa-quote-right {
 #candid h2,
 #production h2{
   font-size: 4rem;
-}
-
-#writing-resume embed {
-  padding-bottom: 60px;
 }
 
 
@@ -1587,7 +1583,7 @@ blockquote .fa-quote-right {
 
 .writing-main {
   text-align: left;
-  padding-left: 80px;
+  padding: 0 80px;
 }
 
 .writing-main h2 {

@@ -7,6 +7,8 @@ function createImageGallery(thumbsContainerId, currentImageId, descriptionId, im
   const currentImage = document.getElementById(currentImageId);
   const description = document.getElementById(descriptionId);
 
+  if (!imageThumbs || !currentImage) return;
+
 
   const descriptions = [
   '<span>Butt Stuff made its world premiere in the 26th annual Dances With Films at the historic TCL Chinese Theater in Los Angeles!<br><br><a href="https://youtu.be/e5r4tf0Hiqs" target="_blank">Watch the trailer here!</a></span>',
@@ -293,6 +295,8 @@ function createScrollFunctionality(scrollLeftId, scrollRightId, thumbContainerId
   const scrollLeft = document.getElementById(scrollLeftId);
   const scrollRight = document.getElementById(scrollRightId);
   const thumbContainer = document.getElementById(thumbContainerId);
+
+  if (!scrollLeft || !scrollRight || !thumbContainer) return;
 
   function moveFirstToLast() {
     const firstChild = thumbContainer.firstChild;
