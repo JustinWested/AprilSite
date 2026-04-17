@@ -1,41 +1,36 @@
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
-import ContactPage from './pages/ContactPage/ContactPage';
 
-function Layout() {
+function ScrollToTop() {
   const { pathname } = useLocation();
-  return (
-    <>
-      <Nav transparent={false} />
-      <Outlet />
-      <Footer />
-    </>
-  );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
 }
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <>
+      <ScrollToTop />
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/"               element={<HomePage />} />
-          <Route path="/vo"             element={<PlaceholderPage title="Voice Over" />} />
-          <Route path="/acting"         element={<PlaceholderPage title="Acting" />} />
-          <Route path="/films"          element={<PlaceholderPage title="Films" />} />
-          <Route path="/buttstuff"      element={<PlaceholderPage title="Butt Stuff" />} />
-          <Route path="/pullingplugmom" element={<PlaceholderPage title="Pulling the Plug on Mom" />} />
-          <Route path="/thisisagarden"  element={<PlaceholderPage title="This Is a Garden" />} />
-          <Route path="/norman"         element={<PlaceholderPage title="Norman" />} />
-          <Route path="/murder"         element={<PlaceholderPage title="Murder is on the Table" />} />
-          <Route path="/writing"        element={<PlaceholderPage title="Writing" />} />
-          <Route path="/press"          element={<PlaceholderPage title="Press &amp; Podcasts" />} />
-          <Route path="/contact"        element={<ContactPage />} />
-          <Route path="*"               element={<PlaceholderPage title="Page Not Found" />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/vo" element={<PlaceholderPage />} />
+        <Route path="/acting" element={<PlaceholderPage />} />
+        <Route path="/films" element={<PlaceholderPage />} />
+        <Route path="/buttstuff" element={<PlaceholderPage />} />
+        <Route path="/pullingplugmom" element={<PlaceholderPage />} />
+        <Route path="/thisisagarden" element={<PlaceholderPage />} />
+        <Route path="/norman" element={<PlaceholderPage />} />
+        <Route path="/murder" element={<PlaceholderPage />} />
+        <Route path="/biteme" element={<PlaceholderPage />} />
+        <Route path="/writing" element={<PlaceholderPage />} />
+        <Route path="/press" element={<PlaceholderPage />} />
+        <Route path="/contact" element={<PlaceholderPage />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }

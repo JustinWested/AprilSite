@@ -1,148 +1,271 @@
-import PageLayout from '../../components/PageLayout/PageLayout';
-import Carousel from '../../components/Carousel/Carousel';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import BokehBackground from '../../components/BokehBackground/BokehBackground';
+import Nav from '../../components/Nav/Nav';
+import Hero from '../../components/Hero/Hero';
+import SectionDivider from '../../components/SectionDivider/SectionDivider';
+import FilmModal from '../../components/FilmModal/FilmModal';
+import Footer from '../../components/Footer/Footer';
 import styles from './HomePage.module.css';
 
-const SLIDES = [
+const newsItems = [
   {
-    image: '/images/indeximages/image1.webp',
-    title: 'Butt Stuff — World Premiere',
-    html: `Butt Stuff makes its world premiere in the 26th annual Dances With Films at the historic TCL Chinese Theater in Los Angeles! <a href="https://youtu.be/e5r4tf0Hiqs" target="_blank" rel="noopener noreferrer">Watch the trailer here!</a> &nbsp;<a href="/buttstuff">Go to film page</a>`,
+    headline: 'Butt Stuff premieres at Dances With Films at the historic TCL Chinese Theater in Los Angeles',
+    link: '/buttstuff',
   },
   {
-    image: '/images/indeximages/image4.webp',
-    title: 'this is a garden — Now on YouTube',
-    html: `My first film, "this is a garden," is now on YouTube with 32,000 views and counting! You can watch it here: <a href="https://www.youtube.com/watch?v=b4eXILF8CIE" target="_blank" rel="noopener noreferrer">"this is a garden"</a>`,
+    headline: 'Pulling the Plug on Mom nominated for Best Comedy at Cannes Shorts',
+    link: '/pullingplugmom',
   },
   {
-    image: '/images/indeximages/image5.webp',
-    title: 'Pulling the Plug on Mom — Festival Run',
-    html: `"Pulling the Plug on Mom" continues its festival run, most recently getting a nomination for Best Comedy at Cannes Shorts! <a href="/pullingplugmom">Go to film page</a>`,
+    headline: 'Murder is on the Table wins Best Writing at LA 48 Hour Film Festival',
+    link: '/murder',
   },
   {
-    image: '/images/indeximages/image6.webp',
-    title: 'The Party — Now Streaming',
-    html: `I star as Newbie/Viola in the D&D webseries "The Party," whose 1st season features Ally Beardsley, Becca Scott, Vince Caso from The Guild. All episodes are now available on YouTube. <a href="https://www.youtube.com/watch?v=mLMrE2Im9vw" target="_blank" rel="noopener noreferrer">Watch Episode 1 here!</a>`,
-  },
-  {
-    image: '/images/indeximages/image7.webp',
-    title: 'Butt Stuff — GenreBlast Top 10',
-    html: `Butt Stuff chosen as Top 10 short at GenreBlast by Morbidly Beautiful!<br><br>"A standout short...combining the sentimental with the "super effing weird" to create something unforgettable." —Peter Hayward-Bailey. <a href="https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/" target="_blank" rel="noopener noreferrer">Read Here</a>`,
-  },
-  {
-    image: '/images/indeximages/image8.webp',
-    title: 'Kickball at the Pack Theater',
-    html: `I regularly write and perform sketch for the House Team Kickball at the Pack Theater. <a href="https://www.youtube.com/playlist?list=PLMf0z8lyC0tO1-8fwdeGi8SvX-Lae8Y-R" target="_blank" rel="noopener noreferrer">Click here</a> for a playlist of all my sketches, including lots of musical parodies.`,
-  },
-  {
-    image: '/images/indeximages/image9.webp',
-    title: 'The Party — Q&A with Geneva K Willis',
-    html: `I sat down with co-creator of The Party Geneva K Willis to answer viewer questions and talk all things D&D. <a href="https://www.youtube.com/watch?v=BT5QqcMrDJk" target="_blank" rel="noopener noreferrer">Check it out here.</a>`,
-  },
-  {
-    image: '/images/indeximages/image10.webp',
-    title: 'Murder is on the Table — LA 48 Hour Film Fest',
-    html: `Murder is on the Table got a bunch of award noms at the LA 48 Hour Film Festival, including Best Writing and Best Film! <a href="https://www.instagram.com/p/Cwf1-H6uqtx/" target="_blank" rel="noopener noreferrer">Watch the trailer here.</a>`,
+    headline: 'Bite Me wins Audience Choice and Best Graphics at 48 Horror/Comedy Film Project',
+    link: '/biteme',
   },
 ];
 
-const FUN_FACTS = [
-  {
-    text: 'If you know Pennsylvania, I am from Johnstown, land of floods. If you don\'t, I am from Pittsburgh, land of potholes.',
-    variant: 'noteYellow',
-  },
-  {
-    text: 'I went to the National Theater Institute at the Eugene O\'Neill Theater Center where I learned how to create in all aspects of theater AND how to do it while concussed.',
-    variant: 'noteWhite',
-  },
-  {
-    text: 'I have made several films, including this is a garden, Butt Stuff, and Pulling the Plug on Mom.',
-    variant: 'noteTeal',
-  },
-  {
-    text: "I star in the D&D webseries 'The Party' where I play Newbie/Viola, an enchantment wizard who secretly uses her tablemates as research for her thesis.",
-    variant: 'notePink',
-  },
-  {
-    text: 'I perform on the sketch house team Kickball at the Pack Theater every 4th Saturday in Hollywood.',
-    variant: 'noteYellow',
-  },
-  {
-    text: 'I am the love child of Michael Cera and Andy Samburg.',
-    variant: 'noteWhite',
-  },
+const substackPlaceholders = [
+  { title: 'Latest from the Blog', date: 'Coming soon' },
+  { title: 'Stories & Ramblings', date: 'Coming soon' },
+  { title: 'Behind the Scenes', date: 'Coming soon' },
 ];
 
-function Divider() {
-  return <hr className={styles.divider} />;
-}
+const films = [
+  {
+    title: 'Butt Stuff',
+    poster: '/images/films/ButtStuffPoster.webp',
+    logline: 'Placeholder logline — details coming soon.',
+    accolades: ['Premiered at Dances With Films — TCL Chinese Theater, LA'],
+    credits: 'Placeholder credits',
+    watchLink: null,
+  },
+  {
+    title: 'This Is a Garden',
+    poster: '/images/films/GardenPoster.webp',
+    logline: 'Placeholder logline — details coming soon.',
+    accolades: [],
+    credits: 'Placeholder credits',
+    watchLink: null,
+  },
+  {
+    title: 'Pulling the Plug on Mom',
+    poster: '/images/films/MomPoster.webp',
+    logline: 'Placeholder logline — details coming soon.',
+    accolades: ['Nominated — Best Comedy, Cannes Shorts'],
+    credits: 'Placeholder credits',
+    watchLink: null,
+  },
+  {
+    title: 'Norman',
+    poster: '/images/films/NormanPoster.webp',
+    logline: 'Placeholder logline — details coming soon.',
+    accolades: [],
+    credits: 'Placeholder credits',
+    watchLink: null,
+  },
+  {
+    title: 'Murder is on the Table',
+    poster: '/images/films/MurderPoster.webp',
+    logline: 'Placeholder logline — details coming soon.',
+    accolades: ['Won — Best Writing, LA 48 Hour Film Festival'],
+    credits: 'Placeholder credits',
+    watchLink: null,
+  },
+  {
+    title: 'Bite Me',
+    poster: '/images/films/biteme/bite me poster.webp',
+    logline: 'Placeholder logline — details coming soon.',
+    accolades: [
+      'Won — Audience Choice, 48 Horror/Comedy Film Project',
+      'Won — Best Graphics, 48 Horror/Comedy Film Project',
+    ],
+    credits: 'Placeholder credits',
+    watchLink: null,
+  },
+];
 
 export default function HomePage() {
+  const [selectedFilm, setSelectedFilm] = useState(null);
+
   return (
-    <>
-      {/* Hero — full width, sits behind fixed nav */}
-      <section className={styles.hero}>
-        <video
-          className={styles.heroVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/fallback.webp"
-        >
-          <source src="/images/headerlq.mp4" type="video/mp4" />
-        </video>
-        <div className={styles.heroOverlay} />
-        <div className={styles.heroText}>
-          <p className={styles.heroName}>APRIL YANKO</p>
-          <p className={styles.heroTagline}>Actor | Writer | Overall Weirdo</p>
+    <div className={styles.page}>
+      <BokehBackground />
+      <Nav transparent={false} />
+
+      {/* ── Section 1: Hero ── */}
+      <Hero />
+
+      {/* ── Section 2: Bio / News / Substack ── */}
+      <section className={styles.bioSection}>
+        <div className={styles.bioGrid}>
+          {/* Left — headshot */}
+          <div className={styles.bioLeft}>
+            <img
+              src="/images/hero.webp"
+              alt="April Yanko"
+              className={styles.bioPhoto}
+            />
+          </div>
+
+          {/* Center — bio + news */}
+          <div className={styles.bioCenter}>
+            <p className={styles.bioText}>
+              Hi I am April Yanko. I am a mother of cats and eater of pasta. You
+              may find me around the web under &ldquo;post march,&rdquo; which is
+              a small riddle, not a Post Malone reference.
+            </p>
+
+            <h3 className={styles.newsLabel}>Recent News</h3>
+            <div className={styles.newsList}>
+              {newsItems.map((item, i) => (
+                <Link to={item.link} key={i} className={`frosted-card ${styles.newsCard}`}>
+                  <span className={styles.newsHeadline}>{item.headline}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — Substack */}
+          <div className={styles.bioRight}>
+            <h3 className={styles.blogLabel}>From the Blog</h3>
+            {substackPlaceholders.map((post, i) => (
+              <a
+                key={i}
+                href="https://ferretwithaknife.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`frosted-card ${styles.substackCard}`}
+              >
+                <div className={styles.substackGradient} />
+                <div className={styles.substackInfo}>
+                  <span className={styles.substackTitle}>{post.title}</span>
+                  <span className={styles.substackDate}>{post.date}</span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Body content inside the wavy white column */}
-      <PageLayout>
-        {/* Bio */}
-        <div className={styles.narrow}>
-          <p className={styles.bioHeadline}>Hi I am April Yanko.</p>
-          <p className={styles.bioBody}>
-            I am a mother of cats and eater of pasta. You may find me around
-            the web under &ldquo;post march,&rdquo; which is a small riddle, not a Post Malone reference.
-          </p>
-        </div>
+      <SectionDivider />
 
-        <Divider />
-
-        {/* Carousel — self-limits to 660px via its own CSS */}
-        <Carousel slides={SLIDES} />
-
-        <Divider />
-
-        {/* Fun facts */}
-        <h2 className={`${styles.funFactsHeading} ${styles.narrow}`}>
-          Here are some super fun facts about me, the one with the face
-        </h2>
-
-        <div className={styles.notesGrid}>
-          {FUN_FACTS.map((fact, i) => (
-            <div
-              key={i}
-              className={`${styles.note} ${styles[fact.variant]}`}
-            >
-              {fact.text}
-            </div>
-          ))}
-        </div>
-
-        <Divider />
-
-        {/* Cat */}
-        <div className={`${styles.catWrap} ${styles.narrow}`}>
-          <img
-            src="/images/cat.webp"
-            alt="A pink cat"
-            className={styles.catImage}
+      {/* ── Section 3: Filmmaker Reel ── */}
+      <section className={styles.reelSection}>
+        <h3 className={styles.sectionLabel}>filmmaker reel</h3>
+        <div className={styles.reelWrap}>
+          <iframe
+            src="https://www.youtube.com/embed/kvPVf9H4TUM"
+            title="April Yanko — Filmmaker Reel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className={styles.reelIframe}
           />
         </div>
-      </PageLayout>
-    </>
+      </section>
+
+      <SectionDivider />
+
+      {/* ── Section 4: Films ── */}
+      <section className={styles.filmsSection}>
+        <h3 className={styles.sectionLabel}>films</h3>
+        <div className={styles.posterRow}>
+          {films.map((film) => (
+            <button
+              key={film.title}
+              className={styles.posterBtn}
+              onClick={() => setSelectedFilm(film)}
+              aria-label={`View details for ${film.title}`}
+            >
+              <img src={film.poster} alt={film.title} className={styles.posterImg} />
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {selectedFilm && (
+        <FilmModal film={selectedFilm} onClose={() => setSelectedFilm(null)} />
+      )}
+
+      <SectionDivider />
+
+      {/* ── Section 5: Contact ── */}
+      <section className={styles.contactSection}>
+        <div className={styles.contactGrid}>
+          <div className={styles.contactLeft}>
+            <img
+              src="/images/aprilfilmapalooza.png"
+              alt="April Yanko"
+              className={styles.contactPhoto}
+            />
+          </div>
+          <div className={`frosted-card ${styles.contactCard}`}>
+            <h2 className={styles.contactHeading}>Call me, beep me</h2>
+            <p className={styles.contactSub}>
+              ...or just email me because that&rsquo;s what this is for.
+            </p>
+            <form
+              action="https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0"
+              method="post"
+              target="_blank"
+              className={styles.contactForm}
+            >
+              <div className={styles.field}>
+                <label htmlFor="mce-EMAIL" className={styles.label}>
+                  Email Address <span className={styles.req}>*</span>
+                </label>
+                <p className={styles.helper}>What&rsquo;s your email?</p>
+                <input
+                  type="email"
+                  name="EMAIL"
+                  id="mce-EMAIL"
+                  required
+                  className="pill-input"
+                />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="mce-NAME" className={styles.label}>
+                  Who are you?
+                </label>
+                <p className={styles.helper}>Who who, who who.</p>
+                <input
+                  type="text"
+                  name="NAME"
+                  id="mce-NAME"
+                  className="pill-input"
+                />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="mce-WHAT" className={styles.label}>
+                  What brings you here?
+                </label>
+                <input
+                  type="text"
+                  name="WHAT"
+                  id="mce-WHAT"
+                  className="pill-input"
+                />
+              </div>
+              {/* Bot trap */}
+              <input
+                type="text"
+                name="b_a77f48c271656e6046f2833df_1cd0d2c44e"
+                tabIndex="-1"
+                style={{ position: 'absolute', left: '-5000px' }}
+                aria-hidden="true"
+              />
+              <button type="submit" className={`pill-btn ${styles.submitBtn}`}>
+                To April, away!
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+      <Footer />
+    </div>
   );
 }

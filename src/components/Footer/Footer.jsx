@@ -1,126 +1,119 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Footer.module.css';
 
-const FOOTER_NAV = [
-  { label: 'Home',             to: '/' },
-  { label: 'Voice Over',       to: '/vo' },
-  { label: 'Acting',           to: '/acting' },
-  { label: 'Films',            to: '/films' },
-  { label: 'Writing',          to: '/writing' },
+const socialLinks = [
+  { icon: 'fa-brands fa-imdb', href: 'https://www.imdb.me/aprilyanko', label: 'IMDB' },
+  { icon: 'fa-brands fa-threads', href: 'https://www.threads.net/@post.march', label: 'Threads' },
+  { icon: 'fa-brands fa-instagram', href: 'https://www.instagram.com/post.march/', label: 'Instagram' },
+  { icon: 'fa-brands fa-youtube', href: 'https://www.youtube.com/@postmarch/videos', label: 'YouTube' },
+  { icon: 'fa-solid fa-masks-theater', href: 'https://resumes.actorsaccess.com/aprilyanko', label: 'Actors Access' },
+];
+
+const footerNav = [
+  { label: 'Home', to: '/' },
+  { label: 'Voice Over', to: '/vo' },
+  { label: 'Acting', to: '/acting' },
+  { label: 'Films', to: '/films' },
+  { label: 'Writing', to: '/writing' },
   { label: 'Press & Podcasts', to: '/press' },
-  { label: 'Contact',          to: '/contact' },
+  { label: 'Contact', to: '/contact' },
 ];
-
-const SOCIAL_LINKS = [
-  { icon: 'fa-brands fa-imdb',      href: 'https://www.imdb.com/',      label: 'IMDB' },
-  { icon: 'fa-brands fa-threads',   href: 'https://www.threads.net/',   label: 'Threads' },
-  { icon: 'fa-brands fa-instagram', href: 'https://www.instagram.com/', label: 'Instagram' },
-  { icon: 'fa-brands fa-youtube',   href: 'https://www.youtube.com/',   label: 'YouTube' },
-];
-
-function isActivePath(to, pathname) {
-  if (to === '/') return pathname === '/';
-  return pathname.startsWith(to);
-}
 
 export default function Footer() {
-  const { pathname } = useLocation();
+  const location = useLocation();
 
-  function handleBackToTop(e) {
-    e.preventDefault();
+  function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.grid}>
-        {/* Left column */}
-        <div className={styles.leftCol}>
-          <div className={styles.socialIcons}>
-            {SOCIAL_LINKS.map(link => (
+      {/* Subtle bokeh blobs inside footer */}
+      <div className={styles.footerBokeh} aria-hidden="true">
+        <div className={styles.blob} style={{ background: '#A1C3D1', width: 180, height: 180, top: '10%', left: '5%', opacity: 0.08 }} />
+        <div className={styles.blob} style={{ background: '#B39BC8', width: 150, height: 150, top: '40%', right: '10%', opacity: 0.06 }} />
+        <div className={styles.blob} style={{ background: '#E64398', width: 120, height: 120, bottom: '10%', left: '50%', opacity: 0.05 }} />
+        <div className={styles.blob} style={{ background: '#c64191', width: 160, height: 160, top: '20%', right: '30%', opacity: 0.06 }} />
+      </div>
+
+      <div className={styles.inner}>
+        {/* Left column — social icons + headshot */}
+        <div className={styles.left}>
+          <div className={styles.socials}>
+            {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className={styles.socialLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
+                className={styles.socialIcon}
               >
                 <i className={link.icon} />
               </a>
             ))}
-            {/* Actors Access — custom image icon */}
-            <a
-              href="https://www.actorsaccess.com/"
-              className={styles.socialLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Actors Access"
-            >
-              <img
-                src="/images/actorsaccess.webp"
-                alt="Actors Access"
-                className={styles.socialIconImg}
-              />
-            </a>
           </div>
-          <img
-            src="/images/hero.webp"
-            alt="April Yanko headshot"
-            className={styles.headshot}
-          />
+          <div className={styles.headshotWrap}>
+            <img
+              src="/images/hero.webp"
+              alt="April Yanko"
+              className={styles.headshot}
+            />
+          </div>
         </div>
 
-        {/* Center column */}
-        <div className={styles.centerCol}>
-          <button
-            className={styles.backToTop}
-            onClick={handleBackToTop}
-            aria-label="Back to top"
-          >
-            <i className="fa-solid fa-arrow-up" />
+        {/* Center column — back to top + mailing list */}
+        <div className={styles.center}>
+          <button className={styles.backToTop} onClick={scrollToTop} aria-label="Back to top">
+            <i className="fa-solid fa-circle-chevron-up" />
           </button>
-
+          <p className={styles.mailLabel}>Join my mailing list!</p>
           <form
-            className={styles.mailingForm}
-            action="#"
+            action="https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0"
             method="post"
-            onSubmit={e => e.preventDefault()}
+            target="_blank"
+            className={styles.mailForm}
           >
-            <p className={styles.mailingLabel}>Join my mailing list!</p>
             <input
               type="email"
-              className={styles.emailInput}
-              placeholder="your@email.com"
               name="EMAIL"
+              placeholder="your@email.com"
               required
+              className={`pill-input ${styles.mailInput}`}
             />
-            <button type="submit" className={styles.subscribeBtn}>
+            {/* Bot trap */}
+            <input
+              type="text"
+              name="b_a77f48c271656e6046f2833df_1cd0d2c44e"
+              tabIndex="-1"
+              style={{ position: 'absolute', left: '-5000px' }}
+              aria-hidden="true"
+            />
+            <button type="submit" className={`pill-btn ${styles.subscribeBtn}`}>
               Subscribe
             </button>
           </form>
         </div>
 
-        {/* Right column */}
-        <div className={styles.rightCol}>
-          <ul className={styles.footerNav}>
-            {FOOTER_NAV.map(item => (
-              <li key={item.label}>
-                <Link
+        {/* Right column — flat nav */}
+        <div className={styles.right}>
+          <ul className={styles.footerLinks}>
+            {footerNav.map((item) => (
+              <li key={item.to}>
+                <NavLink
                   to={item.to}
-                  className={`${styles.footerNavLink}${isActivePath(item.to, pathname) ? ' ' + styles.active : ''}`}
+                  end={item.to === '/'}
+                  className={({ isActive }) =>
+                    isActive ? styles.activeFooterLink : styles.footerLink
+                  }
                 >
                   {item.label}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
         </div>
       </div>
-
-      <p className={styles.copyright}>
-        &copy; {new Date().getFullYear()} April Yanko. All rights reserved.
-      </p>
     </footer>
   );
 }

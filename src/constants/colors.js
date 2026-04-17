@@ -1,4 +1,8 @@
-export const PINK      = '#c64191';
-export const TEAL      = '#1CB0A9';
-export const YELLOW    = '#FEC601';
-export const OFF_WHITE = '#F3F3F4';
+export const colors = {
+  deepPurple: '#2a1f3d',
+  dustyBlue: '#A1C3D1',
+  softLavender: '#B39BC8',
+  hotPink: '#E64398',
+  brandPink: '#c64191',
+  pageBg: '#faf8fc',
+};

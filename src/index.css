@@ -1,25 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-
 :root {
-  --color-pink: #c64191;
-  --color-teal: #1CB0A9;
-  --color-yellow: #FEC601;
-  --color-offwhite: #F3F3F4;
+  --deep-purple: #2a1f3d;
+  --dusty-blue: #A1C3D1;
+  --soft-lavender: #B39BC8;
+  --hot-pink: #E64398;
+  --brand-pink: #c64191;
+  --page-bg: #faf8fc;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Raleway', sans-serif;
-  background-color: var(--color-offwhite);
-  color: #222;
+  font-weight: 400;
+  background: var(--page-bg);
+  color: var(--deep-purple);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
@@ -27,7 +33,79 @@ a {
   color: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 img {
-  display: block;
   max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Utility: pill button */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.pill-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(230, 67, 152, 0.3);
+}
+
+/* Utility: frosted glass card */
+.frosted-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 0.5px solid rgba(179, 155, 200, 0.3);
+}
+
+/* Utility: section divider */
+.section-divider {
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(
+    to right,
+    transparent 5%,
+    #A1C3D1 25%,
+    #B39BC8 45%,
+    #E64398 55%,
+    #B39BC8 75%,
+    transparent 95%
+  );
+  opacity: 0.6;
+}
+
+/* Utility: pill input */
+.pill-input {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(250, 248, 252, 0.9);
+  border: 0.5px solid rgba(179, 155, 200, 0.4);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.pill-input:focus {
+  border-color: var(--hot-pink);
 }

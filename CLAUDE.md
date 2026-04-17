@@ -1,328 +1,117 @@
-# CLAUDE.md — April Yanko Portfolio Site
+# April Yanko Portfolio — CLAUDE.md
 
-## Project Overview
-
-React 18 + Vite 5 portfolio site for actor/writer April Yanko. No TypeScript. CSS Modules for all component styles. React Router v6 for client-side routing.
-
-**Live dev server:** `npm run dev` (port 5173 by default)
-**Build:** `npm run build`
-
----
+## Overview
+React + Vite SPA portfolio site for actor/writer April Yanko. Built with a sophisticated artistic design system featuring bokeh backgrounds, frosted glass cards, and pill-shaped UI elements.
 
 ## Tech Stack
+- **Framework:** React 19 + Vite 8
+- **Routing:** React Router DOM v7 (BrowserRouter)
+- **Styling:** CSS Modules + global CSS custom properties
+- **Font:** Raleway (400, 500, 700, 900) via Google Fonts CDN
+- **Icons:** Font Awesome 6.5 via CDN
 
-| Tool | Version | Notes |
-|------|---------|-------|
-| React | 18 | No TypeScript |
-| Vite | 5 | ESM, `@vitejs/plugin-react` |
-| React Router | v6 | `BrowserRouter`, nested routes, `<Outlet>` |
-| CSS Modules | — | All component styles scoped via `.module.css` |
-| Font Awesome | 6.5.0 | Via CDN in `index.html`, NOT npm |
-| Google Fonts | — | Raleway + Fredoka, loaded via CSS `@import` in `index.css` |
+## Color Palette
+Defined in two places (keep in sync):
+- **CSS custom properties:** `src/index.css` (`:root` vars like `--deep-purple`)
+- **JS constants:** `src/constants/colors.js` (exported `colors` object)
 
----
+| Name | Hex | Usage |
+|------|-----|-------|
+| Deep Purple | `#2a1f3d` | Backgrounds, footer, nav solid mode |
+| Dusty Blue | `#A1C3D1` | Bokeh blobs, accents |
+| Soft Lavender | `#B39BC8` | Labels, borders, bokeh blobs |
+| Hot Pink | `#E64398` | Primary accent, active states, CTAs |
+| Brand Pink | `#c64191` | Secondary accent, hover states |
+| Page Bg | `#faf8fc` | Page background |
 
 ## Design System
 
-### Color Palette
+### Bokeh Background
+Full-page fixed layer of large blurred gradient blobs at z-index 0. Component: `src/components/BokehBackground/`. All content sits at z-index 1+.
 
-| Name | Hex | JS Constant | CSS Variable |
-|------|-----|-------------|--------------|
-| Pink | `#c64191` | `PINK` | `--color-pink` |
-| Teal | `#1CB0A9` | `TEAL` | `--color-teal` |
-| Yellow | `#FEC601` | `YELLOW` | `--color-yellow` |
-| Off-White | `#F3F3F4` | `OFF_WHITE` | `--color-offwhite` |
+### Frosted Glass Cards
+CSS class `.frosted-card` in `index.css`: semi-transparent white bg, backdrop blur, rounded corners, subtle lavender border.
 
-JS constants live in `src/constants/colors.js`. CSS variables defined in `src/index.css` on `:root`.
+### Pill Buttons
+CSS class `.pill-btn` in `index.css`: border-radius 999px, hover lift + pink shadow.
 
-### Typography
+### Pill Inputs
+CSS class `.pill-input` in `index.css`: rounded 20px, subtle border, focus highlight.
 
-- **Body font:** `'Raleway', sans-serif` — set globally on `body` in `index.css`
-- **Display/fun font:** `'Fredoka', sans-serif` — used for `bioHeadline` on home page and `PlaceholderPage` titles
-- **Font Awesome icons:** `<i className="fa-solid fa-...">` — CDN, works globally
+### Section Dividers
+Component: `src/components/SectionDivider/`. Centered gradient line using all palette colors, fades to transparent on edges.
 
-### Design Language
-
-- **Border radius:** `999px` for pill shapes (nav items, buttons, arrows)
-- **Active/hover highlight:** Yellow background `#FEC601` + dark text `#5a4500`
-- **Primary accent:** Pink `#c64191`
-- **Secondary accent:** Teal `#1CB0A9`
-- **Dividers:** `linear-gradient(to right, transparent, #c64191, transparent)` at 1px height
-
----
-
-## File / Folder Structure
-
+## Project Structure
 ```
-AprilSiteNEWShiny/
-├── index.html                      # FA CDN link, root div
-├── vite.config.js
-├── package.json
-├── public/
-│   └── images/
-│       ├── headerlq.mp4            # Hero background video
-│       ├── fallback.webp           # Hero video poster
-│       ├── cat.webp                # Cat image (bottom of home page)
-│       ├── hero.webp               # Headshot in footer
-│       ├── actorsaccess.webp       # Social icon in footer
-│       └── indeximages/
-│           ├── image1.webp         # Carousel slides 1–8
-│           ├── image4.webp
-│           ├── image5.webp
-│           ├── image6.webp
-│           ├── image7.webp
-│           ├── image8.webp
-│           ├── image9.webp
-│           └── image10.webp
-└── src/
-    ├── main.jsx                    # ReactDOM.createRoot
-    ├── App.jsx                     # Router, Layout wrapper, all routes
-    ├── index.css                   # Global reset, fonts, CSS custom properties
-    ├── constants/
-    │   └── colors.js               # Exported JS color constants
-    ├── components/
-    │   ├── Nav/
-    │   │   ├── Nav.jsx
-    │   │   └── Nav.module.css
-    │   ├── Footer/
-    │   │   ├── Footer.jsx
-    │   │   └── Footer.module.css
-    │   ├── PageLayout/
-    │   │   ├── PageLayout.jsx      # Yellow gutter + scalloped white column
-    │   │   └── PageLayout.module.css
-    │   └── Carousel/
-    │       ├── Carousel.jsx        # Reusable image carousel
-    │       └── Carousel.module.css
-    └── pages/
-        ├── HomePage/
-        │   ├── HomePage.jsx
-        │   └── HomePage.module.css
-        └── PlaceholderPage/
-            ├── PlaceholderPage.jsx
-            └── PlaceholderPage.module.css
+index.html              — Entry HTML (Raleway + Font Awesome CDN)
+vite.config.js          — Vite + React plugin
+src/
+  main.jsx              — React root, BrowserRouter wrapping App
+  App.jsx               — All routes + ScrollToTop utility
+  index.css             — CSS custom properties, resets, utility classes
+  constants/
+    colors.js           — Exported color palette object
+  components/
+    BokehBackground/    — Full-page ambient blurred blobs
+    Hero/               — Video background hero (home page only)
+    Nav/                — 7-item nav, 3 dropdowns, mobile hamburger
+    Footer/             — 3-column: socials | mailchimp | flat nav
+    PageLayout/         — Standard page wrapper (Bokeh + Nav + Footer)
+    SectionDivider/     — Gradient line divider
+    FilmModal/          — Dark frosted glass modal for film details
+  pages/
+    HomePage/           — Full scrolling homepage (5 sections)
+    PlaceholderPage/    — Generic "coming soon" for unbuilt pages
+public/
+  images/               — All static assets (photos, videos, PDFs, audio)
 ```
 
----
+## Routing
+All routes defined in `src/App.jsx`:
+- `/` — HomePage (transparent nav, hero, 5 sections)
+- `/vo` — Voice Over (placeholder)
+- `/acting` — Acting (placeholder, supports #reels, #resumes, #photos anchors)
+- `/films` — All Films (placeholder)
+- `/buttstuff` — Butt Stuff film page (placeholder)
+- `/pullingplugmom` — Pulling the Plug on Mom (placeholder)
+- `/thisisagarden` — This Is a Garden (placeholder)
+- `/norman` — Norman (placeholder)
+- `/murder` — Murder is on the Table (placeholder)
+- `/biteme` — Bite Me (placeholder)
+- `/writing` — Writing (placeholder, supports #blog, #screenplays anchors)
+- `/press` — Press & Podcasts (placeholder)
+- `/contact` — Contact (placeholder)
 
-## Routing (`src/App.jsx`)
-
-All routes share a `Layout` wrapper (Nav + Outlet + Footer).
-
-```jsx
-function Layout() {
-  return (
-    <>
-      <Nav transparent={false} />
-      <Outlet />
-      <Footer />
-    </>
-  );
-}
-```
-
-**Nav is always solid pink** (`transparent={false}` always). The `transparent` prop exists on Nav but is currently always false.
-
-| Path | Component | Notes |
-|------|-----------|-------|
-| `/` | `HomePage` | Full home page with hero + body |
-| `/vo` | `PlaceholderPage` | title="Voice Over" |
-| `/acting` | `PlaceholderPage` | title="Acting" |
-| `/films` | `PlaceholderPage` | title="Films" |
-| `/buttstuff` | `PlaceholderPage` | title="Butt Stuff" |
-| `/pullingplugmom` | `PlaceholderPage` | title="Pulling the Plug on Mom" |
-| `/thisisagarden` | `PlaceholderPage` | title="This Is a Garden" |
-| `/norman` | `PlaceholderPage` | title="Norman" |
-| `/murder` | `PlaceholderPage` | title="Murder is on the Table" |
-| `/writing` | `PlaceholderPage` | title="Writing" |
-| `/press` | `PlaceholderPage` | title="Press & Podcasts" |
-| `/contact` | `PlaceholderPage` | title="Contact" |
-| `*` | `PlaceholderPage` | title="Page Not Found" |
-
----
-
-## Component Inventory
-
-### `Nav` (`src/components/Nav/`)
-
-- Fixed pink bar, 64px tall, `z-index: 100`
-- 7 top-level items: Voice Over, Acting (dropdown), Films (dropdown), Writing, Press & Podcasts, Contact, and a Home link (logo/name)
-- Dropdowns: Acting → [Stage / Screen / Improv & Sketch], Films → [individual film pages], Writing → sub-items
-- **Active detection:** `getActiveTop()` in Nav.jsx maps current pathname to the top-level nav item. Film sub-pages (`/buttstuff`, `/pullingplugmom`, etc.) all highlight `/films` as active
-- **Dropdown behavior:** click to open, click outside to close (via `useEffect` + `document.addEventListener`). Clicking the same item again closes it.
-- **Mobile (≤ 900px):** Hamburger menu. Acting/Films/Writing become links with sub-items always visible in mobile drawer
-- **Active style:** `background: #FEC601; color: #5a4500; border-radius: 999px`
-- **Dropdown item hover:** `background: #FEC601; color: #5a4500`
-- **All nav text:** solid `#fff` (not rgba)
-
-### `Footer` (`src/components/Footer/`)
-
-- Teal background (`#1CB0A9`), 3-column grid layout
-- **Left column:** Social icons row (Instagram, YouTube, IMDb, Actors Access image icon) + circular headshot below
-- **Center column:** Back-to-top button + Mailchimp mailing list form (action is `#` placeholder — needs real Mailchimp URL)
-- **Right column:** Flat nav list, active page highlighted in yellow
-- **Headshot styling:** 120px circle, `border: 5px solid #FEC601; box-shadow: 0 0 0 4px #c64191` (yellow ring + pink outer ring)
-- **3D text shadow** on social icons and "Join my mailing list!" label: stacked pink text-shadows (`1px 1px 0 #c64191, 2px 2px 0 #c64191, 3px 3px 0 #c64191`)
-- **Active detection:** `isActivePath()` uses `pathname.startsWith()` so film sub-pages highlight Films in footer nav
-- **Mobile (≤ 700px):** Collapses to single column
-
-### `PageLayout` (`src/components/PageLayout/`)
-
-Wraps the body content of every page (everything below the hero). Provides the yellow gutter + scalloped white column look.
-
-```jsx
-<PageLayout>
-  {/* page content */}
-</PageLayout>
-```
-
-**How the scallops work:**
-
-CSS `mask` with three layers composited via default `add` mode:
-
-1. **Middle fill** — solid opaque strip from `x = 2s` to `x = 100% - 2s`. Covers the column body.
-2. **Left scallops** — `radial-gradient` circle at left edge of each `2s × 2s` tile. Inside circle = transparent (cutout), outside = opaque. Repeats vertically. The middle fill doesn't cover this zone, so the holes are genuine cutouts showing yellow behind.
-3. **Right scallops** — mirror of #2 on the right edge.
-
-The `--s` custom property (`18px`) controls scallop size. Both `-webkit-mask` and `mask` are set for compatibility.
-
-**Mobile (≤ 768px):** Column goes `width: 100%`, `mask: none` (scallops removed).
-
-**Content padding:** `3rem 2.5rem 4rem` desktop, `2rem 1.25rem 3rem` mobile.
-
-### `Carousel` (`src/components/Carousel/`)
-
-Reusable component. Accepts a `slides` prop.
-
-**Slide shape:**
-```js
-{
-  image: '/images/indeximages/image1.webp',  // path from public/
-  title: 'Slide Title',
-  html: 'Text with <a href="...">links</a>',  // rendered via dangerouslySetInnerHTML
-}
-```
-
-**Features:**
-- Auto-advances every 5s via `setInterval`
-- Pauses on `mouseenter`, resumes on `mouseleave`
-- Manual nav via arrows or thumbnail click resets the interval
-- Fade transition: `opacity 0.35s ease` via `.fading` class added during `goTo()`
-- Thumbnail strip scrolls horizontally (single row, `flex-wrap: nowrap`), scrollbar hidden visually. Active thumb gets pink `border-color: #c64191`
-- Thumbnail strip auto-scrolls to keep active thumb visible via manual `strip.scrollLeft` calculation (does NOT use `scrollIntoView` — that caused the whole page to scroll)
-
-**Layout:** Capsule wrapper (`border-radius: 14px; overflow: hidden`) with image on top (16:9 aspect ratio) and teal info panel below. Arrow buttons overlay the image. Max-width `660px` (set in Carousel.module.css directly).
-
-**Link styling:** Links inside `slideText` are pink (`#c64191`), bold, no underline, underline on hover.
-
-**Do NOT add `scrollIntoView` to any Carousel useEffect** — this breaks page scroll behavior.
-
----
-
-## Page Layout Pattern
-
-Every real page follows this pattern:
-
-```jsx
-import PageLayout from '../../components/PageLayout/PageLayout';
-import styles from './MyPage.module.css';
-
-export default function MyPage() {
-  return (
-    <PageLayout>
-      {/* page content */}
-    </PageLayout>
-  );
-}
-```
-
-If the page has a full-width hero (like HomePage), it goes **outside** `<PageLayout>`:
-
-```jsx
-export default function MyPage() {
-  return (
-    <>
-      <section className={styles.hero}>
-        {/* full-width hero */}
-      </section>
-      <PageLayout>
-        {/* body content */}
-      </PageLayout>
-    </>
-  );
-}
-```
-
-The `.narrow` utility class (defined in `HomePage.module.css`) caps content at 660px centered. Copy it into new page CSS files if needed:
-```css
-.narrow {
-  max-width: 660px;
-  margin-left: auto;
-  margin-right: auto;
-}
-```
-
----
+## Nav Behavior
+- `transparent={true}` (home only): frosted glass bg, dark text
+- `transparent={false}` (all other pages): solid #2a1f3d bg, white text
+- Active page: #E64398 color + 1.5px underline
+- Dropdowns: Acting, Filmmaking, Writing — open on click (desktop), inline sub-items (mobile)
 
 ## How to Add a New Page
+1. Create `src/pages/YourPage/YourPage.jsx` and `YourPage.module.css`
+2. Wrap content in `<PageLayout>` (or `<PageLayout transparentNav={true}>` for hero pages)
+3. Add route in `src/App.jsx`: `<Route path="/yourpath" element={<YourPage />} />`
+4. Add nav link in `src/components/Nav/Nav.jsx` `navItems` array
+5. Add footer link in `src/components/Footer/Footer.jsx` `footerNav` array
 
-1. Create `src/pages/MyPage/MyPage.jsx` and `MyPage.module.css`
-2. Wrap content in `<PageLayout>`
-3. Import and add a `<Route>` in `src/App.jsx`
-4. Remove or replace the `PlaceholderPage` entry for that route
+## External Services
+- **Mailchimp:** Newsletter signup in Footer + Contact form. Action URL: `https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0`. Includes hidden bot trap field.
+- **YouTube:** Filmmaker reel embed on homepage: `https://www.youtube.com/embed/kvPVf9H4TUM`
+- **Substack:** Blog at `https://ferretwithaknife.substack.com` — placeholder cards for now, RSS integration planned via Cloudflare Worker in a later stage.
 
-Example:
-```jsx
-// src/pages/MyPage/MyPage.jsx
-import PageLayout from '../../components/PageLayout/PageLayout';
-import styles from './MyPage.module.css';
+## Remaining Work (Stage 3+)
+- Voice Over page
+- Acting page (PDF resume handling, reels, headshot gallery)
+- Individual film pages (full content for each film)
+- Writing page (Substack RSS via Cloudflare Worker)
+- Press & Podcasts page
+- Contact standalone page
+- Wire up real Substack RSS feed on homepage
+- Fill in real film modal content (loglines, full credits, watch links)
+- Swap placeholder photos (`/images/hero.webp`) for actual photos where noted
 
-export default function MyPage() {
-  return (
-    <PageLayout>
-      <h1 className={styles.title}>My Page</h1>
-    </PageLayout>
-  );
-}
-```
-
-```jsx
-// src/App.jsx — add import and route
-import MyPage from './pages/MyPage/MyPage';
-// ...
-<Route path="/mypage" element={<MyPage />} />
-```
-
----
-
-## `PlaceholderPage`
-
-Used for all routes not yet implemented. Accepts a `title` prop.
-
-```jsx
-<Route path="/vo" element={<PlaceholderPage title="Voice Over" />} />
-```
-
-Renders: pink Fredoka title + "Coming soon — check back later!" inside `PageLayout`.
-
----
-
-## Known TODOs / Pending Work
-
-- **Mailchimp URL:** Footer form `action` is `#` — needs real Mailchimp embed URL
-- **Social media URLs:** Footer social icons use generic platform URLs, not April's real profile URLs
-- **Stage 3+ pages:** All non-home routes are PlaceholderPage. Pages to build: Voice Over, Acting, Films (index + individual film pages), Writing, Press & Podcasts, Contact
-- **Individual film pages** (`/buttstuff`, `/pullingplugmom`, `/thisisagarden`, `/norman`, `/murder`) — currently PlaceholderPage, will each get real content
-- **`transparent` Nav prop** — wired up but currently always `false`. Could be used for a future page with a full-bleed hero that needs a transparent nav overlay
-
----
-
-## Conventions
-
-- **No TypeScript** — plain `.jsx` and `.js`
-- **CSS Modules only** — no Tailwind, no inline styles (except minor one-offs)
-- **No default exports from `constants/`** — all named exports
-- **Images in `public/images/`** — referenced as `/images/...` (no import needed)
-- **External links:** always include `target="_blank" rel="noopener noreferrer"`
-- **Font Awesome:** `<i className="fa-solid fa-icon-name" />` — loaded via CDN, no npm package
-- **No `scrollIntoView` in Carousel** — causes page scroll; use manual `strip.scrollLeft` instead
-- **`dangerouslySetInnerHTML`** in Carousel for slide HTML — allows inline links in slide descriptions
+## Commands
+- `npm run dev` — Start dev server
+- `npm run build` — Production build to `dist/`
+- `npm run preview` — Preview production build
