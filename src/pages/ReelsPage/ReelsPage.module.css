@@ -4,7 +4,9 @@
   padding-top: 60px;
 }
 
-/* ── Thin vertical progress indicator ── */
+/* ─────────────────────────────────────────
+   Left-edge scroll progress line
+───────────────────────────────────────── */
 .progressTrack {
   position: fixed;
   top: 60px;
@@ -25,13 +27,90 @@
   box-shadow: 0 0 8px rgba(230, 67, 152, 0.5);
 }
 
-/* ── Hero intro ── */
+/* ─────────────────────────────────────────
+   Right-edge progress dots
+───────────────────────────────────────── */
+.dotNav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid #B39BC8;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.dotActive {
+  width: 10px;
+  height: 10px;
+  background: #E64398;
+  border-color: #E64398;
+}
+
+/* ─────────────────────────────────────────
+   Scroll hint
+───────────────────────────────────────── */
+.scrollHint {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.scrollHintHidden {
+  opacity: 0;
+}
+
+.scrollHintText {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #B39BC8;
+}
+
+.scrollHintChevron {
+  color: #E64398;
+  font-size: 0.85rem;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
+
+/* ─────────────────────────────────────────
+   Hero intro
+───────────────────────────────────────── */
 .hero {
   position: relative;
   z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 56px 32px 24px;
+  padding: 48px 32px 16px;
   text-align: center;
 }
 
@@ -42,13 +121,9 @@
   letter-spacing: -0.01em;
 }
 
-.heroSub {
-  color: #B39BC8;
-  font-size: 1rem;
-  margin-top: 8px;
-}
-
-/* ── Scrollytelling grid ── */
+/* ─────────────────────────────────────────
+   Scrollytelling grid
+───────────────────────────────────────── */
 .scrollSection {
   position: relative;
   z-index: 1;
@@ -61,10 +136,12 @@
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 48px;
-  align-items: flex-start;
+  /* Default stretch so videoCol matches labelsCol height — required for sticky */
 }
 
-/* ── Left column — labels ── */
+/* ─────────────────────────────────────────
+   Left column — labels
+───────────────────────────────────────── */
 .labelsCol {
   display: flex;
   flex-direction: column;
@@ -74,6 +151,11 @@
   height: 100vh;
   display: flex;
   align-items: center;
+}
+
+/* First section slightly shorter so '02' peeks below the fold on load */
+.firstSection {
+  height: 88vh;
 }
 
 .labelInner {
@@ -111,32 +193,25 @@
   margin-bottom: 16px;
 }
 
+/* ─────────────────────────────────────────
+   Genre pill — unified style, no color coding
+───────────────────────────────────────── */
 .genrePill {
   display: inline-block;
+  width: fit-content;
   padding: 5px 14px;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #fff;
-  margin-bottom: 14px;
+  background: #EEEDFE;
+  color: #534AB7;
 }
 
-.desc {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(42, 31, 61, 0.75);
-}
-
-/* ── Genre colors ── */
-.genre_comedy    { background: #E64398; }
-.genre_dramatic  { background: #7FAFCB; }
-.genre_acting    { background: #5EBFB5; }
-.genre_character { background: #E8A54A; }
-.genre_sketch    { background: #B39BC8; }
-
-/* ── Right column — sticky player ── */
+/* ─────────────────────────────────────────
+   Right column — sticky player
+───────────────────────────────────────── */
 .videoCol {
   position: relative;
 }
@@ -154,20 +229,9 @@
   width: 100%;
   max-width: 640px;
   border-radius: 14px;
-  transition: box-shadow 0.4s ease;
-  animation: fadeIn 0.3s ease;
-}
-
-/* Genre-tinted glows around the sticky player */
-.glow_comedy    { box-shadow: 0 12px 40px rgba(230, 67, 152, 0.30), 0 0 0 1px rgba(230, 67, 152, 0.25); }
-.glow_dramatic  { box-shadow: 0 12px 40px rgba(127, 175, 203, 0.35), 0 0 0 1px rgba(127, 175, 203, 0.3); }
-.glow_acting    { box-shadow: 0 12px 40px rgba(94, 191, 181, 0.35), 0 0 0 1px rgba(94, 191, 181, 0.3); }
-.glow_character { box-shadow: 0 12px 40px rgba(232, 165, 74, 0.35), 0 0 0 1px rgba(232, 165, 74, 0.3); }
-.glow_sketch    { box-shadow: 0 12px 40px rgba(179, 155, 200, 0.40), 0 0 0 1px rgba(179, 155, 200, 0.35); }
-
-.playerFrame > * {
-  border-radius: 14px;
+  border: 1px solid rgba(179, 155, 200, 0.4);
   overflow: hidden;
+  animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
@@ -175,14 +239,20 @@
   to   { opacity: 1; }
 }
 
-/* ── Mobile stack (hidden on desktop) ── */
+/* ─────────────────────────────────────────
+   Mobile stack (hidden on desktop)
+───────────────────────────────────────── */
 .mobileStack {
   display: none;
 }
 
-/* ── Responsive: collapse to stack on mobile ── */
+/* ─────────────────────────────────────────
+   Responsive
+───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .progressTrack {
+  .progressTrack,
+  .dotNav,
+  .scrollHint {
     display: none;
   }
 
@@ -221,20 +291,16 @@
     margin-bottom: 8px;
   }
 
-  .mobileCard .labelInner,
-  .mobileCard {
-    opacity: 1;
+  .genrePill {
+    display: inline-block;
+    width: fit-content;
   }
 
   .mobilePlayer {
     width: 100%;
     border-radius: 14px;
-    margin-top: 8px;
-    animation: none;
-  }
-
-  .mobilePlayer > * {
-    border-radius: 14px;
     overflow: hidden;
+    border: 1px solid rgba(179, 155, 200, 0.4);
+    margin-top: 8px;
   }
 }

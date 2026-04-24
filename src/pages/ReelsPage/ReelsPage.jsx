@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import BokehBackground from '../../components/BokehBackground/BokehBackground';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
@@ -8,48 +8,42 @@ import styles from './ReelsPage.module.css';
 const reels = [
   {
     title: 'The Party D&D Series Highlight Reel',
-    genre: 'comedy',
     genreLabel: 'Comedy',
-    description: 'Comedy highlights from The Party D&D webseries',
     videoId: 'G3z8xAggZtw',
   },
   {
     title: 'The Party D&D Series Highlight Reel',
-    genre: 'dramatic',
     genreLabel: 'Dramatic',
-    description: 'Dramatic highlights from The Party D&D webseries',
     videoId: 'Br0LS_ptzuk',
   },
   {
     title: 'Acting Reel',
-    genre: 'acting',
     genreLabel: 'Acting',
-    description: 'General acting reel',
     videoId: 'dpw4OI_nvZg',
   },
   {
     title: 'Murder Made Me Famous Highlight Reel',
-    genre: 'character',
     genreLabel: 'Character',
-    description: 'Highlights from Murder Made Me Famous',
     videoId: 'E1vdluSESMU',
   },
   {
     title: 'Sketch Reel',
-    genre: 'sketch',
     genreLabel: 'Sketch',
-    description: 'Sketch comedy performance reel',
     videoId: 'kvPVf9H4TUM',
   },
 ];
 
 export default function ReelsPage() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const sectionRefs = useRef([]);
+  const [activeIdx, setActiveIdx]   = useState(0);
+  const [progress,  setProgress]    = useState(0);
+  const [showHint,  setShowHint]    = useState(true);
+
+  const sectionRefs  = useRef([]);
   const containerRef = useRef(null);
 
-  // IntersectionObserver — only active on desktop
+  // ── IntersectionObserver — fires when a section crosses the viewport midpoint ──
+  // threshold:0 + rootMargin '-49% 0px -49%' creates a 2% strip at dead-center.
+  // Any section that enters that strip becomes active.
   useEffect(() => {
     if (window.innerWidth <= 768) return;
 
@@ -57,32 +51,49 @@ export default function ReelsPage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const idx = Number(entry.target.dataset.idx);
-            setActiveIdx(idx);
+            setActiveIdx(Number(entry.target.dataset.idx));
           }
         });
       },
-      { threshold: 0.5, rootMargin: '-40% 0px -40% 0px' }
+      { threshold: 0, rootMargin: '-49% 0px -49% 0px' }
     );
 
     sectionRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  // Progress bar — tracks scroll through the scroll container
+  // ── Left-edge progress bar ──
   useEffect(() => {
     function onScroll() {
       const el = containerRef.current;
       if (!el) return;
-      const rect = el.getBoundingClientRect();
+      const rect  = el.getBoundingClientRect();
       const total = el.offsetHeight - window.innerHeight;
-      const scrolled = -rect.top;
-      const pct = Math.max(0, Math.min(100, (scrolled / total) * 100));
+      const pct   = Math.max(0, Math.min(100, (-rect.top / total) * 100));
       setProgress(pct);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // ── Scroll hint — hide after 50px, remove listener immediately ──
+  useEffect(() => {
+    function onFirstScroll() {
+      if (window.scrollY > 50) {
+        setShowHint(false);
+        window.removeEventListener('scroll', onFirstScroll);
+      }
+    }
+    window.addEventListener('scroll', onFirstScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onFirstScroll);
+  }, []);
+
+  // ── Dot click — smooth scroll section into vertical center ──
+  const scrollToReel = useCallback((i) => {
+    const el = sectionRefs.current[i];
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, []);
 
   const activeReel = reels[activeIdx];
@@ -92,23 +103,37 @@ export default function ReelsPage() {
       <BokehBackground />
       <Nav transparent={false} />
 
-      {/* Thin vertical progress indicator on the far left */}
+      {/* Left-edge scroll progress line */}
       <div className={styles.progressTrack} aria-hidden="true">
-        <div
-          className={styles.progressFill}
-          style={{ height: `${progress}%` }}
-        />
+        <div className={styles.progressFill} style={{ height: `${progress}%` }} />
+      </div>
+
+      {/* Right-edge progress dots */}
+      <nav className={styles.dotNav} aria-label="Reel navigation">
+        {reels.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={`${styles.dot} ${activeIdx === i ? styles.dotActive : ''}`}
+            onClick={() => scrollToReel(i)}
+            aria-label={`Go to reel ${i + 1}`}
+          />
+        ))}
+      </nav>
+
+      {/* Scroll hint — fades out after first scroll */}
+      <div className={`${styles.scrollHint} ${showHint ? '' : styles.scrollHintHidden}`} aria-hidden="true">
+        <span className={styles.scrollHintText}>scroll to explore</span>
+        <i className={`fa-solid fa-chevron-down ${styles.scrollHintChevron}`} />
       </div>
 
       <section className={styles.hero}>
         <h1 className={styles.heroTitle}>Reels</h1>
-        <p className={styles.heroSub}>
-          Scroll through to watch. Each reel is a different flavor.
-        </p>
       </section>
 
       <section ref={containerRef} className={styles.scrollSection}>
         <div className={styles.grid}>
+
           {/* Left column — scrolling labels */}
           <div className={styles.labelsCol}>
             {reels.map((reel, i) => (
@@ -116,21 +141,12 @@ export default function ReelsPage() {
                 key={i}
                 ref={(el) => (sectionRefs.current[i] = el)}
                 data-idx={i}
-                className={`${styles.labelSection} ${
-                  activeIdx === i ? styles.active : ''
-                }`}
+                className={`${styles.labelSection} ${activeIdx === i ? styles.active : ''} ${i === 0 ? styles.firstSection : ''}`}
               >
                 <div className={styles.labelInner}>
-                  <span className={styles.num}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+                  <span className={styles.num}>{String(i + 1).padStart(2, '0')}</span>
                   <h2 className={styles.reelTitle}>{reel.title}</h2>
-                  <span
-                    className={`${styles.genrePill} ${styles[`genre_${reel.genre}`]}`}
-                  >
-                    {reel.genreLabel}
-                  </span>
-                  <p className={styles.desc}>{reel.description}</p>
+                  <span className={styles.genrePill}>{reel.genreLabel}</span>
                 </div>
               </div>
             ))}
@@ -139,17 +155,12 @@ export default function ReelsPage() {
           {/* Right column — sticky player */}
           <div className={styles.videoCol}>
             <div className={styles.stickyPlayer}>
-              <div
-                key={activeReel.videoId}
-                className={`${styles.playerFrame} ${styles[`glow_${activeReel.genre}`]}`}
-              >
-                <YouTubePlayer
-                  videoId={activeReel.videoId}
-                  title={activeReel.title}
-                />
+              <div key={activeReel.videoId} className={styles.playerFrame}>
+                <YouTubePlayer videoId={activeReel.videoId} title={activeReel.title} />
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -159,13 +170,8 @@ export default function ReelsPage() {
           <div key={i} className={styles.mobileCard}>
             <span className={styles.num}>{String(i + 1).padStart(2, '0')}</span>
             <h2 className={styles.reelTitle}>{reel.title}</h2>
-            <span
-              className={`${styles.genrePill} ${styles[`genre_${reel.genre}`]}`}
-            >
-              {reel.genreLabel}
-            </span>
-            <p className={styles.desc}>{reel.description}</p>
-            <div className={`${styles.mobilePlayer} ${styles[`glow_${reel.genre}`]}`}>
+            <span className={styles.genrePill}>{reel.genreLabel}</span>
+            <div className={styles.mobilePlayer}>
               <YouTubePlayer videoId={reel.videoId} title={reel.title} />
             </div>
           </div>
