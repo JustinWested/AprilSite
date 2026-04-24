@@ -1,8 +1,9 @@
+/* ── Backdrop & container ── */
 .backdrop {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,35 +13,39 @@
 
 .modal {
   position: relative;
-  background: rgba(42, 31, 61, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 16px;
-  border: 0.5px solid rgba(179, 155, 200, 0.25);
-  max-width: 720px;
-  width: 100%;
+  width: 80vw;
+  max-width: 900px;
   max-height: 85vh;
   overflow-y: auto;
-  padding: 36px;
+  background: rgba(42, 31, 61, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 0.5px solid rgba(179, 155, 200, 0.3);
+  padding: 40px;
+  color: #fff;
   animation: slideUp 0.3s ease;
+  /* Bottom banner sits flush with modal edges; clip the overflow */
+  overflow-x: hidden;
 }
 
 .close {
   position: absolute;
   top: 16px;
   right: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.3rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.3rem;
+  background: none;
+  border: none;
   border-radius: 50%;
+  cursor: pointer;
   transition: color 0.2s, background 0.2s;
+  z-index: 2;
 }
 
 .close:hover {
@@ -48,16 +53,19 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-.layout {
+/* ── Top two-column grid ── */
+.topGrid {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 28px;
+  grid-template-columns: 260px 1fr;
+  gap: 32px;
   align-items: start;
+  margin-bottom: 28px;
 }
 
 .posterWrap {
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .poster {
@@ -69,76 +77,283 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   color: #fff;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
 }
 
-.logline {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.sectionLabel {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.aprilCredit {
   color: #B39BC8;
+  font-style: italic;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-top: -6px;
 }
 
-.accoladeList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.accoladeList li {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.88rem;
-  padding-left: 14px;
+/* ── YouTube thumbnail player ── */
+.playerWrap {
   position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-.accoladeList li::before {
-  content: '★';
+.thumbnailBtn {
   position: absolute;
-  left: 0;
-  color: #E64398;
-  font-size: 0.7rem;
-  top: 2px;
+  inset: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
-.credits {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.85rem;
-  line-height: 1.6;
+.thumbnailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.thumbnailBtn:hover .thumbnailImg {
+  transform: scale(1.03);
+}
+
+.playIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #E64398;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  padding-left: 6px; /* optical centering of triangle */
+  box-shadow: 0 6px 20px rgba(230, 67, 152, 0.5);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.thumbnailBtn:hover .playIcon {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: #c64191;
+}
+
+.playerIframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.playLabel {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(42, 31, 61, 0.85);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── Synopsis + genres ── */
+.synopsis {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genrePill {
+  background: #B39BC8;
+  color: #2a1f3d;
+  padding: 4px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
 }
 
 .watchBtn {
   background: #E64398;
   color: #fff;
   align-self: flex-start;
+  font-size: 0.9rem;
+  padding: 10px 24px;
   margin-top: 4px;
-  font-size: 0.88rem;
-  padding: 8px 24px;
 }
 
 .watchBtn:hover {
   background: #c64191;
 }
 
+/* ── Full-width sections ── */
+.section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 0.5px solid rgba(179, 155, 200, 0.2);
+}
+
+.sectionHeading {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #E64398;
+  margin-bottom: 18px;
+}
+
+/* ── Accolades ── */
+.accoladesList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.festival {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.festivalName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #B39BC8;
+  letter-spacing: 0.02em;
+}
+
+.awardList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+}
+
+.awardRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.awardRow strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+.iconWin {
+  color: #f7c55a;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.iconNom {
+  color: rgba(179, 155, 200, 0.6);
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+.iconOfficial {
+  color: #A1C3D1;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* ── Press ── */
+.pressRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pressCard {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 0.5px solid rgba(179, 155, 200, 0.25);
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: transform 0.15s, background 0.2s, border-color 0.2s;
+}
+
+.pressCard:hover {
+  transform: translateY(-2px);
+  background: rgba(230, 67, 152, 0.15);
+  border-color: rgba(230, 67, 152, 0.5);
+}
+
+.pressName {
+  color: #fff;
+}
+
+.pressIcon {
+  font-size: 0.75rem;
+  color: #B39BC8;
+}
+
+/* ── Full-bleed banner (bottom of modal) ── */
+.bannerWrap {
+  /* Cancel the modal's 40px padding so the banner sits edge-to-edge */
+  margin: 32px -40px -40px;
+  overflow: hidden;
+  /* Match the modal's bottom corners so it feels like part of the modal */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  line-height: 0;
+}
+
+.bannerImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Animations ── */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -149,17 +364,37 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 600px) {
-  .layout {
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .modal {
+    width: calc(100vw - 32px);
+    padding: 28px 22px;
+    border-radius: 16px;
+  }
+
+  .bannerWrap {
+    margin: 24px -22px -28px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+
+  .topGrid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .posterWrap {
-    max-width: 160px;
+    max-width: 220px;
     margin: 0 auto;
   }
 
-  .modal {
-    padding: 24px;
+  .playIcon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.3rem;
+  }
+
+  .title {
+    text-align: center;
   }
 }

@@ -1,89 +1,33 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import BokehBackground from '../../components/BokehBackground/BokehBackground';
 import Nav from '../../components/Nav/Nav';
 import Hero from '../../components/Hero/Hero';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import FilmModal from '../../components/FilmModal/FilmModal';
 import Footer from '../../components/Footer/Footer';
+import SubstackFeed from '../../components/SubstackFeed/SubstackFeed';
+import SubstackSubscribe from '../../components/SubstackSubscribe/SubstackSubscribe';
+import YouTubePlayer from '../../components/YouTubePlayer/YouTubePlayer';
+import { films } from '../../data/films';
 import styles from './HomePage.module.css';
 
+// News items reference a film by id — clicking opens that film's modal.
 const newsItems = [
   {
     headline: 'Butt Stuff premieres at Dances With Films at the historic TCL Chinese Theater in Los Angeles',
-    link: '/buttstuff',
+    filmId: 'buttstuff',
   },
   {
     headline: 'Pulling the Plug on Mom nominated for Best Comedy at Cannes Shorts',
-    link: '/pullingplugmom',
+    filmId: 'pullingplugmom',
   },
   {
     headline: 'Murder is on the Table wins Best Writing at LA 48 Hour Film Festival',
-    link: '/murder',
+    filmId: 'murder',
   },
   {
     headline: 'Bite Me wins Audience Choice and Best Graphics at 48 Horror/Comedy Film Project',
-    link: '/biteme',
-  },
-];
-
-const substackPlaceholders = [
-  { title: 'Latest from the Blog', date: 'Coming soon' },
-  { title: 'Stories & Ramblings', date: 'Coming soon' },
-  { title: 'Behind the Scenes', date: 'Coming soon' },
-];
-
-const films = [
-  {
-    title: 'Butt Stuff',
-    poster: '/images/films/ButtStuffPoster.webp',
-    logline: 'Placeholder logline — details coming soon.',
-    accolades: ['Premiered at Dances With Films — TCL Chinese Theater, LA'],
-    credits: 'Placeholder credits',
-    watchLink: null,
-  },
-  {
-    title: 'This Is a Garden',
-    poster: '/images/films/GardenPoster.webp',
-    logline: 'Placeholder logline — details coming soon.',
-    accolades: [],
-    credits: 'Placeholder credits',
-    watchLink: null,
-  },
-  {
-    title: 'Pulling the Plug on Mom',
-    poster: '/images/films/MomPoster.webp',
-    logline: 'Placeholder logline — details coming soon.',
-    accolades: ['Nominated — Best Comedy, Cannes Shorts'],
-    credits: 'Placeholder credits',
-    watchLink: null,
-  },
-  {
-    title: 'Norman',
-    poster: '/images/films/NormanPoster.webp',
-    logline: 'Placeholder logline — details coming soon.',
-    accolades: [],
-    credits: 'Placeholder credits',
-    watchLink: null,
-  },
-  {
-    title: 'Murder is on the Table',
-    poster: '/images/films/MurderPoster.webp',
-    logline: 'Placeholder logline — details coming soon.',
-    accolades: ['Won — Best Writing, LA 48 Hour Film Festival'],
-    credits: 'Placeholder credits',
-    watchLink: null,
-  },
-  {
-    title: 'Bite Me',
-    poster: '/images/films/biteme/bite me poster.webp',
-    logline: 'Placeholder logline — details coming soon.',
-    accolades: [
-      'Won — Audience Choice, 48 Horror/Comedy Film Project',
-      'Won — Best Graphics, 48 Horror/Comedy Film Project',
-    ],
-    credits: 'Placeholder credits',
-    watchLink: null,
+    filmId: 'biteme',
   },
 ];
 
@@ -120,32 +64,27 @@ export default function HomePage() {
 
             <h3 className={styles.newsLabel}>Recent News</h3>
             <div className={styles.newsList}>
-              {newsItems.map((item, i) => (
-                <Link to={item.link} key={i} className={`frosted-card ${styles.newsCard}`}>
-                  <span className={styles.newsHeadline}>{item.headline}</span>
-                </Link>
-              ))}
+              {newsItems.map((item, i) => {
+                const film = films.find((f) => f.id === item.filmId);
+                return (
+                  <button
+                    type="button"
+                    key={i}
+                    className={`frosted-card ${styles.newsCard}`}
+                    onClick={() => film && setSelectedFilm(film)}
+                  >
+                    <span className={styles.newsHeadline}>{item.headline}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Right — Substack */}
           <div className={styles.bioRight}>
             <h3 className={styles.blogLabel}>From the Blog</h3>
-            {substackPlaceholders.map((post, i) => (
-              <a
-                key={i}
-                href="https://ferretwithaknife.substack.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`frosted-card ${styles.substackCard}`}
-              >
-                <div className={styles.substackGradient} />
-                <div className={styles.substackInfo}>
-                  <span className={styles.substackTitle}>{post.title}</span>
-                  <span className={styles.substackDate}>{post.date}</span>
-                </div>
-              </a>
-            ))}
+            <SubstackFeed count={2} />
+            <SubstackSubscribe variant="light" />
           </div>
         </div>
       </section>
@@ -156,12 +95,10 @@ export default function HomePage() {
       <section className={styles.reelSection}>
         <h3 className={styles.sectionLabel}>filmmaker reel</h3>
         <div className={styles.reelWrap}>
-          <iframe
-            src="https://www.youtube.com/embed/kvPVf9H4TUM"
+          <YouTubePlayer
+            videoId="kvPVf9H4TUM"
             title="April Yanko — Filmmaker Reel"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className={styles.reelIframe}
+            label=""
           />
         </div>
       </section>
@@ -174,12 +111,12 @@ export default function HomePage() {
         <div className={styles.posterRow}>
           {films.map((film) => (
             <button
-              key={film.title}
+              key={film.id}
               className={styles.posterBtn}
               onClick={() => setSelectedFilm(film)}
               aria-label={`View details for ${film.title}`}
             >
-              <img src={film.poster} alt={film.title} className={styles.posterImg} />
+              <img src={film.posterSrc} alt={film.title} className={styles.posterImg} />
             </button>
           ))}
         </div>

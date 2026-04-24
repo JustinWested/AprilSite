@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import SubstackSubscribe from '../SubstackSubscribe/SubstackSubscribe';
 import styles from './Footer.module.css';
 
 const socialLinks = [
@@ -11,12 +12,14 @@ const socialLinks = [
 
 const footerNav = [
   { label: 'Home', to: '/' },
-  { label: 'Voice Over', to: '/vo' },
-  { label: 'Acting', to: '/acting' },
-  { label: 'Films', to: '/films' },
-  { label: 'Writing', to: '/writing' },
-  { label: 'Press & Podcasts', to: '/press' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Filmmaking', to: '/films' },
+  { label: 'Reels', to: '/reels' },
+  { label: 'Voiceover', to: '/vo' },
+  {
+    label: 'Substack',
+    href: 'https://ferretwithaknife.substack.com',
+    external: true,
+  },
 ];
 
 export default function Footer() {
@@ -67,48 +70,35 @@ export default function Footer() {
           <button className={styles.backToTop} onClick={scrollToTop} aria-label="Back to top">
             <i className="fa-solid fa-circle-chevron-up" />
           </button>
-          <p className={styles.mailLabel}>Join my mailing list!</p>
-          <form
-            action="https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0"
-            method="post"
-            target="_blank"
-            className={styles.mailForm}
-          >
-            <input
-              type="email"
-              name="EMAIL"
-              placeholder="your@email.com"
-              required
-              className={`pill-input ${styles.mailInput}`}
-            />
-            {/* Bot trap */}
-            <input
-              type="text"
-              name="b_a77f48c271656e6046f2833df_1cd0d2c44e"
-              tabIndex="-1"
-              style={{ position: 'absolute', left: '-5000px' }}
-              aria-hidden="true"
-            />
-            <button type="submit" className={`pill-btn ${styles.subscribeBtn}`}>
-              Subscribe
-            </button>
-          </form>
+          <p className={styles.mailLabel}>Subscribe to my Substack</p>
+          <SubstackSubscribe variant="dark" />
         </div>
 
         {/* Right column — flat nav */}
         <div className={styles.right}>
           <ul className={styles.footerLinks}>
             {footerNav.map((item) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  end={item.to === '/'}
-                  className={({ isActive }) =>
-                    isActive ? styles.activeFooterLink : styles.footerLink
-                  }
-                >
-                  {item.label}
-                </NavLink>
+              <li key={item.label}>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.footerLink}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <NavLink
+                    to={item.to}
+                    end={item.to === '/'}
+                    className={({ isActive }) =>
+                      isActive ? styles.activeFooterLink : styles.footerLink
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>

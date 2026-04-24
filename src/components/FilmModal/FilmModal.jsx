@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getYouTubeId } from '../../data/films';
 import styles from './FilmModal.module.css';
 
 export default function FilmModal({ film, onClose }) {
+  const [playerActive, setPlayerActive] = useState(false);
+
   useEffect(() => {
     function handleKey(e) {
       if (e.key === 'Escape') onClose();
@@ -14,48 +17,115 @@ export default function FilmModal({ film, onClose }) {
     };
   }, [onClose]);
 
+  // Reset player when film changes
+  useEffect(() => {
+    setPlayerActive(false);
+  }, [film?.id]);
+
   if (!film) return null;
+
+  const videoId = getYouTubeId(film.trailerUrl);
+  const thumbnailUrl = videoId
+    ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+    : null;
+
+  const hasYouTube = Boolean(videoId);
+  const hasExternalTrailer = Boolean(film.trailerUrl) && !hasYouTube;
+  const watchLabel = film.watchLabel || 'Watch';
+
+  const hasAccolades = film.accolades && film.accolades.length > 0;
+  const hasPress = film.pressLinks && film.pressLinks.length > 0;
 
   return (
     <div className={styles.backdrop} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={styles.modal}
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={film.title}
+      >
         <button className={styles.close} onClick={onClose} aria-label="Close modal">
           <i className="fa-solid fa-xmark" />
         </button>
 
-        <div className={styles.layout}>
+        {/* ── Top two-column layout ── */}
+        <div className={styles.topGrid}>
+          {/* Left — poster */}
           <div className={styles.posterWrap}>
-            <img src={film.poster} alt={film.title} className={styles.poster} />
+            <img src={film.posterSrc} alt={`${film.title} poster`} className={styles.poster} />
           </div>
 
+          {/* Right — title, credit, video, synopsis, genres */}
           <div className={styles.info}>
             <h2 className={styles.title}>{film.title}</h2>
-
-            {film.logline && (
-              <p className={styles.logline}>{film.logline}</p>
+            {film.aprilCredit && (
+              <p className={styles.aprilCredit}>{film.aprilCredit}</p>
             )}
 
-            {film.accolades && film.accolades.length > 0 && (
-              <div className={styles.section}>
-                <h3 className={styles.sectionLabel}>Accolades</h3>
-                <ul className={styles.accoladeList}>
-                  {film.accolades.map((a, i) => (
-                    <li key={i}>{a}</li>
-                  ))}
-                </ul>
+            {/* Video / trailer — YouTube thumbnail or external link button */}
+            {hasYouTube && (
+              <>
+                <div className={styles.playerWrap}>
+                  {playerActive ? (
+                    <iframe
+                      className={styles.playerIframe}
+                      src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                      title={`${film.title} — ${watchLabel}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      className={styles.thumbnailBtn}
+                      onClick={() => setPlayerActive(true)}
+                      aria-label={`${watchLabel} for ${film.title}`}
+                    >
+                      <img src={thumbnailUrl} alt="" className={styles.thumbnailImg} />
+                      <span className={styles.playIcon}>
+                        <i className="fa-solid fa-play" />
+                      </span>
+                      <span className={styles.playLabel}>{watchLabel}</span>
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
+
+            {hasExternalTrailer && film.trailerThumbnail && (
+              <div className={styles.playerWrap}>
+                <a
+                  href={film.trailerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.thumbnailBtn}
+                  aria-label={`${watchLabel} for ${film.title} (opens in new tab)`}
+                >
+                  <img src={film.trailerThumbnail} alt="" className={styles.thumbnailImg} />
+                  <span className={styles.playIcon}>
+                    <i className="fa-solid fa-play" />
+                  </span>
+                  <span className={styles.playLabel}>{watchLabel}</span>
+                </a>
               </div>
             )}
 
-            {film.credits && (
-              <div className={styles.section}>
-                <h3 className={styles.sectionLabel}>Credits</h3>
-                <p className={styles.credits}>{film.credits}</p>
+            {film.synopsis && (
+              <p className={styles.synopsis}>{film.synopsis}</p>
+            )}
+
+            {film.genres && film.genres.length > 0 && (
+              <div className={styles.genres}>
+                {film.genres.map((g) => (
+                  <span key={g} className={styles.genrePill}>{g}</span>
+                ))}
               </div>
             )}
 
-            {film.watchLink && (
+            {film.whereToWatch && (
               <a
-                href={film.watchLink}
+                href={film.whereToWatch}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`pill-btn ${styles.watchBtn}`}
@@ -65,6 +135,68 @@ export default function FilmModal({ film, onClose }) {
             )}
           </div>
         </div>
+
+        {/* ── Press (before Accolades) ── */}
+        {hasPress && (
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeading}>Press</h3>
+            <div className={styles.pressRow}>
+              {film.pressLinks.map((p, i) => (
+                <a
+                  key={i}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.pressCard}
+                >
+                  <span className={styles.pressName}>{p.publication}</span>
+                  <i className={`fa-solid fa-arrow-up-right-from-square ${styles.pressIcon}`} />
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── Accolades ── */}
+        {hasAccolades && (
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeading}>Accolades</h3>
+            <div className={styles.accoladesList}>
+              {film.accolades.map((fest, idx) => (
+                <div key={idx} className={styles.festival}>
+                  <h4 className={styles.festivalName}>{fest.festivalName}</h4>
+                  <ul className={styles.awardList}>
+                    {fest.wins?.map((w, i) => (
+                      <li key={`w-${i}`} className={styles.awardRow}>
+                        <i className={`fa-solid fa-star ${styles.iconWin}`} />
+                        <span><strong>Winner —</strong> {w}</span>
+                      </li>
+                    ))}
+                    {fest.nominations?.map((n, i) => (
+                      <li key={`n-${i}`} className={styles.awardRow}>
+                        <i className={`fa-regular fa-circle-dot ${styles.iconNom}`} />
+                        <span><strong>Nominated —</strong> {n}</span>
+                      </li>
+                    ))}
+                    {fest.officialSelections?.map((o, i) => (
+                      <li key={`o-${i}`} className={styles.awardRow}>
+                        <i className={`fa-solid fa-circle-check ${styles.iconOfficial}`} />
+                        <span>{o}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── Full-bleed banner at very bottom ── */}
+        {film.bannerSrc && (
+          <div className={styles.bannerWrap}>
+            <img src={film.bannerSrc} alt="" className={styles.bannerImg} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,75 @@
+.wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+}
+
+.btn {
+  background: #E64398;
+  color: #fff;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: #c64191;
+}
+
+/* ── Light variant (homepage right column) ── */
+.light .input {
+  background: rgba(255, 255, 255, 0.75);
+  border: 0.5px solid rgba(179, 155, 200, 0.4);
+  color: #2a1f3d;
+}
+
+.light .input::placeholder {
+  color: rgba(42, 31, 61, 0.45);
+}
+
+.light .input:focus {
+  border-color: #E64398;
+  background: #fff;
+}
+
+/* ── Dark variant (footer) ── */
+.dark {
+  max-width: 380px;
+}
+
+.dark .input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(179, 155, 200, 0.4);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.dark .input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dark .input:focus {
+  border-color: #E64398;
+  background: rgba(255, 255, 255, 0.14);
+  outline: none;
+}
+
+/* Mobile stacking */
+@media (max-width: 480px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .input,
+  .btn {
+    width: 100%;
+  }
+}

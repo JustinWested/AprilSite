@@ -1,0 +1,7 @@
+name = "substack-rss-proxy"
+main = "worker.js"
+compatibility_date = "2026-04-23"
+
+# Keep observability on so you can see logs / errors in the Cloudflare dashboard.
+[observability]
+enabled = true

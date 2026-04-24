@@ -1,0 +1,100 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.heading {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: #2a1f3d;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.subhead {
+  text-align: center;
+  color: #B39BC8;
+  font-size: 0.95rem;
+  margin-bottom: 48px;
+}
+
+/* ── Responsive poster grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  justify-items: center;
+}
+
+.posterBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.25s;
+}
+
+.posterBtn:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.posterImg {
+  height: 320px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(42, 31, 61, 0.18);
+  transition: box-shadow 0.25s;
+}
+
+.posterBtn:hover .posterImg {
+  box-shadow: 0 14px 38px rgba(230, 67, 152, 0.28);
+}
+
+.posterTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #2a1f3d;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+/* ── Tablet: 2 columns ── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .posterImg {
+    height: 280px;
+  }
+}
+
+/* ── Mobile: 1 column ── */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .posterImg {
+    height: 300px;
+  }
+}

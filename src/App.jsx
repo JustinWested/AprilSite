@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
+import FilmsPage from './pages/FilmsPage/FilmsPage';
+import ReelsPage from './pages/ReelsPage/ReelsPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 function ScrollToTop() {
@@ -18,18 +20,11 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/films" element={<FilmsPage />} />
+        <Route path="/reels" element={<ReelsPage />} />
         <Route path="/vo" element={<PlaceholderPage />} />
-        <Route path="/acting" element={<PlaceholderPage />} />
-        <Route path="/films" element={<PlaceholderPage />} />
-        <Route path="/buttstuff" element={<PlaceholderPage />} />
-        <Route path="/pullingplugmom" element={<PlaceholderPage />} />
-        <Route path="/thisisagarden" element={<PlaceholderPage />} />
-        <Route path="/norman" element={<PlaceholderPage />} />
-        <Route path="/murder" element={<PlaceholderPage />} />
-        <Route path="/biteme" element={<PlaceholderPage />} />
-        <Route path="/writing" element={<PlaceholderPage />} />
-        <Route path="/press" element={<PlaceholderPage />} />
-        <Route path="/contact" element={<PlaceholderPage />} />
+        {/* Fallback — unknown routes land on home */}
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </>
   );

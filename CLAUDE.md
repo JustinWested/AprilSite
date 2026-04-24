@@ -68,25 +68,25 @@ public/
 
 ## Routing
 All routes defined in `src/App.jsx`:
-- `/` — HomePage (transparent nav, hero, 5 sections)
-- `/vo` — Voice Over (placeholder)
-- `/acting` — Acting (placeholder, supports #reels, #resumes, #photos anchors)
-- `/films` — All Films (placeholder)
-- `/buttstuff` — Butt Stuff film page (placeholder)
-- `/pullingplugmom` — Pulling the Plug on Mom (placeholder)
-- `/thisisagarden` — This Is a Garden (placeholder)
-- `/norman` — Norman (placeholder)
-- `/murder` — Murder is on the Table (placeholder)
-- `/biteme` — Bite Me (placeholder)
-- `/writing` — Writing (placeholder, supports #blog, #screenplays anchors)
-- `/press` — Press & Podcasts (placeholder)
-- `/contact` — Contact (placeholder)
+- `/` — HomePage (hero + 5 sections)
+- `/films` — All Films grid (shared FilmModal component)
+- `/reels` — Reels (placeholder — content pending)
+- `/vo` — Voiceover (placeholder — content pending)
+- `*` — unknown routes fall back to HomePage
+
+Top-level site surfaces are intentionally minimal: **Filmmaking, Reels,
+Voiceover, Substack**. Substack is an external link (opens
+`https://ferretwithaknife.substack.com` in a new tab) — not a route on
+this site. The previous Acting / Writing / Press / Contact placeholder
+pages were removed; individual film routes are also gone (all film detail
+renders through `FilmModal`, fed from `src/data/films.js`).
 
 ## Nav Behavior
 - `transparent={true}` (home only): frosted glass bg, dark text
 - `transparent={false}` (all other pages): solid #2a1f3d bg, white text
 - Active page: #E64398 color + 1.5px underline
-- Dropdowns: Acting, Filmmaking, Writing — open on click (desktop), inline sub-items (mobile)
+- No dropdowns — every item is a single top-level link
+- Nav items support `external: true` + `href` for links that open in a new tab (Substack)
 
 ## How to Add a New Page
 1. Create `src/pages/YourPage/YourPage.jsx` and `YourPage.module.css`
@@ -96,19 +96,22 @@ All routes defined in `src/App.jsx`:
 5. Add footer link in `src/components/Footer/Footer.jsx` `footerNav` array
 
 ## External Services
-- **Mailchimp:** Newsletter signup in Footer + Contact form. Action URL: `https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0`. Includes hidden bot trap field.
-- **YouTube:** Filmmaker reel embed on homepage: `https://www.youtube.com/embed/kvPVf9H4TUM`
-- **Substack:** Blog at `https://ferretwithaknife.substack.com` — placeholder cards for now, RSS integration planned via Cloudflare Worker in a later stage.
+- **Mailchimp:** Still used in the HomePage Contact section form. Action URL: `https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0`. Includes hidden bot trap field.
+- **Substack:** Blog at `https://ferretwithaknife.substack.com`.
+  - Homepage right column: live feed (2 most recent posts) via Cloudflare Worker proxy at `https://substack-rss-proxy.justwested.workers.dev/`. Worker source: `workers/substack-proxy/`. Component: `src/components/SubstackFeed/`.
+  - Subscribe widget (homepage right column + footer): `src/components/SubstackSubscribe/` — styled native form that opens Substack's subscribe page with the email prefilled. Replaces the old Mailchimp footer form.
+- **YouTube:** Filmmaker reel on homepage (`kvPVf9H4TUM`) and film trailers. All use `src/components/YouTubePlayer/` — thumbnail-click-to-play, matches the FilmModal video styling.
 
-## Remaining Work (Stage 3+)
-- Voice Over page
-- Acting page (PDF resume handling, reels, headshot gallery)
-- Individual film pages (full content for each film)
-- Writing page (Substack RSS via Cloudflare Worker)
-- Press & Podcasts page
-- Contact standalone page
-- Wire up real Substack RSS feed on homepage
-- Fill in real film modal content (loglines, full credits, watch links)
+## Reusable Components
+- `YouTubePlayer` — thumbnail click → autoplay iframe, pink play button, optional label badge
+- `SubstackFeed` — RSS feed parser; props: `count`
+- `SubstackSubscribe` — inline email form; props: `variant: 'light' | 'dark'`
+- `FilmModal` — shared modal for all films
+
+## Remaining Work
+- Reels page content
+- Voiceover page content
+- Fill in real film modal content (loglines, full credits, watch links) for remaining films
 - Swap placeholder photos (`/images/hero.webp`) for actual photos where noted
 
 ## Commands

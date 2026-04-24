@@ -4,36 +4,14 @@ import styles from './Nav.module.css';
 
 const navItems = [
   { label: 'Home', to: '/' },
-  { label: 'Voice Over', to: '/vo' },
+  { label: 'Filmmaking', to: '/films' },
+  { label: 'Reels', to: '/reels' },
+  { label: 'Voiceover', to: '/vo' },
   {
-    label: 'Acting',
-    children: [
-      { label: 'Reels', to: '/acting#reels' },
-      { label: 'Resumes', to: '/acting#resumes' },
-      { label: 'Photos', to: '/acting#photos' },
-    ],
+    label: 'Substack',
+    href: 'https://ferretwithaknife.substack.com',
+    external: true,
   },
-  {
-    label: 'Filmmaking',
-    children: [
-      { label: 'All Films', to: '/films' },
-      { label: 'Butt Stuff', to: '/buttstuff' },
-      { label: 'Pulling the Plug on Mom', to: '/pullingplugmom' },
-      { label: 'This Is a Garden', to: '/thisisagarden' },
-      { label: 'Norman', to: '/norman' },
-      { label: 'Murder is on the Table', to: '/murder' },
-      { label: 'Bite Me', to: '/biteme' },
-    ],
-  },
-  {
-    label: 'Writing',
-    children: [
-      { label: 'Blog / Substack', to: '/writing#blog' },
-      { label: 'Screenplays', to: '/writing#screenplays' },
-    ],
-  },
-  { label: 'Press & Podcasts', to: '/press' },
-  { label: 'Contact', to: '/contact' },
 ];
 
 export default function Nav({ transparent }) {
@@ -86,7 +64,13 @@ export default function Nav({ transparent }) {
 
         <ul className={`${styles.links} ${mobileOpen ? styles.mobileOpen : ''}`}>
           {navItems.map((item) =>
-            item.children ? (
+            item.external ? (
+              <li key={item.label}>
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                </a>
+              </li>
+            ) : item.children ? (
               <li key={item.label} className={styles.dropdown}>
                 <button
                   className={`${styles.dropdownToggle} ${
