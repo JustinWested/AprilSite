@@ -1,0 +1,262 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 64px 32px 24px;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #2a1f3d;
+  letter-spacing: -0.01em;
+}
+
+/* ── Generic section wrapper ── */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 56px 32px;
+}
+
+.sectionLabel {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #B39BC8;
+  margin-bottom: 32px;
+}
+
+/* ── Frosted card base — local utility ── */
+.frosted {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 0.5px solid rgba(179, 155, 200, 0.3);
+}
+
+/* ─────────────────────────────────────────
+   Section 1: Audio Demos
+───────────────────────────────────────── */
+.demosGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.demoCard {
+  composes: frosted;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.demoTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2a1f3d;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   Section 2: Testimonial
+───────────────────────────────────────── */
+.testimonialSection {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 56px 32px;
+}
+
+.testimonialCard {
+  composes: frosted;
+  position: relative;
+  padding: 56px 48px 40px;
+}
+
+.testimonialCard::before {
+  content: '\201C'; /* left double quotation mark */
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 80px;
+  line-height: 1;
+  color: #E64398;
+  pointer-events: none;
+}
+
+.quote {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.8;
+  color: #2a1f3d;
+  margin: 0;
+}
+
+.attribution {
+  margin-top: 28px;
+  text-align: right;
+  color: #B39BC8;
+  font-size: 0.88rem;
+}
+
+/* ─────────────────────────────────────────
+   Section 3: Featured Podcasts
+───────────────────────────────────────── */
+.podcastGrid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.podcastCard {
+  composes: frosted;
+  width: 100%;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.podcastCard:hover {
+  transform: scale(1.03);
+  border-color: rgba(179, 155, 200, 0.6);
+  box-shadow: 0 8px 24px rgba(179, 155, 200, 0.2);
+}
+
+.podcastImageWrap {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.podcastImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.podcastTitle {
+  padding: 14px 16px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2a1f3d;
+}
+
+/* ─────────────────────────────────────────
+   Section 4: Video Work
+───────────────────────────────────────── */
+.videoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.videoCard {
+  composes: frosted;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.videoTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2a1f3d;
+  margin: 0;
+}
+
+.videoEmbed {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vimeoWrap {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  background: #000;
+}
+
+.vimeoFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ─────────────────────────────────────────
+   Mobile
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 20px 12px;
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+
+  .section,
+  .testimonialSection {
+    padding: 40px 20px;
+  }
+
+  .demosGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .testimonialCard {
+    padding: 48px 28px 32px;
+  }
+
+  .testimonialCard::before {
+    font-size: 64px;
+    top: -6px;
+    left: 12px;
+  }
+
+  .quote {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .podcastGrid {
+    gap: 18px;
+  }
+}
