@@ -57,9 +57,30 @@ export default function HomePage() {
           {/* Center — bio + news */}
           <div className={styles.bioCenter}>
             <p className={styles.bioText}>
-              Hi I am April Yanko. I am a mother of cats and eater of pasta. You
-              may find me around the web under &ldquo;post march,&rdquo; which is
-              a small riddle, not a Post Malone reference.
+              April Yanko is a filmmaker whose work pairs irrevent, lowbrow humor
+              with dry, self-aware wit to make the uncomfortable something you can
+              laugh at instead of turn away from.
+            </p>
+            <p className={styles.bioText}>
+              Her short &ldquo;Butt Stuff&rdquo; debuted at Dances with Films at
+              the TCL Chinese Theatre, and her films have since screened at Austin
+              Revolution, Broad Humor, and GenreBlast. Most recently, she screened
+              a short film at the Cannes Film Festival Short Film Corner. Her debut
+              film, &ldquo;this is a garden,&rdquo; was noted for its authentic and
+              sincere LGBTQ+ storytelling, and her work tends to live somewhere
+              between heartfelt and super-effing weird.
+            </p>
+            <p className={styles.bioText}>
+              She&rsquo;s studied sketch writing and improv at UCB and the Pack
+              Theater with incredible teachers like Sam Brown (Whitest Kids U&rsquo;
+              Know), Keisha Zollar (Astronomy Club), and Eric Moneypenny (Eric
+              Andre, Midnight Show). April writes the Substack &ldquo;Ferret with a
+              Knife&rdquo; and performs sketch on the Pack house team
+              &ldquo;Kickball.&rdquo; You can also catch her starring in &ldquo;The
+              Party,&rdquo; a D&amp;D webseries on YouTube.
+            </p>
+            <p className={styles.bioText}>
+              All of her Neopets are alive and well.
             </p>
 
             <h3 className={styles.newsLabel}>Recent News</h3>
