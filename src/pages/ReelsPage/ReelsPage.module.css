@@ -148,14 +148,15 @@
 }
 
 .labelSection {
-  height: 100vh;
+  height: 150vh;
   display: flex;
   align-items: center;
+  scroll-snap-align: center;
 }
 
 /* First section slightly shorter so '02' peeks below the fold on load */
 .firstSection {
-  height: 88vh;
+  height: 133vh;
 }
 
 .labelInner {

@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { getYouTubeId } from '../../data/films';
 import styles from './YouTubePlayer.module.css';
 
-// Reusable YouTube thumbnail-click-to-play component.
-// Matches the FilmModal video styling (rounded, pink play button, watch label).
+const QUALITIES = ['maxresdefault', 'sddefault', 'hqdefault', 'mqdefault'];
+
+// Gradient fallback shown when all thumbnail qualities fail to load.
+const FALLBACK_GRADIENT =
+  'linear-gradient(135deg, #A1C3D1 0%, #B39BC8 50%, #E64398 100%)';
+
 export default function YouTubePlayer({
   url,
   videoId: videoIdProp,
@@ -12,12 +16,24 @@ export default function YouTubePlayer({
   thumbnail,
 }) {
   const videoId = videoIdProp || getYouTubeId(url);
-  const [active, setActive] = useState(false);
+  const [active,      setActive]      = useState(false);
+  const [qualityIdx,  setQualityIdx]  = useState(0);
+  const [thumbFailed, setThumbFailed] = useState(false);
 
   if (!videoId) return null;
 
-  const thumbSrc =
-    thumbnail || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  // If a custom thumbnail is provided, use it directly (no fallback chain needed).
+  const thumbSrc = thumbnail
+    ? thumbnail
+    : `https://img.youtube.com/vi/${videoId}/${QUALITIES[qualityIdx]}.jpg`;
+
+  function handleThumbError() {
+    if (qualityIdx < QUALITIES.length - 1) {
+      setQualityIdx((prev) => prev + 1);
+    } else {
+      setThumbFailed(true);
+    }
+  }
 
   return (
     <div className={styles.playerWrap}>
@@ -36,19 +52,19 @@ export default function YouTubePlayer({
           onClick={() => setActive(true)}
           aria-label={`${label || 'Play'} — ${title}`}
         >
-          <img
-            src={thumbSrc}
-            alt=""
-            className={styles.thumbnailImg}
-            onError={(e) => {
-              // maxresdefault 404s for videos without a max-res upload.
-              // hqdefault always exists. Fallback chain: maxres → hq.
-              if (!e.currentTarget.dataset.fallback) {
-                e.currentTarget.dataset.fallback = '1';
-                e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-              }
-            }}
-          />
+          {thumbFailed ? (
+            <div
+              className={styles.thumbnailImg}
+              style={{ background: FALLBACK_GRADIENT }}
+            />
+          ) : (
+            <img
+              src={thumbSrc}
+              alt=""
+              className={styles.thumbnailImg}
+              onError={handleThumbError}
+            />
+          )}
           <span className={styles.playIcon}>
             <i className="fa-solid fa-play" />
           </span>

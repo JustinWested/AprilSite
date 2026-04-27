@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 import { getYouTubeId } from '../../data/films';
 import styles from './FilmModal.module.css';
 
+const THUMB_QUALITIES = ['maxresdefault', 'sddefault', 'hqdefault', 'mqdefault'];
+const FALLBACK_GRADIENT =
+  'linear-gradient(135deg, #A1C3D1 0%, #B39BC8 50%, #E64398 100%)';
+
 export default function FilmModal({ film, onClose }) {
   const [playerActive, setPlayerActive] = useState(false);
+  const [thumbQualIdx, setThumbQualIdx] = useState(0);
+  const [thumbFailed,  setThumbFailed]  = useState(false);
 
   useEffect(() => {
     function handleKey(e) {
@@ -17,17 +23,27 @@ export default function FilmModal({ film, onClose }) {
     };
   }, [onClose]);
 
-  // Reset player when film changes
+  // Reset player + thumbnail state when film changes
   useEffect(() => {
     setPlayerActive(false);
+    setThumbQualIdx(0);
+    setThumbFailed(false);
   }, [film?.id]);
 
   if (!film) return null;
 
   const videoId = getYouTubeId(film.trailerUrl);
   const thumbnailUrl = videoId
-    ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+    ? `https://img.youtube.com/vi/${videoId}/${THUMB_QUALITIES[thumbQualIdx]}.jpg`
     : null;
+
+  function handleThumbError() {
+    if (thumbQualIdx < THUMB_QUALITIES.length - 1) {
+      setThumbQualIdx((prev) => prev + 1);
+    } else {
+      setThumbFailed(true);
+    }
+  }
 
   const hasYouTube = Boolean(videoId);
   const hasExternalTrailer = Boolean(film.trailerUrl) && !hasYouTube;
@@ -82,7 +98,19 @@ export default function FilmModal({ film, onClose }) {
                       onClick={() => setPlayerActive(true)}
                       aria-label={`${watchLabel} for ${film.title}`}
                     >
-                      <img src={thumbnailUrl} alt="" className={styles.thumbnailImg} />
+                      {thumbFailed ? (
+                        <div
+                          className={styles.thumbnailImg}
+                          style={{ background: FALLBACK_GRADIENT }}
+                        />
+                      ) : (
+                        <img
+                          src={thumbnailUrl}
+                          alt=""
+                          className={styles.thumbnailImg}
+                          onError={handleThumbError}
+                        />
+                      )}
                       <span className={styles.playIcon}>
                         <i className="fa-solid fa-play" />
                       </span>

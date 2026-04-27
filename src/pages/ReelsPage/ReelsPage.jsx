@@ -62,6 +62,15 @@ export default function ReelsPage() {
     return () => observer.disconnect();
   }, []);
 
+  // ── Scroll snap on html element — proximity so it doesn't fight the observer ──
+  useEffect(() => {
+    if (window.innerWidth <= 768) return;
+    document.documentElement.style.scrollSnapType = 'y proximity';
+    return () => {
+      document.documentElement.style.scrollSnapType = '';
+    };
+  }, []);
+
   // ── Left-edge progress bar ──
   useEffect(() => {
     function onScroll() {
