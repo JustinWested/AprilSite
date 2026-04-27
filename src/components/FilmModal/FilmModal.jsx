@@ -109,6 +109,17 @@ export default function FilmModal({ film, onClose }) {
                           alt=""
                           className={styles.thumbnailImg}
                           onError={handleThumbError}
+                          onLoad={(e) => {
+                            // YouTube returns a 120x90 gray placeholder
+                            // (HTTP 200) when a quality doesn't exist —
+                            // onError never fires. Detect by size.
+                            if (
+                              e.target.naturalWidth === 120 &&
+                              e.target.naturalHeight === 90
+                            ) {
+                              handleThumbError();
+                            }
+                          }}
                         />
                       )}
                       <span className={styles.playIcon}>

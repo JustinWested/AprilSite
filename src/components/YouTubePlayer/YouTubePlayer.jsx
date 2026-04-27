@@ -63,6 +63,14 @@ export default function YouTubePlayer({
               alt=""
               className={styles.thumbnailImg}
               onError={handleThumbError}
+              onLoad={(e) => {
+                // YouTube returns a 120x90 gray placeholder (HTTP 200) when
+                // a quality doesn't exist — onError never fires. Detect it
+                // by intrinsic size and advance the chain.
+                if (e.target.naturalWidth === 120 && e.target.naturalHeight === 90) {
+                  handleThumbError();
+                }
+              }}
             />
           )}
           <span className={styles.playIcon}>
