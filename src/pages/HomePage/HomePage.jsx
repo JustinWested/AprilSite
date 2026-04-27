@@ -104,7 +104,7 @@ export default function HomePage() {
           {/* Right — Substack */}
           <div className={styles.bioRight}>
             <h3 className={styles.blogLabel}>From the Blog</h3>
-            <SubstackFeed count={2} />
+            <SubstackFeed count={3} />
             <SubstackSubscribe variant="light" />
           </div>
         </div>
