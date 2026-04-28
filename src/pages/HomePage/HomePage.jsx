@@ -11,11 +11,16 @@ import YouTubePlayer from '../../components/YouTubePlayer/YouTubePlayer';
 import { films } from '../../data/films';
 import styles from './HomePage.module.css';
 
-// News items reference a film by id — clicking opens that film's modal.
+// News items either reference a film by id (clicking opens that film's
+// modal) or carry an external `link` (clicking opens in a new tab).
 const newsItems = [
   {
     headline: 'Butt Stuff premieres at Dances With Films at the historic TCL Chinese Theater in Los Angeles',
     filmId: 'buttstuff',
+  },
+  {
+    headline: 'GenreBlast 2023: 10 Great Horror Comedy Shorts',
+    link: 'https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/',
   },
   {
     headline: 'Pulling the Plug on Mom nominated for Best Comedy at Cannes Shorts',
@@ -86,6 +91,21 @@ export default function HomePage() {
             <h3 className={styles.newsLabel}>Recent News</h3>
             <div className={styles.newsList}>
               {newsItems.map((item, i) => {
+                // External link card — open press article in new tab.
+                if (item.link) {
+                  return (
+                    <a
+                      key={i}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`frosted-card ${styles.newsCard}`}
+                    >
+                      <span className={styles.newsHeadline}>{item.headline}</span>
+                    </a>
+                  );
+                }
+                // Film card — open the film modal.
                 const film = films.find((f) => f.id === item.filmId);
                 return (
                   <button

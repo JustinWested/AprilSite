@@ -47,10 +47,15 @@ export default function FilmModal({ film, onClose }) {
 
   const hasYouTube = Boolean(videoId);
   const hasExternalTrailer = Boolean(film.trailerUrl) && !hasYouTube;
+  // Facebook iframe embed — used when there's no trailerUrl but a
+  // facebookEmbed src is provided (Facebook doesn't allow custom
+  // thumbnails the way YouTube does, so we just render the iframe).
+  const hasFacebookEmbed = Boolean(film.facebookEmbed) && !film.trailerUrl;
   const watchLabel = film.watchLabel || 'Watch';
 
   const hasAccolades = film.accolades && film.accolades.length > 0;
   const hasPress = film.pressLinks && film.pressLinks.length > 0;
+  const hasCredits = film.credits && film.credits.length > 0;
 
   return (
     <div className={styles.backdrop} onClick={onClose}>
@@ -150,6 +155,20 @@ export default function FilmModal({ film, onClose }) {
               </div>
             )}
 
+            {hasFacebookEmbed && (
+              <div className={styles.playerWrap}>
+                <iframe
+                  className={styles.playerIframe}
+                  src={film.facebookEmbed}
+                  title={`${film.title} — Facebook video`}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                  scrolling="no"
+                  frameBorder="0"
+                />
+              </div>
+            )}
+
             {film.synopsis && (
               <p className={styles.synopsis}>{film.synopsis}</p>
             )}
@@ -227,6 +246,21 @@ export default function FilmModal({ film, onClose }) {
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* ── Credits ── */}
+        {hasCredits && (
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeading}>Credits</h3>
+            <dl className={styles.creditsGrid}>
+              {film.credits.map((c, i) => (
+                <div key={i} className={styles.creditRow}>
+                  <dt className={styles.creditRole}>{c.role}</dt>
+                  <dd className={styles.creditName}>{c.name}</dd>
+                </div>
+              ))}
+            </dl>
           </section>
         )}
 
