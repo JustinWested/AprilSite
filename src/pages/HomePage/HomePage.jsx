@@ -123,7 +123,7 @@ export default function HomePage() {
 
           {/* Right — Substack */}
           <div className={styles.bioRight}>
-            <h3 className={styles.blogLabel}>From the Blog</h3>
+            <h3 className={styles.blogLabel}>Latest From Ferret With A Knife</h3>
             <SubstackFeed count={3} />
             <SubstackSubscribe variant="light" />
           </div>
