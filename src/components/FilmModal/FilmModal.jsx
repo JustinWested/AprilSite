@@ -70,6 +70,11 @@ export default function FilmModal({ film, onClose }) {
           <i className="fa-solid fa-xmark" />
         </button>
 
+        {/* Inner scroll wrapper — keeps the styled scrollbar inside the
+            modal's rounded corners (the outer .modal sets overflow: hidden
+            and border-radius; this inner div owns padding + scrolling). */}
+        <div className={styles.modalScroll}>
+
         {/* ── Top two-column layout ── */}
         <div className={styles.topGrid}>
           {/* Left — poster */}
@@ -270,6 +275,7 @@ export default function FilmModal({ film, onClose }) {
             <img src={film.bannerSrc} alt="" className={styles.bannerImg} />
           </div>
         )}
+        </div>
       </div>
     </div>
   );

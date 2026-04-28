@@ -174,7 +174,7 @@ export default function HomePage() {
         <div className={styles.contactGrid}>
           <div className={styles.contactLeft}>
             <img
-              src="/images/aprilfilmapalooza.png"
+              src="/images/aprilyankopotato.jpeg"
               alt="April Yanko"
               className={styles.contactPhoto}
             />

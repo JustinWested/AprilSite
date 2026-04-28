@@ -14,6 +14,9 @@
 //
 // Sections auto-hide when empty — leave accolades/pressLinks/credits as []
 // (or omit entirely) to skip them in the modal.
+//
+// Order in this array drives both the All Films grid AND the homepage
+// film poster strip — both pages map directly over `films`.
 
 export const films = [
   {
@@ -76,6 +79,88 @@ export const films = [
       { role: 'Editors', name: 'April Yanko, Justin Wested' },
       { role: 'Puppeteering', name: 'Benjamin Carlucci, April Yanko' },
       { role: 'Music', name: 'Anthony Lucca' },
+    ],
+    whereToWatch: null,
+  },
+
+  {
+    id: 'idlehands',
+    title: 'Idle Hands',
+    aprilCredit: 'Written by April Yanko',
+    posterSrc: '/images/films/idlehandsposter.jpeg',
+    bannerSrc: '/images/films/idlehands bottom banner.jpg',
+    trailerUrl: 'https://www.youtube.com/watch?v=V2sBslwNV6A',
+    watchLabel: 'Watch the Film',
+    synopsis:
+      "You, valued employee, are watching the Idle Hands Training Video. Whether you're a new hire or assigned Mandatory ReEducation, we look forward to instructing you on how to possess our goods while keeping yourself free of sin.",
+    genres: ['Dark Comedy', 'Training Video'],
+    accolades: [
+      {
+        festivalName: '48 Hour Comedy Horror Film Project — Los Angeles',
+        wins: [
+          'Best Writing',
+          'Best Directing',
+          'Best Film',
+          'Best Actress',
+          'Best Visual Effects',
+          'Audience Choice',
+        ],
+        nominations: [
+          'Best Production Design',
+          'Best Use of Genre',
+          'Best Practical Effects',
+          'Best Score',
+          'Best Acting Ensemble',
+          'Best Supporting Actor — Conrad Wrobel',
+          'Best Actor — Brian Barlow',
+          'Best Editing',
+          'Runner Up Best Cinematography',
+        ],
+        officialSelections: [],
+      },
+    ],
+    pressLinks: [],
+    credits: [
+      { role: 'Directed by', name: 'Scott McKinney' },
+      { role: 'Production Company', name: 'VisionRey' },
+      { role: 'Produced by', name: 'Allison Marie Reyes, Spencer Tuel, Gregg Lawson, Grace Liu, Conrad Wrobel, Adam Lower' },
+      { role: 'Actors', name: 'Anna Telfer, Brian Barlow, Conrad Wrobel, Ambrose Burzak, Dorian Burks, Hannah Choi, Sierra Sterling' },
+      { role: 'Cinematography', name: 'Christine Mouton' },
+      { role: 'Production Design', name: 'Euree Hong' },
+      { role: 'Sound', name: 'Mike Walker' },
+      { role: 'Editor', name: 'Michael Filippi' },
+      { role: 'Music', name: 'Ryan Fultz' },
+    ],
+    whereToWatch: null,
+  },
+
+  {
+    id: 'dave',
+    title: 'Dave',
+    aprilCredit: 'Written by April Yanko',
+    posterSrc: '/images/films/Dave the Unicorn Poster.png',
+    bannerSrc: '/images/films/Dave the Unicorn bottom banner.jpg',
+    trailerUrl: 'https://www.instagram.com/p/DDfrG7HPVcT/',
+    // NOTE: Instagram trailers need a `trailerThumbnail` for the modal
+    // to render the click-to-link tile. Add a still frame here when one
+    // is available (e.g. '/images/films/dave/dave-still.webp').
+    watchLabel: 'Watch the Trailer',
+    synopsis: 'Synopsis not yet provided.',
+    genres: [],
+    accolades: [
+      {
+        festivalName: 'Yes We Cannes Global Film Challenge',
+        wins: [],
+        nominations: ['Best Writing', 'Best Supporting Actor — Conrad Wrobel'],
+        officialSelections: ['Advanced to Filmapalooza — Top 15 Worldwide'],
+      },
+    ],
+    pressLinks: [],
+    credits: [
+      { role: 'Directed by', name: 'Michael Filippi' },
+      { role: 'Produced by', name: 'Allison Marie Reyes, Spencer Tuel, Grace Liu, Gregg Lawson' },
+      { role: 'Actors', name: 'Nabila Hossain, Leah Jarvik, DeMark Thompson, Conrad Wrobel' },
+      { role: 'Cinematography', name: 'Christine Mouton' },
     ],
     whereToWatch: null,
   },
@@ -239,7 +324,14 @@ export const films = [
     ],
     pressLinks: [],
     credits: [
+      { role: 'Directed by', name: 'Michael Filippi' },
       { role: 'Produced by', name: 'April Yanko, Justin Wested' },
+      { role: 'Produced by', name: 'Allison Marie Reyes, Gregg Lawson' },
+      { role: 'Actors', name: 'Zachary Lichaa, Faye Klapperich, Aubrey Chantelle, Nick Garabedian' },
+      { role: 'Cinematography', name: 'Christine Mouton' },
+      { role: 'Sound', name: 'Mike Walker' },
+      { role: 'Editor', name: 'Leslie René Castro' },
+      { role: 'Music', name: 'Austin Ali' },
     ],
     whereToWatch: null,
   },
@@ -276,47 +368,12 @@ export const films = [
     whereToWatch: null,
   },
 
-  // ─────────────────────────────────────────────────────────────────
-  // New films
-  // ─────────────────────────────────────────────────────────────────
-
-  {
-    id: 'dave',
-    title: 'Dave',
-    aprilCredit: 'Written by April Yanko',
-    posterSrc: '/images/films/Dave the Unicorn Poster.png',
-    bannerSrc: null,
-    trailerUrl: 'https://www.instagram.com/p/DDfrG7HPVcT/',
-    // NOTE: Instagram trailers need a `trailerThumbnail` for the modal
-    // to render the click-to-link tile. Add a still frame here when one
-    // is available (e.g. '/images/films/dave/dave-still.webp').
-    watchLabel: 'Watch the Trailer',
-    synopsis: 'Synopsis not yet provided.',
-    genres: [],
-    accolades: [
-      {
-        festivalName: 'Yes We Cannes Global Film Challenge',
-        wins: [],
-        nominations: ['Best Writing', 'Best Supporting Actor — Conrad Wrobel'],
-        officialSelections: ['Advanced to Filmapalooza — Top 15 Worldwide'],
-      },
-    ],
-    pressLinks: [],
-    credits: [
-      { role: 'Directed by', name: 'Michael Filippi' },
-      { role: 'Produced by', name: 'Allison Marie Reyes, Spencer Tuel, Grace Liu, Gregg Lawson' },
-      { role: 'Actors', name: 'Nabila Hossain, Leah Jarvik, DeMark Thompson, Conrad Wrobel' },
-      { role: 'Cinematography', name: 'Christine Mouton' },
-    ],
-    whereToWatch: null,
-  },
-
   {
     id: 'woodworking',
     title: 'Woodworking',
     aprilCredit: 'Written & Directed by April Yanko',
     posterSrc: '/images/films/woodworking poster v1.png',
-    bannerSrc: null,
+    bannerSrc: '/images/films/woodwork bottombanner.jpg',
     // No real trailer — link straight to IMDB. Use the still frame in the
     // root images folder as a faux thumbnail so the modal renders the
     // click-to-link tile (same pattern as Pulling the Plug on Mom etc.).
@@ -351,7 +408,7 @@ export const films = [
     title: 'Jamie is Alone',
     aprilCredit: 'Written by April Yanko',
     posterSrc: '/images/films/jamie is alone poster.jpeg',
-    bannerSrc: null,
+    bannerSrc: '/images/films/jamie is alone bottom banner.jpg',
     trailerUrl: 'https://www.youtube.com/watch?v=yYCf_avcIw4',
     watchLabel: 'Watch the Film',
     synopsis:
@@ -387,7 +444,7 @@ export const films = [
     title: 'Poor Company',
     aprilCredit: 'Written by & Starring April Yanko',
     posterSrc: '/images/films/poorcompany poster.jpeg',
-    bannerSrc: null,
+    bannerSrc: '/images/films/poorcompany bottom banner.jpg',
     trailerUrl: null,
     watchLabel: null,
     // Facebook embed — the modal renders this as an iframe directly when
@@ -413,57 +470,6 @@ export const films = [
       { role: 'Cinematography', name: 'Drew Tieng' },
       { role: 'Editors', name: 'Michael Filippi, Leslie René Castro' },
       { role: 'Music', name: 'Whose' },
-    ],
-    whereToWatch: null,
-  },
-
-  {
-    id: 'idlehands',
-    title: 'Idle Hands',
-    aprilCredit: 'Written by April Yanko',
-    posterSrc: '/images/films/idlehandsposter.jpeg',
-    bannerSrc: null,
-    trailerUrl: 'https://www.youtube.com/watch?v=V2sBslwNV6A',
-    watchLabel: 'Watch the Film',
-    synopsis:
-      "You, valued employee, are watching the Idle Hands Training Video. Whether you're a new hire or assigned Mandatory ReEducation, we look forward to instructing you on how to possess our goods while keeping yourself free of sin.",
-    genres: ['Dark Comedy', 'Training Video'],
-    accolades: [
-      {
-        festivalName: '48 Hour Comedy Horror Film Project — Los Angeles',
-        wins: [
-          'Best Writing',
-          'Best Directing',
-          'Best Film',
-          'Best Actress',
-          'Best Visual Effects',
-          'Audience Choice',
-        ],
-        nominations: [
-          'Best Production Design',
-          'Best Use of Genre',
-          'Best Practical Effects',
-          'Best Score',
-          'Best Acting Ensemble',
-          'Best Supporting Actor — Conrad Wrobel',
-          'Best Actor — Brian Barlow',
-          'Best Editing',
-          'Runner Up Best Cinematography',
-        ],
-        officialSelections: [],
-      },
-    ],
-    pressLinks: [],
-    credits: [
-      { role: 'Directed by', name: 'Scott McKinney' },
-      { role: 'Production Company', name: 'VisionRey' },
-      { role: 'Produced by', name: 'Allison Marie Reyes, Spencer Tuel, Gregg Lawson, Grace Liu, Conrad Wrobel, Adam Lower' },
-      { role: 'Actors', name: 'Anna Telfer, Brian Barlow, Conrad Wrobel, Ambrose Burzak, Dorian Burks, Hannah Choi, Sierra Sterling' },
-      { role: 'Cinematography', name: 'Christine Mouton' },
-      { role: 'Production Design', name: 'Euree Hong' },
-      { role: 'Sound', name: 'Mike Walker' },
-      { role: 'Editor', name: 'Michael Filippi' },
-      { role: 'Music', name: 'Ryan Fultz' },
     ],
     whereToWatch: null,
   },
