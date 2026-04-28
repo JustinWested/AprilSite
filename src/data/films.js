@@ -85,7 +85,7 @@ export const films = [
 
   {
     id: 'idlehands',
-    title: 'Idle Hands',
+    title: 'Idle Hands Training Video',
     aprilCredit: 'Written by April Yanko',
     posterSrc: '/images/films/idlehandsposter.jpeg',
     bannerSrc: '/images/films/idlehands bottom banner.jpg',
