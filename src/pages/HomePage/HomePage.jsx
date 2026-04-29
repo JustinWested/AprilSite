@@ -143,7 +143,7 @@ export default function HomePage() {
               All of her Neopets are alive and well.
             </p>
 
-            <h3 className={styles.newsLabel}>Recent Press</h3>
+            <h3 className={styles.newsLabel}>Recent Press:</h3>
             <div className={styles.newsList}>
               {pressItems.map((item, i) => (
                 <a
@@ -161,7 +161,7 @@ export default function HomePage() {
 
           {/* Right — Substack */}
           <div className={styles.bioRight}>
-            <h3 className={styles.blogLabel}>Latest From Ferret With A Knife</h3>
+            <h3 className={styles.blogLabel}>Latest From Ferret With A Knife:</h3>
             <SubstackFeed count={3} />
             <SubstackSubscribe variant="light" />
           </div>

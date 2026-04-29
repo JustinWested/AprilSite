@@ -96,17 +96,21 @@
   margin: 0;
 }
 
-.genrePill {
-  display: inline-block;
-  width: fit-content;
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: #EEEDFE;
-  color: #534AB7;
+/* Wide-spanning card — used for the bottom-row Dramatic Reel. Cap the
+   embedded player width so the 16:9 video doesn't blow up to full row
+   width on a wide grid; center it inside the card. */
+.reelCardWide {
+  grid-column: 1 / -1;
+  align-items: center;
+}
+
+.reelCardWide .playerFrame {
+  width: 100%;
+  max-width: 720px;
+}
+
+.reelCardWide .reelTitle {
+  text-align: center;
 }
 
 /* ── Mobile — stack ── */

@@ -4,31 +4,33 @@ import Footer from '../../components/Footer/Footer';
 import YouTubePlayer from '../../components/YouTubePlayer/YouTubePlayer';
 import styles from './ReelsPage.module.css';
 
-// The Party reels skip the genre pill — the title alone already
-// communicates Comedy / Dramatic.
+// Reels grid: 2 columns on desktop, 1 column on mobile. The last item
+// (Dramatic Reel) gets `wide: true` and spans the full row at the
+// bottom. Order matters — the array drives left-to-right, top-to-bottom
+// placement on desktop and the vertical stacking order on mobile.
 const reels = [
-  {
-    title: 'The Party D&D Series Highlight Reel — Comedy',
-    videoId: 'G3z8xAggZtw',
-  },
   {
     title: 'The Party D&D Series Highlight Reel — Dramatic',
     videoId: 'Br0LS_ptzuk',
   },
   {
-    title: 'Acting Reel',
-    genreLabel: 'Acting',
-    videoId: 'dpw4OI_nvZg',
-  },
-  {
     title: 'Murder Made Me Famous Highlight Reel',
-    genreLabel: 'TV',
     videoId: 'E1vdluSESMU',
   },
   {
+    title: 'The Party D&D Series Highlight Reel — Comedy',
+    videoId: 'G3z8xAggZtw',
+  },
+  {
     title: 'Sketch Reel',
-    genreLabel: 'Sketch',
     videoId: 'kvPVf9H4TUM',
+  },
+  {
+    // Same YouTube ID as the prior "Acting Reel" — display title only
+    // changed per request.
+    title: 'Dramatic Reel',
+    videoId: 'dpw4OI_nvZg',
+    wide: true,
   },
 ];
 
@@ -53,14 +55,14 @@ export default function ReelsPage() {
 
       <section className={styles.reelsGrid}>
         {reels.map((reel, i) => (
-          <div key={i} className={styles.reelCard}>
+          <div
+            key={i}
+            className={`${styles.reelCard} ${reel.wide ? styles.reelCardWide : ''}`}
+          >
             <div className={styles.playerFrame}>
               <YouTubePlayer videoId={reel.videoId} title={reel.title} />
             </div>
             <h2 className={styles.reelTitle}>{reel.title}</h2>
-            {reel.genreLabel && (
-              <span className={styles.genrePill}>{reel.genreLabel}</span>
-            )}
           </div>
         ))}
       </section>

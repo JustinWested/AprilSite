@@ -135,7 +135,7 @@ export const films = [
     title: 'The Infinite Wisdom of Dave the Unicorn',
     aprilCredit: 'Written by April Yanko',
     posterSrc: '/images/films/Dave the Unicorn Poster.png',
-    bannerSrc: '/images/films/Dave the Unicorn bottom banner v2.png',
+    bannerSrc: '/images/films/Dave the Unicorn bottom banner v3.png',
     trailerUrl: 'https://www.youtube.com/watch?v=UXw0KppL2XY',
     watchLabel: 'Watch the Trailer',
     synopsis:
@@ -318,26 +318,13 @@ export const films = [
     ],
     pressLinks: [],
     credits: [
-      { role: 'Director', name: 'Michael Filippi' },
-      { role: 'Producers', name: 'Conrad Wrobel, Rory Ross, Tasha Wrobel & Marissa Messiano' },
+      { role: 'Co-Director', name: 'Michael Filippi' },
+      { role: 'Producers', name: 'Allison Marie Reyes, Conrad Wrobel, Rory Ross, Tasha Wrobel & Marissa Messiano' },
       { role: 'Editor', name: 'Paul Moore' },
-      { role: 'Audio', name: 'Jesse Lopez' },
-      { role: 'Hair and Makeup', name: 'Billie Collins' },
       { role: 'Costumes/Props', name: 'Ambrose Burzak' },
-      { role: 'Script Supervisor', name: 'Tim Whitford' },
-      { role: 'Writer / Co-Director', name: 'April Yanko' },
       { role: 'Starring', name: 'Ariel Staehle, Aubrey Chantelle, Conrad Wrobel, Max Cutler, Rory Ross & Zamara Jimenez' },
-      { role: 'ADR Supervisor', name: 'Max Cutler' },
-      { role: 'Assistant Director', name: 'Tasha Wrobel' },
-      { role: 'Production Assistants', name: 'Tim Whitford, Sevan Shamilian, Christina Shamilian & Eluzai Salmeron' },
-      { role: 'Colorist', name: 'Evan Gradillas' },
-      { role: 'Executive Producer', name: 'Allison Marie Reyes' },
       { role: 'Cinematographer', name: 'Mannon Butt' },
-      { role: 'Assistant Camera', name: 'Kahlo Gradillas' },
       { role: 'Composer', name: 'Austin Ali' },
-      { role: 'Musicians', name: 'Aric Kline & Samuel Adams' },
-      { role: 'Post Audio Mixer', name: 'Sebastian Radlbauer' },
-      { role: 'Graphic Design', name: 'Justin Wested' },
     ],
     whereToWatch: null,
   },
@@ -423,9 +410,8 @@ export const films = [
     accolades: [
       {
         festivalName: 'Yes We Cannes Global Film Challenge',
+        // Final order: wins (none) -> officialSelections -> nominations.
         wins: [],
-        // Order intentionally reversed (selections before nominations)
-        // so the Cannes line reads first in the modal.
         officialSelections: [
           'Top 15 Worldwide — Advanced to Filmapalooza',
           'Screened at the Cannes 48HFP Curated Short Film Corner',

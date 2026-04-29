@@ -179,11 +179,7 @@ export default function FilmModal({ film, onClose }) {
             )}
 
             {film.genres && film.genres.length > 0 && (
-              <div className={styles.genres}>
-                {film.genres.map((g) => (
-                  <span key={g} className={styles.genrePill}>{g}</span>
-                ))}
-              </div>
+              <p className={styles.genres}>{film.genres.join(' | ')}</p>
             )}
 
             {film.whereToWatch && (
@@ -229,22 +225,24 @@ export default function FilmModal({ film, onClose }) {
                 <div key={idx} className={styles.festival}>
                   <h4 className={styles.festivalName}>{fest.festivalName}</h4>
                   <ul className={styles.awardList}>
+                    {/* Render order: wins -> officialSelections -> nominations.
+                        Applies globally across every film modal. */}
                     {fest.wins?.map((w, i) => (
                       <li key={`w-${i}`} className={styles.awardRow}>
                         <i className={`fa-solid fa-star ${styles.iconWin}`} />
                         <span><strong>Winner —</strong> {w}</span>
                       </li>
                     ))}
-                    {fest.nominations?.map((n, i) => (
-                      <li key={`n-${i}`} className={styles.awardRow}>
-                        <i className={`fa-regular fa-circle-dot ${styles.iconNom}`} />
-                        <span><strong>Nominated —</strong> {n}</span>
-                      </li>
-                    ))}
                     {fest.officialSelections?.map((o, i) => (
                       <li key={`o-${i}`} className={styles.awardRow}>
                         <i className={`fa-solid fa-circle-check ${styles.iconOfficial}`} />
                         <span>{o}</span>
+                      </li>
+                    ))}
+                    {fest.nominations?.map((n, i) => (
+                      <li key={`n-${i}`} className={styles.awardRow}>
+                        <i className={`fa-regular fa-circle-dot ${styles.iconNom}`} />
+                        <span><strong>Nominated —</strong> {n}</span>
                       </li>
                     ))}
                   </ul>
@@ -257,7 +255,7 @@ export default function FilmModal({ film, onClose }) {
         {/* ── Credits ── */}
         {hasCredits && (
           <section className={styles.section}>
-            <h3 className={styles.sectionHeading}>Credits</h3>
+            <h3 className={styles.sectionHeading}>Additional Credits</h3>
             <dl className={styles.creditsGrid}>
               {film.credits.map((c, i) => (
                 <div key={i} className={styles.creditRow}>

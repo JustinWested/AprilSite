@@ -9,12 +9,12 @@ const navItems = [
   { label: 'Filmmaking', to: '/films' },
   { label: 'Reels', to: '/reels' },
   { label: 'Voiceover', to: '/vo' },
-  { label: 'Contact', hash: 'contact' },
   {
     label: 'Ferret with a Knife',
     href: 'https://ferretwithaknife.substack.com',
     external: true,
   },
+  { label: 'Contact', hash: 'contact' },
 ];
 
 export default function Nav({ transparent }) {

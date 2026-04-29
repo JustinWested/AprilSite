@@ -84,6 +84,9 @@
   letter-spacing: 0.12em;
   color: #E64398;
   font-variant: small-caps;
+  /* Extra breathing room separating the bio prose above from the
+     Recent Press list below — on top of the column's default 24px gap. */
+  margin-top: 18px;
 }
 
 .newsList {
