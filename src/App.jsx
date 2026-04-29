@@ -8,10 +8,21 @@ import VoPage from './pages/VoPage/VoPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) {
+      // Defer to next tick so the destination route has rendered and
+      // the target element exists in the DOM.
+      const id = hash.slice(1); // strip leading '#'
+      const t = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo(0, 0);
+      }, 50);
+      return () => clearTimeout(t);
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 

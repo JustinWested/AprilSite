@@ -7,7 +7,9 @@ const socialLinks = [
   { icon: 'fa-brands fa-threads', href: 'https://www.threads.net/@post.march', label: 'Threads' },
   { icon: 'fa-brands fa-instagram', href: 'https://www.instagram.com/post.march/', label: 'Instagram' },
   { icon: 'fa-brands fa-youtube', href: 'https://www.youtube.com/@postmarch/videos', label: 'YouTube' },
-  { icon: 'fa-solid fa-masks-theater', href: 'https://resumes.actorsaccess.com/aprilyanko', label: 'Actors Access' },
+  // Image-based logo — drop the file at /public/images/actors-access-logo.png
+  // (transparent PNG, ~24px tall). Sized in CSS via .socialIcon img.
+  { image: '/images/actors-access-logo.png', href: 'https://resumes.actorsaccess.com/aprilyanko', label: 'Actors Access' },
 ];
 
 const footerNav = [
@@ -16,7 +18,7 @@ const footerNav = [
   { label: 'Reels', to: '/reels' },
   { label: 'Voiceover', to: '/vo' },
   {
-    label: 'Substack',
+    label: 'Ferret with a Knife',
     href: 'https://ferretwithaknife.substack.com',
     external: true,
   },
@@ -52,7 +54,11 @@ export default function Footer() {
                 aria-label={link.label}
                 className={styles.socialIcon}
               >
-                <i className={link.icon} />
+                {link.image ? (
+                  <img src={link.image} alt={link.label} className={styles.socialImg} />
+                ) : (
+                  <i className={link.icon} />
+                )}
               </a>
             ))}
           </div>

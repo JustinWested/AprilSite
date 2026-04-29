@@ -29,6 +29,34 @@
   letter-spacing: 0.04em;
 }
 
+/* "More clips at Actors Access" pill — lavender/deep purple palette
+   to differentiate from the pink primary CTAs (Subscribe, To April).
+   Uses the global .pill-btn base for shape + hover lift. */
+.actorsAccessBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 11px 22px;
+  background: rgba(179, 155, 200, 0.15);
+  color: #2a1f3d;
+  border: 1px solid rgba(179, 155, 200, 0.6);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.actorsAccessBtn:hover {
+  background: #B39BC8;
+  color: #fff;
+  border-color: #B39BC8;
+}
+
+.actorsAccessBtn i {
+  font-size: 0.78rem;
+}
+
 /* ── Two-column reels grid ── */
 .reelsGrid {
   position: relative;

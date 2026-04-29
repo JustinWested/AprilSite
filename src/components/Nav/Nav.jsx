@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import styles from './Nav.module.css';
 
+// Items with `hash` route to /#<hash> — handled by App.jsx ScrollToTop,
+// which smooth-scrolls to that anchor when the hash is present.
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Filmmaking', to: '/films' },
   { label: 'Reels', to: '/reels' },
   { label: 'Voiceover', to: '/vo' },
+  { label: 'Contact', hash: 'contact' },
   {
-    label: 'Substack',
+    label: 'Ferret with a Knife',
     href: 'https://ferretwithaknife.substack.com',
     external: true,
   },
@@ -69,6 +72,24 @@ export default function Nav({ transparent }) {
                 <a href={item.href} target="_blank" rel="noopener noreferrer">
                   {item.label}
                 </a>
+              </li>
+            ) : item.hash ? (
+              <li key={item.label}>
+                <Link
+                  to={`/#${item.hash}`}
+                  onClick={(e) => {
+                    // If already on home, prevent the route change and just
+                    // smooth-scroll. Otherwise let the Link navigate and
+                    // ScrollToTop in App.jsx will handle the hash.
+                    if (location.pathname === '/') {
+                      e.preventDefault();
+                      const el = document.getElementById(item.hash);
+                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
+                  {item.label}
+                </Link>
               </li>
             ) : item.children ? (
               <li key={item.label} className={styles.dropdown}>

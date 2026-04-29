@@ -62,10 +62,6 @@ export const films = [
         url: 'https://www.indieactivity.com/butt-stuff-horror-comedy-short-at-2023-dances-with-films-festival/',
       },
       {
-        publication: 'We Are Moving Stories',
-        url: 'https://www.wearemovingstories.com/we-are-moving-stories-films/2023/6/6/butt-stuff',
-      },
-      {
         publication: 'Morbidly Beautiful',
         url: 'https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/',
       },
@@ -136,17 +132,15 @@ export const films = [
 
   {
     id: 'dave',
-    title: 'Dave',
+    title: 'The Infinite Wisdom of Dave the Unicorn',
     aprilCredit: 'Written by April Yanko',
     posterSrc: '/images/films/Dave the Unicorn Poster.png',
-    bannerSrc: '/images/films/Dave the Unicorn bottom banner.jpg',
-    trailerUrl: 'https://www.instagram.com/p/DDfrG7HPVcT/',
-    // NOTE: Instagram trailers need a `trailerThumbnail` for the modal
-    // to render the click-to-link tile. Add a still frame here when one
-    // is available (e.g. '/images/films/dave/dave-still.webp').
+    bannerSrc: '/images/films/Dave the Unicorn bottom banner v2.png',
+    trailerUrl: 'https://www.youtube.com/watch?v=UXw0KppL2XY',
     watchLabel: 'Watch the Trailer',
-    synopsis: 'Synopsis not yet provided.',
-    genres: [],
+    synopsis:
+      'A college student, her secret crush, and her imaginary friend attend a house party.',
+    genres: ['Rom Com', 'LGBTQ+'],
     accolades: [
       {
         festivalName: 'Yes We Cannes Global Film Challenge',
@@ -168,7 +162,7 @@ export const films = [
   {
     id: 'thisisagarden',
     title: 'this is a garden',
-    aprilCredit: 'Co-Directed & Written by April Yanko',
+    aprilCredit: 'Written & Co-Directed by April Yanko',
     posterSrc: '/images/films/GardenPoster.webp',
     bannerSrc: '/images/films/gardenhead.webp',
     trailerUrl: 'https://www.youtube.com/watch?v=b4eXILF8CIE',
@@ -271,7 +265,7 @@ export const films = [
     trailerUrl: 'https://www.youtube.com/watch?v=XEdSmMWMXhc',
     watchLabel: 'Watch the Film',
     synopsis:
-      'A man agrees to help a dying plant live out his last wish. Made for the 48 Hour Film Project in LA.',
+      'A man agrees to help a dying plant live out his last wish.',
     genres: ['Buddy Film', 'Fantasy', 'Comedy'],
     accolades: [
       {
@@ -303,7 +297,7 @@ export const films = [
     trailerThumbnail: '/images/films/murderprod/murder is on the table prod1.webp',
     watchLabel: 'Watch the Trailer',
     synopsis:
-      'When a family finds their aunt facedown in her plate of food, one wide-eyed self-proclaimed sleuth decides the intricate mystery to solve rests in his delicate hands. Made for the 48 Hour Film Project in LA.',
+      'When a family finds their aunt facedown in her plate of food, one wide-eyed self-proclaimed sleuth decides the intricate mystery to solve rests in his delicate hands.',
     genres: ['Mystery', 'Comedy'],
     accolades: [
       {
@@ -324,14 +318,26 @@ export const films = [
     ],
     pressLinks: [],
     credits: [
-      { role: 'Directed by', name: 'Michael Filippi' },
-      { role: 'Produced by', name: 'April Yanko, Justin Wested' },
-      { role: 'Produced by', name: 'Allison Marie Reyes, Gregg Lawson' },
-      { role: 'Actors', name: 'Zachary Lichaa, Faye Klapperich, Aubrey Chantelle, Nick Garabedian' },
-      { role: 'Cinematography', name: 'Christine Mouton' },
-      { role: 'Sound', name: 'Mike Walker' },
-      { role: 'Editor', name: 'Leslie René Castro' },
-      { role: 'Music', name: 'Austin Ali' },
+      { role: 'Director', name: 'Michael Filippi' },
+      { role: 'Producers', name: 'Conrad Wrobel, Rory Ross, Tasha Wrobel & Marissa Messiano' },
+      { role: 'Editor', name: 'Paul Moore' },
+      { role: 'Audio', name: 'Jesse Lopez' },
+      { role: 'Hair and Makeup', name: 'Billie Collins' },
+      { role: 'Costumes/Props', name: 'Ambrose Burzak' },
+      { role: 'Script Supervisor', name: 'Tim Whitford' },
+      { role: 'Writer / Co-Director', name: 'April Yanko' },
+      { role: 'Starring', name: 'Ariel Staehle, Aubrey Chantelle, Conrad Wrobel, Max Cutler, Rory Ross & Zamara Jimenez' },
+      { role: 'ADR Supervisor', name: 'Max Cutler' },
+      { role: 'Assistant Director', name: 'Tasha Wrobel' },
+      { role: 'Production Assistants', name: 'Tim Whitford, Sevan Shamilian, Christina Shamilian & Eluzai Salmeron' },
+      { role: 'Colorist', name: 'Evan Gradillas' },
+      { role: 'Executive Producer', name: 'Allison Marie Reyes' },
+      { role: 'Cinematographer', name: 'Mannon Butt' },
+      { role: 'Assistant Camera', name: 'Kahlo Gradillas' },
+      { role: 'Composer', name: 'Austin Ali' },
+      { role: 'Musicians', name: 'Aric Kline & Samuel Adams' },
+      { role: 'Post Audio Mixer', name: 'Sebastian Radlbauer' },
+      { role: 'Graphic Design', name: 'Justin Wested' },
     ],
     whereToWatch: null,
   },
@@ -345,7 +351,7 @@ export const films = [
     trailerUrl: 'https://www.youtube.com/watch?v=ekOhQgg1nMI',
     watchLabel: 'Watch the Trailer',
     synopsis:
-      'A friend needs someone to shoot him after getting bit by a zombie. But maybe…we can just wait it out? Made for the Horror/Comedy 48 Hour Film Project in LA.',
+      'A friend needs someone to shoot him after getting bit by a zombie. But maybe…we can just wait it out?',
     genres: ['Dark Comedy'],
     accolades: [
       {
@@ -418,11 +424,13 @@ export const films = [
       {
         festivalName: 'Yes We Cannes Global Film Challenge',
         wins: [],
-        nominations: ['Best Makeup', 'Best Use of Genre — Buddy Film'],
+        // Order intentionally reversed (selections before nominations)
+        // so the Cannes line reads first in the modal.
         officialSelections: [
           'Top 15 Worldwide — Advanced to Filmapalooza',
-          'Top 8 Worldwide — Screened at Cannes Short Film Corner',
+          'Screened at the Cannes 48HFP Curated Short Film Corner',
         ],
+        nominations: ['Best Makeup', 'Best Use of Genre'],
       },
     ],
     pressLinks: [],
@@ -466,7 +474,7 @@ export const films = [
     credits: [
       { role: 'Directed by', name: 'Michael Filippi' },
       { role: 'Produced by', name: 'Allison Marie Reyes, Spencer Tuel, Gregg Lawson, Conrad Wrobel, Grace Liu, Kevin Young' },
-      { role: 'Actors', name: 'April Yanko, Ambrose Burzak, Harvey Bickett, Aubrey Chantelle' },
+      { role: 'Actors', name: 'April Yanko, Ambrose Burzak, Harvey Bickett, Aubrey Chantelle, Conrad Wrobel' },
       { role: 'Cinematography', name: 'Drew Tieng' },
       { role: 'Editors', name: 'Michael Filippi, Leslie René Castro' },
       { role: 'Music', name: 'Whose' },

@@ -55,6 +55,28 @@
   color: #2a1f3d;
 }
 
+/* Inline links inside .bioText — used both for <a> external links
+   and <button> triggers that open film modals. Pink, no underline by
+   default; underline on hover. Reset native button chrome so the
+   button-as-link visually matches the anchor. */
+.bioLink {
+  color: #E64398;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.bioLink:hover,
+.bioLink:focus-visible {
+  text-decoration: underline;
+  color: #c64191;
+  outline: none;
+}
+
 .newsLabel {
   font-size: 0.75rem;
   font-weight: 700;
@@ -213,6 +235,9 @@
   padding: 56px 24px;
   max-width: 960px;
   margin: 0 auto;
+  /* When the nav scrolls the user here via /#contact, leave a little
+     breathing room above so the heading isn't kissed by the nav bar. */
+  scroll-margin-top: 80px;
 }
 
 .contactGrid {
@@ -225,6 +250,7 @@
 .contactLeft {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .contactPhoto {
@@ -232,6 +258,7 @@
   max-width: 320px;
   border-radius: 14px;
   object-fit: cover;
+  object-position: center center;
 }
 
 .contactCard {

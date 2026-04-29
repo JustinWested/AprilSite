@@ -51,12 +51,29 @@
 .socialIcon {
   color: rgba(255, 255, 255, 0.6);
   font-size: 1.3rem;
+  display: inline-flex;
+  align-items: center;
   transition: color 0.2s, transform 0.2s;
 }
 
 .socialIcon:hover {
   color: #E64398;
   transform: scale(1.15);
+}
+
+/* Image-based social icon (e.g. Actors Access logo). Sized to roughly
+   match the Font Awesome glyph height; uses opacity for the dim state
+   so the original logo art stays intact. */
+.socialImg {
+  height: 22px;
+  width: auto;
+  display: block;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.socialIcon:hover .socialImg {
+  opacity: 1;
 }
 
 .headshotWrap {

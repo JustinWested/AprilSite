@@ -11,33 +11,47 @@ import YouTubePlayer from '../../components/YouTubePlayer/YouTubePlayer';
 import { films } from '../../data/films';
 import styles from './HomePage.module.css';
 
-// News items either reference a film by id (clicking opens that film's
-// modal) or carry an external `link` (clicking opens in a new tab).
-const newsItems = [
+// Recent Press list — every item is an external article (open in a new tab).
+const pressItems = [
   {
-    headline: 'Butt Stuff premieres at Dances With Films at the historic TCL Chinese Theater in Los Angeles',
-    filmId: 'buttstuff',
-  },
-  {
-    headline: 'GenreBlast 2023: 10 Great Horror Comedy Shorts',
+    headline:
+      "Morbidly Beautiful calls Yanko's film Butt Stuff a “sweet, funny, wonderfully weird short that will leave you grinning from ear to ear”",
     link: 'https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/',
   },
   {
-    headline: 'Pulling the Plug on Mom nominated for Best Comedy at Cannes Shorts',
-    filmId: 'pullingplugmom',
+    headline:
+      'VisionRey snags 2 spots in the exclusive Filmapalooza with two films written by April Yanko, fresh off her Best Writer and Best Film win',
+    link: 'https://www.indieactivity.com/visionrey-snags-acceptance-for-2-films-at-filmapalooza/',
   },
   {
-    headline: 'Murder is on the Table wins Best Writing at LA 48 Hour Film Festival',
-    filmId: 'murder',
+    headline:
+      "Gaming Trend: “April Yanko's type-A attempts to find order in the chaos that is tabletop roleplay creates endless hilarity”",
+    link: 'https://gamingtrend.com/interviews/bringing-the-psychology-of-tabletop-to-screen-with-dd-web-sitcom-the-party/',
   },
   {
-    headline: 'Bite Me wins Audience Choice and Best Graphics at 48 Horror/Comedy Film Project',
-    filmId: 'biteme',
+    headline:
+      'Paste Magazine ICYMI: D&D Web Series The Party Is a Delightful Tabletop Romp',
+    link: 'https://www.pastemagazine.com/tv/what-to-watch/the-party-web-series-dnd-cast-underrated-tv-shows-to-stream',
+  },
+  {
+    headline:
+      "Geek Mom: ‘The Party’ Is the Tabletop Web Series Heir to ‘The Guild’ and ‘LARPs’",
+    link: 'https://geekmom.com/2023/04/the-party-is-the-tabletop-web-series-heir-to-the-guild-and-larps/',
+  },
+  {
+    headline: "‘this is a garden’ reaches 30k+ views on YouTube",
+    link: 'https://www.youtube.com/watch?v=b4eXILF8CIE',
   },
 ];
 
 export default function HomePage() {
   const [selectedFilm, setSelectedFilm] = useState(null);
+
+  // Helper for inline bio links that should open a film modal.
+  function openFilm(id) {
+    const film = films.find((f) => f.id === id);
+    if (film) setSelectedFilm(film);
+  }
 
   return (
     <div className={styles.page}>
@@ -62,62 +76,86 @@ export default function HomePage() {
           {/* Center — bio + news */}
           <div className={styles.bioCenter}>
             <p className={styles.bioText}>
-              April Yanko is a filmmaker whose work pairs irrevent, lowbrow humor
+              April Yanko is a filmmaker whose work pairs irreverent, lowbrow humor
               with dry, self-aware wit to make the uncomfortable something you can
               laugh at instead of turn away from.
             </p>
             <p className={styles.bioText}>
-              Her short &ldquo;Butt Stuff&rdquo; debuted at Dances with Films at
-              the TCL Chinese Theatre, and her films have since screened at Austin
-              Revolution, Broad Humor, and GenreBlast. Most recently, she screened
-              a short film at the Cannes Film Festival Short Film Corner. Her debut
-              film, &ldquo;this is a garden,&rdquo; was noted for its authentic and
-              sincere LGBTQ+ storytelling, and her work tends to live somewhere
-              between heartfelt and super-effing weird.
+              Her short{' '}
+              <button
+                type="button"
+                className={styles.bioLink}
+                onClick={() => openFilm('buttstuff')}
+              >
+                “Butt Stuff”
+              </button>{' '}
+              debuted at Dances with Films at the TCL Chinese Theatre, and her
+              films have since screened at Austin Revolution, Broad Humor, and
+              GenreBlast. Most recently, she screened a short film at the Cannes
+              Film Festival Short Film Corner via the 48HFP&rsquo;s curated
+              selection from the worldwide Yes We Cannes competition. Her debut
+              film,{' '}
+              <button
+                type="button"
+                className={styles.bioLink}
+                onClick={() => openFilm('thisisagarden')}
+              >
+                “this is a garden,”
+              </button>{' '}
+              was noted for its &lsquo;authentic and sincere LGBTQ+
+              storytelling,&rsquo; and her work tends to live somewhere between
+              heartfelt and super-effing weird.
             </p>
             <p className={styles.bioText}>
               She&rsquo;s studied sketch writing and improv at UCB and the Pack
-              Theater with incredible teachers like Sam Brown (Whitest Kids U&rsquo;
-              Know), Keisha Zollar (Astronomy Club), and Eric Moneypenny (Eric
-              Andre, Midnight Show). April writes the Substack &ldquo;Ferret with a
-              Knife&rdquo; and performs sketch on the Pack house team
-              &ldquo;Kickball.&rdquo; You can also catch her starring in &ldquo;The
-              Party,&rdquo; a D&amp;D webseries on YouTube.
+              Theater under Sam Brown (Whitest Kids U&rsquo; Know), Keisha Zollar
+              (Astronomy Club), and Eric Moneypenny (Eric Andre, Midnight Show),
+              among others. April writes the Substack{' '}
+              <a
+                href="https://ferretwithaknife.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.bioLink}
+              >
+                “Ferret with a Knife”
+              </a>{' '}
+              and performs sketch on the Pack house team{' '}
+              <a
+                href="https://www.youtube.com/playlist?list=PLMf0z8lyC0tO1-8fwdeGi8SvX-Lae8Y-R"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.bioLink}
+              >
+                “Kickball.”
+              </a>{' '}
+              You can also catch her starring in{' '}
+              <a
+                href="https://www.youtube.com/watch?v=mLMrE2Im9vw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.bioLink}
+              >
+                “The Party,”
+              </a>{' '}
+              a D&amp;D webseries on YouTube.
             </p>
             <p className={styles.bioText}>
               All of her Neopets are alive and well.
             </p>
 
-            <h3 className={styles.newsLabel}>Recent News</h3>
+            <h3 className={styles.newsLabel}>Recent Press</h3>
             <div className={styles.newsList}>
-              {newsItems.map((item, i) => {
-                // External link card — open press article in new tab.
-                if (item.link) {
-                  return (
-                    <a
-                      key={i}
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`frosted-card ${styles.newsCard}`}
-                    >
-                      <span className={styles.newsHeadline}>{item.headline}</span>
-                    </a>
-                  );
-                }
-                // Film card — open the film modal.
-                const film = films.find((f) => f.id === item.filmId);
-                return (
-                  <button
-                    type="button"
-                    key={i}
-                    className={`frosted-card ${styles.newsCard}`}
-                    onClick={() => film && setSelectedFilm(film)}
-                  >
-                    <span className={styles.newsHeadline}>{item.headline}</span>
-                  </button>
-                );
-              })}
+              {pressItems.map((item, i) => (
+                <a
+                  key={i}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`frosted-card ${styles.newsCard}`}
+                >
+                  <span className={styles.newsHeadline}>{item.headline}</span>
+                </a>
+              ))}
             </div>
           </div>
 
@@ -170,7 +208,7 @@ export default function HomePage() {
       <SectionDivider />
 
       {/* ── Section 5: Contact ── */}
-      <section className={styles.contactSection}>
+      <section id="contact" className={styles.contactSection}>
         <div className={styles.contactGrid}>
           <div className={styles.contactLeft}>
             <img
@@ -182,7 +220,7 @@ export default function HomePage() {
           <div className={`frosted-card ${styles.contactCard}`}>
             <h2 className={styles.contactHeading}>Call me, beep me</h2>
             <p className={styles.contactSub}>
-              ...or just email me because that&rsquo;s what this is for.
+              or just email me because that&rsquo;s what this is for.
             </p>
             <form
               action="https://aprilyanko.us12.list-manage.com/subscribe/post?u=a77f48c271656e6046f2833df&id=1cd0d2c44e&f_id=00b2b7e0f0"
@@ -194,7 +232,6 @@ export default function HomePage() {
                 <label htmlFor="mce-EMAIL" className={styles.label}>
                   Email Address <span className={styles.req}>*</span>
                 </label>
-                <p className={styles.helper}>What&rsquo;s your email?</p>
                 <input
                   type="email"
                   name="EMAIL"
@@ -207,7 +244,6 @@ export default function HomePage() {
                 <label htmlFor="mce-NAME" className={styles.label}>
                   Who are you?
                 </label>
-                <p className={styles.helper}>Who who, who who.</p>
                 <input
                   type="text"
                   name="NAME"
