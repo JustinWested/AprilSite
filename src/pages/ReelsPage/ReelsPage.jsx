@@ -40,7 +40,6 @@ export default function ReelsPage() {
 
       <section className={styles.hero}>
         <h1 className={styles.heroTitle}>Reels</h1>
-        <p className={styles.heroSub}>Actor | Comedian | Sketch Writer</p>
         <a
           href="https://resumes.actorsaccess.com/aprilyanko"
           target="_blank"
