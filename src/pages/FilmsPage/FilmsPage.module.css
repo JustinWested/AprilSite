@@ -24,7 +24,7 @@
 
 .subhead {
   text-align: center;
-  color: #B39BC8;
+  color: #2a1f3d;
   font-size: 0.95rem;
   margin-bottom: 48px;
 }
@@ -87,14 +87,18 @@
   }
 }
 
-/* ── Mobile: 1 column ── */
+/* ── Mobile: keep 2 columns, just tighten gap and shrink posters ── */
 @media (max-width: 600px) {
   .grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .posterImg {
-    height: 300px;
+    height: 200px;
+  }
+
+  .posterTitle {
+    font-size: 0.82rem;
   }
 }

@@ -132,6 +132,22 @@
   transform: translateY(-50%);
 }
 
+/* Mobile-only "April Yanko" brand on left side of header.
+   Hidden on desktop; revealed in the mobile media query below. */
+.mobileBrand {
+  display: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.transparent .mobileBrand {
+  color: #2a1f3d;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -141,6 +157,10 @@
 @media (max-width: 768px) {
   .hamburger {
     display: block;
+  }
+
+  .mobileBrand {
+    display: inline-block;
   }
 
   .inner {

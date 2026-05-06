@@ -57,6 +57,12 @@ export default function Nav({ transparent }) {
   return (
     <nav className={navClass} ref={navRef}>
       <div className={styles.inner}>
+        {/* Mobile-only site title on the left of the header bar. Links
+            home. Hidden on desktop via the .mobileBrand CSS rule. */}
+        <Link to="/" className={styles.mobileBrand}>
+          April Yanko
+        </Link>
+
         <button
           className={styles.hamburger}
           onClick={() => setMobileOpen(!mobileOpen)}
