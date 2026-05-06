@@ -175,7 +175,7 @@ export default function HomePage() {
         <h3 className={styles.sectionLabel}>filmmaker reel</h3>
         <div className={styles.reelWrap}>
           <YouTubePlayer
-            videoId="kvPVf9H4TUM"
+            videoId="uFJaxg9o9kA"
             title="April Yanko — Filmmaker Reel"
             label=""
           />
