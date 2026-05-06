@@ -7,9 +7,7 @@ const socialLinks = [
   { icon: 'fa-brands fa-threads', href: 'https://www.threads.net/@post.march', label: 'Threads' },
   { icon: 'fa-brands fa-instagram', href: 'https://www.instagram.com/post.march/', label: 'Instagram' },
   { icon: 'fa-brands fa-youtube', href: 'https://www.youtube.com/@postmarch/videos', label: 'YouTube' },
-  // Image-based logo — drop the file at /public/images/actors-access-logo.png
-  // (transparent PNG, ~24px tall). Sized in CSS via .socialIcon img.
-  { image: '/images/actors-access-logo.png', href: 'https://resumes.actorsaccess.com/aprilyanko', label: 'Actors Access' },
+  { image: '/images/actorsaccess.webp', href: 'https://resumes.actorsaccess.com/aprilyanko', label: 'Actors Access' },
 ];
 
 const footerNav = [
