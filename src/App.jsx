@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import FilmsPage from './pages/FilmsPage/FilmsPage';
 import ReelsPage from './pages/ReelsPage/ReelsPage';
 import VoPage from './pages/VoPage/VoPage';
+import VestigePitchDeck from './pages/VestigePitchDeck/VestigePitchDeck';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 function ScrollToTop() {
@@ -35,6 +36,14 @@ export default function App() {
         <Route path="/films" element={<FilmsPage />} />
         <Route path="/reels" element={<ReelsPage />} />
         <Route path="/vo" element={<VoPage />} />
+        {/* Private pitch deck — direct-URL access only, NOT linked from
+            the nav. caseSensitive: only `/Vestige-Pitch-Deck` matches,
+            not `/vestige-pitch-deck`. */}
+        <Route
+          path="/Vestige-Pitch-Deck"
+          element={<VestigePitchDeck />}
+          caseSensitive
+        />
         {/* Fallback — unknown routes land on home */}
         <Route path="*" element={<HomePage />} />
       </Routes>
