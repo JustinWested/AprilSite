@@ -10,7 +10,7 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
 const ACCESS_KEY = 'vestige-deck-access';
 const NAME_KEY = 'vestige-deck-name';
 const EMAIL_KEY = 'vestige-deck-email';
-const SLIDE_COUNT = 24;
+const SLIDE_COUNT = 23;
 
 export default function VestigePitchDeck() {
   // Initialize unlocked state straight from localStorage so a returning
@@ -225,16 +225,18 @@ function DeckView() {
 
       <div className={styles.slideStack}>
         {slides.map((n) => {
-          const padded = String(n).padStart(2, '0');
+          // Files are named like "Vestige Slide(1).jpg" through (23).
+          // Space must be URL-encoded; parens are URL-safe.
+          const filename = `Vestige%20Slide(${n}).jpg`;
           return (
             <img
               key={n}
-              src={`/images/pitchdeck/slide-${padded}.jpg`}
+              src={`/images/pitchdeck/${filename}`}
               alt={`Vestige pitch deck slide ${n}`}
               loading="lazy"
               className={styles.slide}
-              // Until the actual files exist, hide the broken-image icon
-              // and reveal a placeholder background instead.
+              // If a slide is missing, show a labeled placeholder
+              // instead of the broken-image icon.
               onError={(e) => {
                 e.currentTarget.classList.add(styles.slidePlaceholder);
               }}
