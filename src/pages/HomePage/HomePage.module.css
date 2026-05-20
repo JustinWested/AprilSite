@@ -53,18 +53,23 @@
   font-size: 1rem;
   line-height: 1.7;
   color: #2a1f3d;
+  font-weight: 500;
 }
 
 /* Inline links inside .bioText — used both for <a> external links
-   and <button> triggers that open film modals. Pink, no underline by
-   default; underline on hover. Reset native button chrome so the
-   button-as-link visually matches the anchor. */
+   and <button> triggers that open film modals. Bolder + dark purple
+   so they stand out as emphasized words inside the prose; pink shows
+   up on hover as the interactive accent. Reset native button chrome
+   so the button-as-link visually matches the anchor. */
 .bioLink {
-  color: #E64398;
+  color: #2a1f3d;
+  font-weight: 700;
   background: none;
   border: none;
   padding: 0;
-  font: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.15s;
@@ -73,7 +78,7 @@
 .bioLink:hover,
 .bioLink:focus-visible {
   text-decoration: underline;
-  color: #c64191;
+  color: #E64398;
   outline: none;
 }
 
