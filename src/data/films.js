@@ -20,6 +20,40 @@
 
 export const films = [
   {
+    id: 'maxcapacity',
+    title: 'Max Capacity',
+    aprilCredit: 'Written & Directed by April Yanko',
+    posterSrc: '/images/films/MaxCapacityPoster.jpg',
+    bannerSrc: '/images/films/MaxCapacityStill.png',
+    trailerUrl: null,
+    watchLabel: null,
+    synopsis:
+      "While packing up her family home, a woman and her boyfriend discover her dead dad's nude centerfold.",
+    genres: ['Dramedy'],
+    accolades: [
+      {
+        festivalName: 'Louisiana Film Prize',
+        wins: [],
+        nominations: [],
+        officialSelections: ['Top 20 Finalist'],
+      },
+    ],
+    pressLinks: [
+      {
+        publication: 'Louisiana Film Prize',
+        url: 'https://prizefest.com/film/max-capacity/',
+      },
+    ],
+    credits: [
+      { role: 'Produced by', name: 'Justin Wested, April Yanko' },
+      { role: 'Starring', name: 'April Yanko, Justin Wested' },
+      { role: 'Cinematography by', name: 'Jeremy Enis' },
+      { role: 'Edited by', name: 'April Yanko, Justin Wested' },
+    ],
+    whereToWatch: null,
+  },
+
+  {
     id: 'buttstuff',
     title: 'Butt Stuff',
     aprilCredit: 'Written & Directed by April Yanko',

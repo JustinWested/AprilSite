@@ -4,6 +4,14 @@ import styles from './SubstackFeed.module.css';
 const FEED_URL = 'https://substack-rss-proxy.justwested.workers.dev/';
 const SUBSTACK_URL = 'https://ferretwithaknife.substack.com';
 
+// localStorage key + how long a cached result stays "fresh". We use
+// stale-while-revalidate: on load we paint the cached posts INSTANTLY
+// (even if stale), then quietly refetch in the background so the next
+// visit is up to date. Feed content changes rarely, so a wide-ish
+// staleness budget is fine.
+const CACHE_KEY = 'ferret-substack-feed-v1';
+const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour "fresh"
+
 // Rotating gradient fallbacks when a post has no image
 const GRADIENTS = [
   'linear-gradient(135deg, #A1C3D1 0%, #B39BC8 50%, #E64398 100%)',
@@ -73,26 +81,74 @@ function parseFeed(xmlText) {
   });
 }
 
+function readCache() {
+  try {
+    const raw = window.localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.posts)) return null;
+    return parsed; // { posts, savedAt }
+  } catch {
+    return null;
+  }
+}
+
+function writeCache(posts) {
+  try {
+    window.localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({ posts, savedAt: Date.now() })
+    );
+  } catch {
+    /* localStorage may be full or unavailable — just skip. */
+  }
+}
+
 export default function SubstackFeed({ count = 3 }) {
-  const [posts, setPosts] = useState(null); // null = loading
+  // Prime state directly from localStorage on first render so a returning
+  // visitor sees the last-known posts INSTANTLY — no skeleton flash.
+  const [posts, setPosts] = useState(() => {
+    if (typeof window === 'undefined') return null;
+    const cached = readCache();
+    return cached ? cached.posts.slice(0, count) : null;
+  });
   const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
+
+    // Skip the network entirely if the cache is still within its
+    // freshness window. The stale-vs-fresh check runs against the same
+    // cache we already primed state from, so this only saves a request —
+    // it doesn't change what the user sees on load.
+    const cached = readCache();
+    const isFresh =
+      cached && typeof cached.savedAt === 'number' &&
+      Date.now() - cached.savedAt < CACHE_TTL_MS;
+    if (isFresh) return () => { cancelled = true; };
+
     (async () => {
       try {
         const res = await fetch(FEED_URL);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const xml = await res.text();
         const parsed = parseFeed(xml).slice(0, count);
-        if (!cancelled) setPosts(parsed);
+        if (cancelled) return;
+        setPosts(parsed);
+        writeCache(parsed);
       } catch (e) {
-        if (!cancelled) setError(true);
+        if (cancelled) return;
+        // Only surface the error state when we have nothing at all to
+        // show — otherwise let the stale cached posts stay on screen.
+        if (posts === null) setError(true);
       }
     })();
     return () => {
       cancelled = true;
     };
+    // `posts` is intentionally omitted from deps — this effect fires
+    // once on mount to refresh in the background.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   // Error / fallback

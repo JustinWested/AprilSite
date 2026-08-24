@@ -15,6 +15,11 @@ import styles from './HomePage.module.css';
 const pressItems = [
   {
     headline:
+      "Max Capacity named one of Louisiana Film Prize's Top 20 Finalists",
+    link: 'https://www.shreveporttimes.com/story/entertainment/arts/2026/08/21/shreveport-prize-fest-2026-finalists-revealed/91402187007/',
+  },
+  {
+    headline:
       "Morbidly Beautiful calls Yanko's film Butt Stuff a “sweet, funny, wonderfully weird short that will leave you grinning from ear to ear”",
     link: 'https://morbidlybeautiful.com/genreblast-2023-horror-comedy-shorts/',
   },
